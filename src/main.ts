@@ -3,6 +3,7 @@ import { EnhancerModel, audioEnhancement } from '@livekit/plugins-ai-coustics';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'node:url';
 import { createAgent } from './agent.ts';
+import { FluxIntegrationSpike } from './fastfloor/livekit-flux-spike.ts';
 
 // Load environment variables from a local file.
 // Make sure to set LIVEKIT_URL, LIVEKIT_API_KEY, and LIVEKIT_API_SECRET
@@ -11,14 +12,23 @@ dotenv.config({ path: '.env.local' });
 
 export default defineAgent({
   entry: async (ctx) => {
+    // Explicit opt-in: the working baseline stays the default.
+    const fluxSpike =
+      process.env.FASTFLOOR_FLUX_SPIKE === '1' ? new FluxIntegrationSpike() : undefined;
     // Set up a voice AI pipeline using AssemblyAI, Fish Audio, and the LiveKit turn detector
     const session = new voice.AgentSession({
       // Speech-to-text (STT) is your agent's ears, turning the user's speech into text that the LLM can understand
       // See all available models at https://docs.livekit.io/agents/models/stt/
-      stt: new inference.STT({
-        model: 'assemblyai/universal-3-6-pro',
-        language: 'en',
-      }),
+      stt: fluxSpike
+        ? new inference.STT({
+            model: 'deepgram/flux-general-en',
+            language: 'en',
+            modelOptions: { eager_eot_threshold: 0.5 },
+          })
+        : new inference.STT({
+            model: 'assemblyai/universal-3-6-pro',
+            language: 'en',
+          }),
 
       // Keyterms bias the STT toward distinctive words it would otherwise misspell.
       // List your own names, brands, and jargon in `keyterms`. Detection additionally
@@ -27,7 +37,7 @@ export default defineAgent({
       // See more at https://docs.livekit.io/agents/models/stt/keyterms/
       keytermsOptions: {
         keyterms: ['LiveKit'],
-        keytermDetection: { enabled: true },
+        keytermDetection: { enabled: !fluxSpike },
       },
 
       // Text-to-speech (TTS) is your agent's voice, turning the LLM's text into speech that the user can hear
@@ -43,7 +53,7 @@ export default defineAgent({
         // directly to predict end of turn. It's built into the SDK (no extra plugin) and
         // AgentSession supplies the required VAD automatically.
         // See more at https://docs.livekit.io/agents/logic/turns/turn-detector/
-        turnDetection: new inference.TurnDetector(),
+        turnDetection: fluxSpike ? 'stt' : new inference.TurnDetector(),
         // Adaptive interruptions use the turn detector to tell a real interruption from a
         // backchannel like "mhm" or "right", so the agent keeps talking through the latter.
         // This model is on by default on LiveKit Cloud and in dev mode. To use the model elsewhere,
@@ -51,7 +61,7 @@ export default defineAgent({
         // See https://docs.livekit.io/deploy/admin/quotas-and-limits/#adaptive-interruption-handling for more information.
         // interruption: { mode: 'adaptive' },
         // Allow the LLM to generate a response while waiting for the end of turn
-        preemptiveGeneration: { enabled: true },
+        preemptiveGeneration: { enabled: !fluxSpike },
       },
 
       // Expressive mode injects the TTS provider's markup guide into the LLM prompt, so the model
@@ -63,7 +73,7 @@ export default defineAgent({
 
     // Start the session, which initializes the voice pipeline and warms up the models
     await session.start({
-      agent: createAgent(),
+      agent: createAgent(fluxSpike),
       room: ctx.room,
       inputOptions: {
         // ai-coustics QUAIL audio enhancement for noise cancellation
@@ -87,9 +97,11 @@ export default defineAgent({
     await ctx.connect();
 
     // Greet the user on joining
-    session.generateReply({
-      instructions: 'Greet the user in a helpful and friendly manner.',
-    });
+    if (!fluxSpike) {
+      session.generateReply({
+        instructions: 'Greet the user in a helpful and friendly manner.',
+      });
+    }
   },
 });
 
