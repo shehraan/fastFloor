@@ -30,9 +30,11 @@ This is a checklist, not a narration. Use fictional requests and headphones.
       interrupt audible speech and check it yields without restarting the old
       reply. This is a qualitative check, not a measured acoustic guarantee.
 - [ ] 45–60 s — Show the saved matched A/B table: SDK commitment → SDK playback
-      p50 1,016 ms baseline versus 474 ms FastFloor, ten samples per arm. Identify
-      the matched full-buffer control and say that caller-audible onset and
-      production speedup were not measured.
+      p50 1,016.374 ms Baseline versus 474.035 ms FastFloor: 53.4% lower median in
+      this exploratory comparison, ten samples per arm. Identify non-speculative
+      versus speculative execution of the same implementation, with matched
+      full-response buffering. SDK playback is not caller-audible onset; no verified
+      production latency improvement is claimed.
 - [ ] 60–80 s — Switch to the prepared Boardy-mode segment/session. Ask for a
       robotics founder in Boston. Show `find_people` returning fictional Maya
       Chen and the agent explaining the match/offering help drafting an intro.

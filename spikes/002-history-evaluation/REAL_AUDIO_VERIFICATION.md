@@ -1,120 +1,67 @@
 # Real-audio verification — October 28, 2026
 
-## Final manual verification / publication note
+## Baseline vs. FastFloor benchmark
 
-After the instrumented phase below, the developer reported successful live
-microphone testing of multi-turn conversation, corrections and interruptions.
-Boardy mode also called `find_people`, retrieved fictional Maya Chen in Boston,
-and offered help drafting an introduction. Those observations have no new acoustic
-timing capture; they do not turn the SDK metrics into caller-audible measurements.
-One isolated missed-speech observation after an agent response remains unconfirmed,
-with no established cause or measured recurrence rate.
+Metric: SDK user-turn commitment → first associated SDK console-output playback
+event. Only the final measurement set is used below. Both arms run the same
+implementation: non-speculative Baseline starts preparation at commitment;
+speculative FastFloor can start at preflight. This is not a comparison between
+codebase versions, and the history repair is not the experimental variable.
 
-The following sections preserve the instrumented phase as historical evidence.
-References to unperformed manual tests describe that earlier phase. The detailed
-caller-side onset/yield measurements below remain outstanding. Final packaging is
-documented in the root README and DEMO.md, without changing runtime behavior.
-Machine-specific worker logs and generated test-runner dumps referenced below are
-kept locally rather than in the publication tree; fictional raw traces, per-turn
-CLI observations, simulation exports, and measurement reports remain reviewable.
+| Metric                            |     Baseline |  FastFloor |
+| --------------------------------- | -----------: | ---------: |
+| Median SDK playback latency (p50) | 1,016.374 ms | 474.035 ms |
+| p95 SDK playback latency          | 1,778.332 ms | 997.356 ms |
+| Speculative candidates reused     |            0 |          9 |
+| Rollbacks                         |            0 |          2 |
+| Pre-commit SDK playback events    |            0 |          0 |
 
-## Result and boundary
+FastFloor achieved a **53.4% lower median commitment-to-first-SDK-playback latency**
+in this exploratory comparison: `(1 - 474.035 / 1016.374) × 100`, rounded to one
+decimal place. This is a descriptive difference between sample medians, not a
+verified production latency improvement.
 
-Real generated caller speech traversed hosted Deepgram Flux → configured Gemma →
-Fish Audio → LiveKit CLI console audio output in both matched arms. This is no
-longer scripted STT or silent synthetic TTS. It is **not** room/WebRTC playback,
-physical microphone listening, or client-perceived audible onset. The original
-AssemblyAI/default streaming agent also completed a separate audio smoke turn.
+### Methodology and limits
 
-The room audio simulations failed to capture conversational turns. Therefore
-room playback, acoustic leakage, caller-perceived latency, and actual generation/
-playback barge-in remain unverified. Do not treat the console metrics below as
-those measurements, or the failed simulations as a successful safety test.
+- Real generated caller speech traversed hosted Deepgram Flux → Gemma → Fish Audio
+  → LiveKit CLI console output. Four fresh sessions ran in
+  Baseline/FastFloor/FastFloor/Baseline order, five matched requested texts each:
+  **10 requested utterances, commitments, and playback samples per arm**.
+- Identical model, voice, prompt, and endpointing configuration: Gemma
+  `google/gemma-4-31b-it`, Flux `deepgram/flux-general-en` with
+  `eager_eot_threshold: 0.5`, Fish `fishaudio/s2.1-pro`, voice
+  `fa4c9eb3dccc4806b382b40d61c6b10a`, unchanged SDK STT endpointing defaults,
+  disabled SDK preemption, and full-response buffering. Only custom preflight
+  preparation differed; the trace-report CLI validated configuration parity.
+  Baseline is this matched control, not the original streaming AssemblyAI agent.
+- CLI 2.19.2 generated caller speech afresh. Requested text was matched, not
+  identical prerecorded waveforms; pauses, punctuation and response lengths varied.
+  SDK 1.9.4 ran on a constrained one-CPU host. Cold starts, host contention,
+  provider/network variation, synchronous trace I/O, and overlapping local
+  verification/setup work are confounders.
+- Percentiles use nearest rank: **p95 with ten observations is the maximum**, not
+  a reliable production-tail estimate. No verified production latency improvement
+  or causal acoustic speedup is claimed.
+- **SDK playback is not caller-perceived audible onset.** The experiment used
+  console output, not measured room/WebRTC playback or a listener's speaker.
+  Audible-onset fields remain null; room simulations captured no conversational
+  turns and supply no caller-side metrics.
 
-No packaging, commit, push, dependencies, provider changes, endpointing tuning,
-coordinator changes, speculative tools, or streaming redesign were performed.
+Reuse counts speculative candidates actually claimed by the output node.
+Rollbacks count unclaimed candidates invalidated, not wasted tokens or dollars.
+FastFloor made eleven speculative preparations; Baseline made none. Both arms had
+zero unattributed playback events. Zero pre-commit SDK playback events is a
+mechanical observation, not proof of semantic endpointing or acoustic leakage
+safety. First model text, first synthesized frame, and SDK playback are distinct.
 
-## Reproduced history bug and repair
-
-The pre-fix real-audio evidence is `real-audio/console/3-fastfloor.jsonl`, with
-CLI observations in `3-fastfloor-turn4.json` and the subsequent model contexts.
-The important normalized event order was:
-
-1. `FINAL_TRANSCRIPT`: the full Lisbon/Tuesday/two-room/hotel details.
-2. New `START_OF_SPEECH` and `INTERIM_TRANSCRIPT`: “Please repeat the…”.
-3. `USER_TURN_COMMITTED`: the earlier finalized details, exactly as observed.
-4. No coordinator commitment, retained-input event, or persisted user message for
-   that input. The hook rejected it because the latest transcript was now newer.
-5. A second final/commit for “Please repeat…” received a reply denying that the
-   caller had supplied rooms/hotel preferences. The next request lacked Lisbon.
-
-This is established adapter history loss, not merely a model recall failure.
-The SDK split one requested utterance into two commitments; the integration then
-mistakenly coupled rejected reply authorization to rejected finalized history.
-
-`FluxIntegrationSpike.committed()` still suppresses that superseded reply. Before
-`StopResponse`, however, it now preserves the exact SDK message if its text equals
-all observed final segments joined according to the existing SDK aggregate rule.
-The existing public-agent/session history recovery was extracted into one helper
-and reused. IDs deduplicate recovery. It does not accept an interim/preflight-only
-hypothesis, a truncated aggregate, or invented text. It does not merge two SDK
-turns, delay endpointing, permit stale speech, or change cancellation policy.
-
-Two regressions were observed failing on missing retained history, one per arm.
-The final regressions replay the event ordering through real SDK STT/session/
-commit/reply interfaces, then verify both histories, no stale output, duplicate-ID
-handling, and the next actual model request. Three negative cases verify that
-unproven input is not retained. Provider transports are fixtures in these focused
-regressions; they are not counted as audio-performance samples.
-
-Post-fix fresh audio runs completed twenty requested utterances with correct
-New York → Boston → original recall and Lisbon/Tuesday/two-room read-back. Exact
-reoccurrence of the failing final/interim/hook ordering was not observed in that
-post-fix audio set; the deterministic SDK regression establishes that repair.
-The original sixty tests and TurnCoordinator source/tests remain intact.
-
-## Matched experiment and measurements
-
-Each set used four fresh sessions in baseline/FastFloor/FastFloor/baseline order,
-five identical requested texts per session, ten requested utterances per arm.
-Both used the unchanged assistant prompt, Gemma `google/gemma-4-31b-it`, Flux
-`deepgram/flux-general-en` with `eager_eot_threshold: 0.5`, Fish `fishaudio/s2.1-pro`
-and voice `fa4c9eb3dccc4806b382b40d61c6b10a`, STT endpointing with unchanged SDK
-defaults, disabled SDK preemptive generation, and full-response buffering.
-Only the custom preflight preparation setting differed. Configuration parity was
-validated by the existing trace-report CLI in both sets.
-
-Caller speech was generated afresh by CLI 2.19.2 for each requested text, so the
-waveforms, pauses, recognized punctuation and response lengths were not identical.
-This is a matched-text exploratory comparison, not controlled audio replay.
-SDK 1.9.4 ran in a constrained one-CPU sandbox; cold starts, host contention,
-provider/network variation and synchronous trace I/O are confounders. Some local
-verification commands overlapped setup/early parts of capture sessions. These
-samples do not establish production distributions or a causal acoustic speedup.
-
-Commitment → first SDK console output playback event, milliseconds:
-
-| Set        | Arm       | Requested | Commitments | Playback samples |      p50 |      p95 |
-| ---------- | --------- | --------: | ----------: | ---------------: | -------: | -------: |
-| Before fix | Baseline  |        10 |          10 |               10 | 1134.319 | 2082.084 |
-| Before fix | FastFloor |        10 |          11 |               10 |  736.193 | 1300.684 |
-| After fix  | Baseline  |        10 |          10 |               10 | 1016.374 | 1778.332 |
-| After fix  | FastFloor |        10 |          10 |               10 |  474.035 |  997.356 |
-
-Nearest-rank percentiles: with ten samples, p95 is just the maximum, not a reliable
-estimate of a production tail. Do not pool pre-fix and post-fix sets. The pre-fix
-FastFloor failure remains visible: eleven commitments, one missing output sample,
-and a semantically incorrect later reply. It must not be hidden by its lower p50.
-
-After the fix, FastFloor claimed nine speculative candidates and invalidated two
-unclaimed candidates across eleven speculative preparations. Baseline had zero.
-Both arms had zero SDK playback events before their associated commitment and
-zero unattributed playback events. This does not establish no semantically early
-endpointing or no audible leaked audio. All audible-onset fields remain null.
+Final evidence: [raw traces](real-audio/postfix-console/),
+[report](real-audio/postfix-console-report.json), and the `results.afterFix` entry
+in [per-turn measurements](real-audio/measured-comparison.json). Existing filenames
+and JSON keys are preserved; historical entries are excluded from this benchmark.
 
 ### What full-response buffering costs
 
-Derived directly from post-fix trace timestamps, milliseconds:
+Derived directly from the final benchmark trace timestamps, milliseconds:
 
 | Trace interval                                         | Baseline p50 / max | FastFloor p50 / max |
 | ------------------------------------------------------ | -----------------: | ------------------: |
@@ -135,6 +82,49 @@ still substantial. No clear low-risk streaming change was established, so buffer
 was measured and retained rather than changing the architecture in this phase.
 SDK `llmNodeTtft` for the released one-string transport is not the underlying
 model's TTFT; use `LLM_STARTED` / `LLM_FIRST_TEXT_DELTA` instead.
+
+## History correctness: separate debugging evidence
+
+A historical audio capture reproduced accepted-input loss: Flux finalized the
+Lisbon/Tuesday/hotel request, newer speech arrived, and the SDK commitment hook
+then suppressed the earlier reply. Agents 1.9.4 returns before persisting input
+when that hook raises `StopResponse`; the adapter had coupled reply suppression
+to input loss. The next actual model context lacked the accepted details. See the
+[raw trace](real-audio/console/3-fastfloor.jsonl) and
+[CLI observation](real-audio/console/3-fastfloor-turn4.json).
+
+The repair retains the exact provenance-validated SDK message by ID in both agent
+and session history before `StopResponse`, while still suppressing the superseded
+reply. It accepts only the observed final aggregate, not hypotheses, truncated or
+invented text. It changes neither endpointing nor coordinator cancellation policy.
+This is a correctness repair shared by both benchmark arms, not a latency feature.
+
+[Deterministic SDK regressions](../../src/fastfloor/livekit-flux-session.test.ts)
+replay the final/new-interim/commit ordering in both arms and verify both histories,
+no stale output, duplicate-ID handling, and the next actual model request. Three
+negative cases reject unproven input. Exact recurrence of this ordering was not
+observed in the final audio capture; the controlled regression validates the repair.
+These fixture-backed tests are not performance samples; all tests remain unchanged.
+
+Historical measurements and the incomplete/incorrect trial remain available in
+[`console-report.json`](real-audio/console-report.json) and `results.beforeFix` in
+[`measured-comparison.json`](real-audio/measured-comparison.json). They are archived
+debugging evidence, excluded from all headline metrics and never pooled with the
+final experiment. No historical trace, regression test, or benchmark data was changed.
+
+## Manual verification / publication note
+
+The developer reported successful live microphone tests of multi-turn conversation,
+corrections and interruptions. Boardy mode called `find_people`, retrieved fictional
+Maya Chen in Boston, and offered help drafting an introduction. That opt-in workload
+remains committed-only with all speculation disabled; no introduction is sent.
+These qualitative observations add no acoustic timing samples. One isolated
+missed-speech observation after an agent response remains unconfirmed and undiagnosed.
+
+Caller-side onset/yield measurements remain outstanding. The original default
+AssemblyAI/streaming agent passed a separate audio smoke turn, outside this
+benchmark. Machine-specific worker logs/test-runner dumps referenced below remain
+local-only; published fictional traces, CLI observations and exports are unchanged.
 
 ## Room simulation attempts and unresolved setup
 
@@ -165,13 +155,15 @@ running. Recheck exports rather than assuming a CLI timeout proves cloud shutdow
 
 All paths below are relative to `spikes/002-history-evaluation/`:
 
-- `real-audio/console/`: pre-fix four-session raw JSONL, CLI turns/history and
-  stopped-status results, including the failing long utterance. Do not overwrite.
-- `real-audio/postfix-console/`: post-fix equivalent, twenty requested utterances.
-- `real-audio/console-report.json`, `real-audio/postfix-console-report.json`:
-  exports from the existing `scripts/summarize-traces.ts`.
+- `real-audio/postfix-console/`, `real-audio/postfix-console-report.json`: the final
+  benchmark's four sessions/twenty utterances, raw JSONL, CLI turns/history, and
+  report exported by `scripts/summarize-traces.ts`.
+- `real-audio/console/`, `real-audio/console-report.json`: archived four-session
+  debugging capture, including the failing long utterance and incomplete output.
+  Excluded from headline results; preserved without overwriting or pooling.
 - `real-audio/measured-comparison.json`: per-turn timings, arm-local nearest-rank
   percentiles, buffering intervals, incompleteness, and user-request history checks.
+  `results.afterFix` is the final benchmark; `results.beforeFix` is historical only.
 - `real-audio/simulation-*-export.json`, `*.stdout`, `*.stderr`, `*-worker.log`:
   failed room attempts, not performance evidence.
 - `real-audio/default-*.json`: separate original-baseline real audio smoke; correct
@@ -251,4 +243,3 @@ phrases only. Run one arm at a time in fresh sessions, alternating order:
 
 Until these checks or working room audio simulations complete, do not claim a
 real-room latency win, acoustic cancellation safety, or production readiness.
-Stop here: final packaging is explicitly outside this phase.

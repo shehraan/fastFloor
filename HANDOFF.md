@@ -11,9 +11,11 @@ Implementation is feature-complete for the demo; do not resume feature work.
 - Boardy mode successfully called `find_people`, retrieved fictional Boston robotics
   founder Maya Chen, and offered help drafting an intro. No introduction was sent.
   All speculation remains disabled in this opt-in tool-enabled workload.
-- The post-fix SDK commitment → console playback evidence remains 10 samples/arm,
-  p50 1016.374 ms baseline / 474.035 ms FastFloor. No caller-side acoustic metric or
-  verified production speedup was added by manual testing or packaging.
+- The headline comparison is non-speculative Baseline vs. speculative FastFloor,
+  using the final measurement set: 10 playback samples/arm, SDK commitment → first
+  SDK playback p50 1,016.374 ms / 474.035 ms (53.4% lower median). Both arms run the
+  same implementation. No caller-side acoustic metric or verified production
+  latency improvement is claimed.
 - README: architecture diagram, ownership, gating/cancellation/history, exact setup
   and mode commands, benchmark method/limits, reproduction, and evidence links.
   DEMO.md: 60–90-second checklist and exact sharing sequence.
@@ -41,11 +43,12 @@ credential-blocked statements below are historical, not this environment's statu
   commitment arrived after a newer interim. The adapter's early rejection now
   retains only exact observed-final aggregates using the existing history recovery;
   it still suppresses superseded replies. Coordinator/core cancellation untouched.
-- Pre-fix and fresh post-fix ABBA sets are separate under `real-audio/`. Post-fix:
-  ten playback samples per arm, SDK commit-to-output p50/p95 baseline
-  1016.374/1778.332 ms and FastFloor 474.035/997.356 ms. This is real hosted provider
-  audio but CLI console transport, not room/WebRTC or actual audible onset. With
-  ten samples p95 is the maximum. Raw failed/incomplete pre-fix input is retained.
+- Final ABBA console-audio results are presented as Baseline vs. FastFloor in the
+  root README and audio report, separately from the archived diagnostic capture.
+  Ten playback samples per arm used real hosted providers over CLI console output,
+  not measured room/WebRTC or caller-audible onset. With ten samples p95 is the
+  maximum. Raw failed/incomplete historical input remains preserved and excluded
+  from the headline results.
 - Room audio simulations failed before conversational turns in both arms. Exports,
   worker warnings and a timeboxed cancelled attempt are preserved. No caller-side
   metric, acoustic cancellation, generation/playback interruption, or real-room

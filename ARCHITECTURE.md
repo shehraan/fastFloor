@@ -14,9 +14,34 @@ manual observations, not additional timestamped benchmark samples. One isolated
 missed-speech instance after an agent response remains unconfirmed and undiagnosed.
 It is not attributed to the earlier reproduced history-loss defects.
 
-The measured result remains SDK commitment → SDK console playback p50
-1016.374 ms baseline / 474.035 ms FastFloor, ten post-fix samples per arm. Caller
-acoustic onset/yield metrics, leakage bounds, and production speedup are unverified.
+### Baseline vs. FastFloor benchmark
+
+SDK user-turn commitment → first associated SDK console-output playback event:
+
+| Metric                            |     Baseline |  FastFloor |
+| --------------------------------- | -----------: | ---------: |
+| Median SDK playback latency (p50) | 1,016.374 ms | 474.035 ms |
+| p95 SDK playback latency          | 1,778.332 ms | 997.356 ms |
+| Speculative candidates reused     |            0 |          9 |
+| Rollbacks                         |            0 |          2 |
+| Pre-commit SDK playback events    |            0 |          0 |
+
+FastFloor achieved a **53.4% lower median commitment-to-first-SDK-playback latency**
+in this exploratory comparison. The same implementation runs in both arms:
+non-speculative Baseline starts preparation at commitment; speculative FastFloor
+can start at preflight. The history repair is shared correctness behavior, not
+a performance optimization or the experimental variable.
+
+Ten playback samples per arm used identical model, voice, prompt, endpointing, and
+full-response buffering configuration. Real hosted Deepgram Flux, Gemma, and Fish
+Audio ran through LiveKit CLI console output in ABBA session order. Requested text
+was matched, not identical prerecorded waveforms; nearest-rank p95 with ten
+observations is the maximum. Reuse means output-node claim; rollback means
+invalidation before claim. SDK playback is not caller-perceived audible onset.
+Caller acoustic onset/yield metrics and leakage bounds remain unverified; no
+verified production latency improvement is claimed. See the
+[methodology and evidence](spikes/002-history-evaluation/REAL_AUDIO_VERIFICATION.md).
+
 Networking remains opt-in, committed-only, and non-speculative; it performs no
 real introductions or writes. No provider, endpointing, coordinator, cancellation
 policy, runtime source, dependency, or executable-test changes belong to packaging.
@@ -43,11 +68,8 @@ locations, measurement definitions, failure evidence, and exact manual tests.
   existing history recovery only when the SDK message exactly equals the observed
   final aggregate. Reply suppression, coordinator and cancellation policy stay
   unchanged. Unproven hypotheses/truncated/invented aggregates are not retained.
-- Fresh post-fix ABBA console audio: ten utterances/commitments/playback samples per
-  arm. Commit → SDK output p50/p95: baseline 1016.374/1778.332 ms; FastFloor
-  474.035/997.356 ms. Nearest-rank p95 is the maximum of ten samples, not a production
-  tail estimate. FastFloor reused nine candidates; two were rolled back. No SDK
-  before-commit or unattributed playback events occurred. No acoustic claim follows.
+- The Baseline vs. FastFloor table above is the sole headline latency comparison.
+  Historical diagnostics remain available separately and are not pooled into it.
 - Full-response first-delta → completion wait: baseline p50/max 127.109/318.241 ms;
   FastFloor 139.932/411.005 ms. Post-commit exposed wait was 127.109/318.241 versus
   0/370.828 ms. These are observed buffer intervals, not a streaming counterfactual.
@@ -124,12 +146,10 @@ semantic premature responses and downstream acoustic cancellation require manual
 client measurement. Reuse means a preflight candidate claimed by the output node;
 rollback means invalidation before claim, not a measured token/dollar cost.
 
-Executed hosted-LLM harness evidence: four samples per arm, scripted STT and silent
-TTS/in-memory output. Nearest-rank commit-to-SDK-playback p50/p95 were 703.736/1075.490 ms
-for baseline and 301.820/611.519 ms for FastFloor. FastFloor reused two preflight
-candidates and rolled back two; both arms had zero premature SDK playback events.
-This tiny, cold-start/model/network-confounded sample is not evidence of a live
-voice speedup. Raw per-turn timestamps are exported in `hosted-llm-results.json`.
+Historical hosted-LLM harness evidence used scripted STT and silent TTS/in-memory
+output. Its four samples per arm validate plumbing, not hosted-audio performance,
+and are excluded from the headline benchmark. The unchanged raw results remain in
+[`hosted-llm-results.json`](spikes/002-history-evaluation/hosted-llm-results.json).
 
 ### Fictional networking reference workload
 

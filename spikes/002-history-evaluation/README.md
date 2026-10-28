@@ -6,10 +6,15 @@ Start with the root [README](../../README.md) for the current product overview a
 [DEMO.md](../../DEMO.md) for the demo/share checklist. Older status statements below
 describe their own experiment phase, not the final shipping state.
 
+The [headline benchmark](REAL_AUDIO_VERIFICATION.md#baseline-vs-fastfloor-benchmark)
+compares non-speculative Baseline with speculative FastFloor in the same
+implementation, using only the final real-provider audio measurement set. Historical
+diagnostic and fixture-harness measurements remain archived, not headline results.
+
 | Evidence                                                                                                              | What it establishes                                                                               | What it does not establish                                |
 | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| `real-audio/postfix-console/*.jsonl`, `real-audio/postfix-console-report.json`, `real-audio/measured-comparison.json` | Post-fix real Flux/Gemma/Fish console-audio timestamps; ten SDK playback samples per arm          | Remote acoustic onset or production distributions         |
-| `real-audio/console/`, `real-audio/console-report.json`                                                               | Separate pre-fix run, including the history-loss failure                                          | A valid replacement for the post-fix sample               |
+| `real-audio/postfix-console/*.jsonl`, `real-audio/postfix-console-report.json`, `real-audio/measured-comparison.json` | Final real Flux/Gemma/Fish console-audio benchmark; ten SDK playback samples per arm              | Remote acoustic onset or production distributions         |
+| `real-audio/console/`, `real-audio/console-report.json`                                                               | Archived diagnostic run, including the history-loss failure; excluded from headline results       | Additional headline performance samples                   |
 | `REAL_AUDIO_VERIFICATION.md`, `real-audio/simulation-*-export.json`                                                   | Full method, limitations, and failed room attempts                                                | Successful room-audio latency or interruption measurement |
 | `scripted-sdk-results.json`, `hosted-llm-results.json`                                                                | SDK mechanics; separately, actual hosted Gemma with fixture STT/TTS                               | Hosted audio or microphone latency                        |
 | `boardy-hosted-results.json`                                                                                          | Hosted model used local `find_people`, preserved constraints/history, and retrieved Leo then Maya | Speculative tools, real contacts, or sent introductions   |
@@ -26,9 +31,9 @@ prevent accidental new captures; they do not retroactively remove Git history.
 
 Read [`REAL_AUDIO_VERIFICATION.md`](REAL_AUDIO_VERIFICATION.md) for this phase's
 results, raw evidence, repaired finalized-input history loss, buffer measurements,
-and exact manual tests. The older scripted-STT tables below remain historical.
+and exact manual tests. The scripted-STT harness files below remain historical.
 Actual Flux/Gemma/Fish audio now ran over the CLI console transport in both arms,
-with ten post-fix samples each. Room simulations failed before conversation;
+with ten playback samples each. Room simulations failed before conversation;
 client audible onset and real interruption/leakage are still unverified. No
 synthetic-STT latency is promoted to real-audio performance.
 
@@ -164,18 +169,12 @@ fixtures; this is not a microphone test or a simulation-judge result.
 
 `history-debugger-results.json`: hosted text-debugger recall sample; no audio/STT.
 
-Measured commitment → SDK playback event (milliseconds; nearest-rank percentiles):
-
-| Harness      | Arm       | Samples |     p50 |      p95 | Reused | Rolled back | Before-commit playback |
-| ------------ | --------- | ------: | ------: | -------: | -----: | ----------: | ---------------------: |
-| Scripted LLM | Baseline  |       4 |  36.416 |   76.170 |      0 |           0 |                      0 |
-| Scripted LLM | FastFloor |       4 |   4.353 |   36.154 |      2 |           2 |                      0 |
-| Hosted Gemma | Baseline  |       4 | 703.736 | 1075.490 |      0 |           0 |                      0 |
-| Hosted Gemma | FastFloor |       4 | 301.820 |  611.519 |      2 |           2 |                      0 |
-
-Both harnesses use scripted STT and silent synthetic TTS/in-memory playback.
-These are recorded fixture results, not microphone latency or estimated speedups.
-The report CLI verified matching captured configurations for the hosted arms.
+Historical fixture timings remain in
+[`scripted-sdk-results.json`](scripted-sdk-results.json) and
+[`hosted-llm-results.json`](hosted-llm-results.json), unchanged. Both harnesses use
+scripted STT and silent synthetic TTS/in-memory playback. They validate mechanics,
+not hosted-audio latency, and are excluded from the headline comparison. The report
+CLI verified matching captured configurations for the hosted arms.
 
 Run offline mechanics, optionally exporting JSON:
 

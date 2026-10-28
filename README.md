@@ -60,24 +60,36 @@ Core code: [coordinator](src/fastfloor/turn-coordinator.ts),
 
 ## Measured results—not caller-audible latency
 
-Post-fix matched experiment, October 28, 2026. Metric: SDK user-turn commitment →
-first associated SDK console-output playback event, in milliseconds.
+Matched Baseline vs. FastFloor experiment, October 28, 2026. Metric: SDK user-turn
+commitment → first associated SDK console-output playback event. Both arms run the
+same implementation: Baseline starts preparation at commitment; FastFloor can
+start at preflight. This compares non-speculative versus speculative execution,
+not two versions of the codebase.
 
-| Arm                              | Requested / committed / playback samples |       p50 |       p95 |
-| -------------------------------- | ---------------------------------------: | --------: | --------: |
-| Matched non-speculative baseline |                             10 / 10 / 10 | 1,016.374 | 1,778.332 |
-| FastFloor                        |                             10 / 10 / 10 |   474.035 |   997.356 |
+| Metric                            |     Baseline |  FastFloor |
+| --------------------------------- | -----------: | ---------: |
+| Median SDK playback latency (p50) | 1,016.374 ms | 474.035 ms |
+| p95 SDK playback latency          | 1,778.332 ms | 997.356 ms |
+| Speculative candidates reused     |            0 |          9 |
+| Rollbacks                         |            0 |          2 |
+| Pre-commit SDK playback events    |            0 |          0 |
 
-Four fresh sessions in baseline/FastFloor/FastFloor/baseline order, five identical
-requested texts per session. Both arms used Flux `deepgram/flux-general-en`
+FastFloor achieved a **53.4% lower median commitment-to-first-SDK-playback latency**
+in this exploratory comparison.
+
+Four fresh sessions in Baseline/FastFloor/FastFloor/Baseline order, five matched
+requested texts per session, with 10 requested turns, commitments, and playback
+samples per arm. Real hosted Deepgram Flux, Gemma, and Fish Audio ran through
+LiveKit CLI console output. Both arms used Flux `deepgram/flux-general-en`
 (`eager_eot_threshold: 0.5`), Gemma `google/gemma-4-31b-it`, Fish
 `fishaudio/s2.1-pro`, identical prompt/voice, unchanged STT endpointing defaults,
 disabled SDK preemption, and full-response buffering. Only custom preflight
 preparation differed. This control is not the default streaming AssemblyAI agent.
 
-FastFloor claimed nine speculative candidates and invalidated two unclaimed
-candidates. Both arms recorded zero before-commit or unattributed SDK playback
-events. These counts are not an acoustic leakage or semantic endpointing guarantee.
+Reuse counts speculative candidates actually claimed by the output node; rollbacks
+count candidates invalidated before claim. Both arms had zero unattributed SDK
+playback events. None of these counts establishes acoustic leakage safety or
+semantically correct endpointing.
 
 Limitations: freshly generated caller audio, not identical waveform replay; only
 ten samples per arm; nearest-rank p95 is the maximum. Cold starts, provider/network
@@ -86,10 +98,11 @@ confound interpretation. The transport was CLI console audio, not a measured
 remote listener. Caller-side audible onset remains null. No verified production
 speedup or comparison against an optimized streaming baseline is claimed.
 
-Evidence: [methodology and failure record](spikes/002-history-evaluation/REAL_AUDIO_VERIFICATION.md),
+Evidence: [methodology](spikes/002-history-evaluation/REAL_AUDIO_VERIFICATION.md),
 [per-turn comparison](spikes/002-history-evaluation/real-audio/measured-comparison.json),
-[post-fix report](spikes/002-history-evaluation/real-audio/postfix-console-report.json).
-Pre-fix failures remain separate; do not pool them with the post-fix sample.
+[benchmark report](spikes/002-history-evaluation/real-audio/postfix-console-report.json).
+Only the final measurement set supplies these results; archived diagnostics are
+separate and excluded from the headline comparison.
 
 ## Boardy-inspired networking workload
 
