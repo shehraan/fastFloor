@@ -11,6 +11,8 @@
     "format:check": "prettier --check \"**/*.{ts,js,json,md}\"",
     "test": "vitest --run",
     "test:watch": "vitest",
+    "eval:sdk": "vitest --run src/fastfloor/livekit-flux-session.test.ts -t \"exports matched\"",
+    "eval:report": "node scripts/summarize-traces.ts",
     "dev": "lk agent dev",
     "start": "node src/main.ts start"
   },

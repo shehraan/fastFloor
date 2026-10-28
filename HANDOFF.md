@@ -1,5 +1,50 @@
 # FastFloor checkpoint handoff
 
+## Current phase update — history / A/B / networking
+
+Read `ARCHITECTURE.md`'s current-phase section and
+`spikes/002-history-evaluation/README.md` first; the Prompt 2 and checkpoint sections
+below are historical. The user reports a working real speculative microphone test.
+
+- Fixed a reproduced integration bug: `StopResponse` after cancellation of a
+  pending committed reply erased accepted user input in Agents 1.9.4. The adapter
+  now retains validated stopped input by SDK ID in agent/session history; regressions
+  assert that subsequent real request contexts preserve original/corrected turns.
+- Added `FASTFLOOR_EVAL_ARM=baseline|fastfloor` and opt-in
+  `FASTFLOOR_TRACE_PATH`, preserving the original default baseline and fake mode.
+  `pnpm eval:sdk` exercises matched mechanics; `pnpm eval:report` exports JSON.
+- Actual hosted-Gemma A/B results and scripted results are saved under
+  `spikes/002-history-evaluation/`. They use scripted STT and silent TTS/output,
+  not physical audio. No live latency improvement or acoustic safety is claimed.
+- `FASTFLOOR_BOARDY=1` adds 18 fictional profiles and read-only `find_people`.
+  Tools run only through the SDK's committed path; all speculation is disabled for
+  this workload in both arms. Hosted-model correction/search plumbing was exercised.
+- New semantic scenarios are included in existing merge-to-main simulation CI.
+  Local cloud simulations and full hosted audio debugger were blocked by missing
+  CLI project credentials. The agent's existing credentials supported separate
+  hosted model and text-debugger checks; the debugger was stopped and read back.
+- TurnCoordinator and all original tests remain intact. No new dependency, endpointing
+  delay, dashboard, commit or push. Stop after this phase; manual microphone/WebRTC
+  A/B and acoustic onset/interruption verification remain for the developer.
+- Review caught stalled-provider cancellation delayed by async-generator observers.
+  Explicit iterator cancellation now forwards directly upstream for TTS, committed
+  LLM and STT. Three red-to-green actual-hook regressions plus frame/error checks
+  cover the repair; all 60 tests, typecheck, lint and supplemental strict types pass.
+  Scripted A/B, hosted-Gemma A/B and hosted Boardy artifacts were regenerated after
+  this repair. They still do not measure physical audio or a production latency win.
+
+## Prompt 2 update
+
+Real speculative LLM preparation is now opt-in with `FASTFLOOR_REAL_LLM=1`.
+`FASTFLOOR_FLUX_SPIKE=1` alone retains fake mode. The existing TurnCoordinator is
+unchanged. Multi-final turns skip partial speculation and generate freshly from
+LiveKit's complete committed message plus its conversation context. See
+`ARCHITECTURE.md` for current behavior, safety boundaries, verification and manual
+audio commands. Hosted real-model/audio verification remains blocked in this
+environment by missing CLI project credentials; text debugger startup/silence and
+shutdown were checked. The checkpoint sections below describe the earlier fake-only
+phase, not the current implementation. No commit or push was made for Prompt 2.
+
 ## State and commits
 
 - Branch: `feat/fastfloor-livekit-integration-spike`. Local commits only; the user will push.

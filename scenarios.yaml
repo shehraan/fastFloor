@@ -8,6 +8,44 @@
 id: SCNG_8dM6KZAMmeeg
 name: Starter assistant
 scenarios:
+  - id: SCN_0fa1f3e9706f
+    label: Original preference survives a correction
+    instructions: |
+      Ask to discuss travel to Lisbon. After the reply, correct the destination to Oslo.
+      After the next reply, ask which destination you mentioned originally.
+    agent_expectations: >
+      Identifies Lisbon as the original destination and Oslo as the revised one.
+      Does not confuse the latest preference with the original one.
+    tags:
+      feature: history
+
+  - id: SCN_cc391539ab0b
+    label: Fictional networking search with correction and recall
+    userdata:
+      workload: boardy
+    instructions: |
+      Ask for a robotics founder in New York. After the reply, say Boston instead,
+      keeping the robotics-founder requirement. Ask what city you originally wanted.
+      Finally ask the assistant to send an introduction to the Boston match.
+    agent_expectations: >
+      Uses find_people for directory facts, finds fictional Maya Chen in Boston
+      after the correction, and remembers New York was the original city.
+      Explains it cannot send introductions; never claims it contacted anyone.
+    tags:
+      feature: boardy
+
+  - id: SCN_916564fd89d9
+    label: Fictional networking no matches
+    userdata:
+      workload: boardy
+    instructions: |
+      Ask for a robotics founder in Atlantis. Do not relax the location requirement.
+    agent_expectations: >
+      Searches the fictional directory, reports that there are no matches, and
+      does not invent a person or silently ignore the requested location.
+    tags:
+      feature: boardy
+
   - id: SCN_gYkNZLjuCMqS
     label: Greets and offers help
     instructions: |

@@ -1,0 +1,2931 @@
+{
+  "measuredAt": "2026-10-28T15:16:32.846Z",
+  "evidence": "real SDK sessions; scripted LLM; scripted STT; synthetic silent PCM; in-memory sink; NOT acoustic or end-to-end hosted voice latency",
+  "configuration": {
+    "llm": "scripted-real-llm-interface",
+    "tts": "synthetic-silent-PCM",
+    "turnDetection": "stt",
+    "minDelay": 0,
+    "maxDelay": 0,
+    "scriptedLlmDelayMs": 30,
+    "preflightLeadMs": 60
+  },
+  "runs": [
+    {
+      "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+      "arm": "baseline",
+      "committedTurns": 2,
+      "playbackSamples": 2,
+      "commitToSdkPlaybackMs": {
+        "p50": 36.41628200000014,
+        "p95": 76.17011900000034
+      },
+      "speculativePreparations": 0,
+      "speculativeReuses": 0,
+      "rollbacks": 0,
+      "prematureSdkPlayback": 0,
+      "unattributedPlaybackEvents": 0,
+      "prematureAudibleResponses": null,
+      "turns": [
+        {
+          "messageId": "item_b69327dd-f41",
+          "transcript": "Find a robotics founder in Lisbon.",
+          "commitMs": 147.73301599999968,
+          "commitToLlmStartMs": 0.7217530000002625,
+          "commitToFirstTextDeltaMs": 34.891873999999916,
+          "commitToTtsFirstFrameMs": 74.71466899999996,
+          "commitToSdkPlaybackMs": 76.17011900000034,
+          "audibleOnsetMs": null,
+          "reused": false
+        },
+        {
+          "messageId": "item_f0a0fa25-24a",
+          "transcript": "Actually, find a climate founder in Oslo.",
+          "commitMs": 347.3929799999996,
+          "commitToLlmStartMs": 0.308484000000135,
+          "commitToFirstTextDeltaMs": 32.47052299999996,
+          "commitToTtsFirstFrameMs": 36.26594100000011,
+          "commitToSdkPlaybackMs": 36.41628200000014,
+          "audibleOnsetMs": null,
+          "reused": false
+        }
+      ],
+      "events": [
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.444Z",
+          "elapsedMs": 1.5739119999998366,
+          "event": "RUN_CONFIG",
+          "details": {
+            "llm": "scripted-real-llm-interface",
+            "prompt": "integration mechanics",
+            "stt": "scripted-flux-events",
+            "tts": "synthetic-silent-PCM",
+            "turnDetection": "stt",
+            "minDelay": 0,
+            "maxDelay": 0
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.474Z",
+          "elapsedMs": 31.20846599999959,
+          "event": "START_OF_SPEECH",
+          "details": {}
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.523Z",
+          "elapsedMs": 80.69200899999987,
+          "event": "PREFLIGHT_TRANSCRIPT",
+          "details": {
+            "transcript": "Find a robotics founder in Lisbon.",
+            "createdAt": 1793200589523
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.584Z",
+          "elapsedMs": 142.0501949999998,
+          "event": "FINAL_TRANSCRIPT",
+          "details": {
+            "transcript": "Find a robotics founder in Lisbon.",
+            "createdAt": 1793200589584
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.585Z",
+          "elapsedMs": 142.20920499999966,
+          "event": "END_OF_SPEECH",
+          "details": {}
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.590Z",
+          "elapsedMs": 147.73301599999968,
+          "event": "USER_TURN_COMMITTED",
+          "details": {
+            "transcript": "Find a robotics founder in Lisbon.",
+            "messageId": "item_b69327dd-f41",
+            "finalSegments": ["Find a robotics founder in Lisbon."],
+            "history": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_5ce18622-996",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              }
+            ]
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.590Z",
+          "elapsedMs": 148.0006639999997,
+          "event": "PREPARATION_STARTED",
+          "details": {
+            "generation": 4,
+            "mode": "real",
+            "transcript": "Find a robotics founder in Lisbon.",
+            "phase": "committed"
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.591Z",
+          "elapsedMs": 148.45476899999994,
+          "event": "LLM_STARTED",
+          "details": {
+            "generation": 4,
+            "context": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_5ce18622-996",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              },
+              {
+                "id": "item_3554b3a4-f2c",
+                "type": "message",
+                "role": "user",
+                "content": ["Find a robotics founder in Lisbon."],
+                "interrupted": false
+              }
+            ],
+            "toolChoice": "none"
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.592Z",
+          "elapsedMs": 149.53364299999976,
+          "event": "COORDINATOR_COMMITTED",
+          "details": {
+            "generation": 4,
+            "messageId": "item_b69327dd-f41",
+            "transcript": "Find a robotics founder in Lisbon.",
+            "reused": false
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.625Z",
+          "elapsedMs": 182.6248899999996,
+          "event": "LLM_FIRST_TEXT_DELTA",
+          "details": {
+            "generation": 4,
+            "providerRequestId": "measured-scripted-request"
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.627Z",
+          "elapsedMs": 184.43582199999992,
+          "event": "LLM_COMPLETED",
+          "details": {
+            "generation": 4,
+            "characters": 17
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.627Z",
+          "elapsedMs": 184.95445599999994,
+          "event": "RESPONSE_RELEASED",
+          "details": {
+            "generation": 4,
+            "messageId": "item_b69327dd-f41"
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.628Z",
+          "elapsedMs": 185.71434899999986,
+          "event": "SPEECH_CREATED",
+          "details": {
+            "speechId": "speech_53052cb4-e31",
+            "messageId": "item_b69327dd-f41"
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.635Z",
+          "elapsedMs": 192.24846099999968,
+          "event": "TRANSPORT_CLAIMED",
+          "details": {
+            "messageId": "item_b69327dd-f41",
+            "generation": 4,
+            "reused": false
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.635Z",
+          "elapsedMs": 192.96385799999962,
+          "event": "SDK_HISTORY_ITEM_ADDED",
+          "details": {
+            "item": {
+              "id": "item_b69327dd-f41",
+              "type": "message",
+              "role": "user",
+              "content": ["Find a robotics founder in Lisbon."],
+              "interrupted": false,
+              "transcriptConfidence": 1,
+              "metrics": {
+                "startedSpeakingAt": 1793200589.475,
+                "stoppedSpeakingAt": 1793200589.585,
+                "transcriptionDelay": 0,
+                "endOfTurnDelay": 0.003,
+                "onUserTurnCompletedDelay": 0.038
+              }
+            }
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.638Z",
+          "elapsedMs": 195.70563399999992,
+          "event": "TTS_STARTED",
+          "details": {
+            "messageId": "item_b69327dd-f41",
+            "provider": "synthetic-silent-PCM"
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.665Z",
+          "elapsedMs": 222.44768499999964,
+          "event": "TTS_FIRST_FRAME",
+          "details": {
+            "messageId": "item_b69327dd-f41",
+            "provider": "synthetic-silent-PCM"
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.666Z",
+          "elapsedMs": 223.90313500000002,
+          "event": "SDK_PLAYBACK_STARTED",
+          "details": {
+            "speechId": "speech_53052cb4-e31",
+            "correlation": "unique-live-speech-handle",
+            "sdkCreatedAt": 1793200589666
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.668Z",
+          "elapsedMs": 225.63595899999973,
+          "event": "SDK_PLAYBACK_FINISHED",
+          "details": {
+            "speechId": "speech_53052cb4-e31",
+            "correlation": "unique-live-speech-handle",
+            "playbackPosition": 0.01,
+            "interrupted": false
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.670Z",
+          "elapsedMs": 227.44217200000003,
+          "event": "SDK_HISTORY_ITEM_ADDED",
+          "details": {
+            "item": {
+              "id": "item_deb77962-275",
+              "type": "message",
+              "role": "assistant",
+              "content": ["Fixture response."],
+              "interrupted": false,
+              "metrics": {
+                "llmNodeTtft": 0.002508222999999976,
+                "ttsNodeTtfb": 0.009782772000000328,
+                "startedSpeakingAt": 1793200589.666,
+                "stoppedSpeakingAt": 1793200589.669,
+                "playbackLatency": 0,
+                "e2eLatency": 0.08099985122680664
+              }
+            }
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.675Z",
+          "elapsedMs": 232.21167799999967,
+          "event": "START_OF_SPEECH",
+          "details": {}
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.725Z",
+          "elapsedMs": 282.92106399999966,
+          "event": "PREFLIGHT_TRANSCRIPT",
+          "details": {
+            "transcript": "Find a robotics founder in Lisbon.",
+            "createdAt": 1793200589725
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.787Z",
+          "elapsedMs": 344.7583969999996,
+          "event": "INTERIM_TRANSCRIPT",
+          "details": {
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "createdAt": 1793200589787
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.787Z",
+          "elapsedMs": 344.8153169999996,
+          "event": "FINAL_TRANSCRIPT",
+          "details": {
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "createdAt": 1793200589787
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.787Z",
+          "elapsedMs": 344.86279799999966,
+          "event": "END_OF_SPEECH",
+          "details": {}
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.790Z",
+          "elapsedMs": 347.3929799999996,
+          "event": "USER_TURN_COMMITTED",
+          "details": {
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "messageId": "item_f0a0fa25-24a",
+            "finalSegments": ["Actually, find a climate founder in Oslo."],
+            "history": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_5ce18622-996",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              },
+              {
+                "id": "item_b69327dd-f41",
+                "type": "message",
+                "role": "user",
+                "content": ["Find a robotics founder in Lisbon."],
+                "interrupted": false,
+                "transcriptConfidence": 1,
+                "metrics": {
+                  "startedSpeakingAt": 1793200589.475,
+                  "stoppedSpeakingAt": 1793200589.585,
+                  "transcriptionDelay": 0,
+                  "endOfTurnDelay": 0.003,
+                  "onUserTurnCompletedDelay": 0.038
+                }
+              },
+              {
+                "id": "item_deb77962-275",
+                "type": "message",
+                "role": "assistant",
+                "content": ["Fixture response."],
+                "interrupted": false,
+                "metrics": {
+                  "llmNodeTtft": 0.002508222999999976,
+                  "ttsNodeTtfb": 0.009782772000000328,
+                  "startedSpeakingAt": 1793200589.666,
+                  "stoppedSpeakingAt": 1793200589.669,
+                  "playbackLatency": 0,
+                  "e2eLatency": 0.08099985122680664
+                }
+              }
+            ]
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.790Z",
+          "elapsedMs": 347.5373499999996,
+          "event": "PREPARATION_STARTED",
+          "details": {
+            "generation": 8,
+            "mode": "real",
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "phase": "committed"
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.790Z",
+          "elapsedMs": 347.70146399999976,
+          "event": "LLM_STARTED",
+          "details": {
+            "generation": 8,
+            "context": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_5ce18622-996",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              },
+              {
+                "id": "item_b69327dd-f41",
+                "type": "message",
+                "role": "user",
+                "content": ["Find a robotics founder in Lisbon."],
+                "interrupted": false,
+                "transcriptConfidence": 1,
+                "metrics": {
+                  "startedSpeakingAt": 1793200589.475,
+                  "stoppedSpeakingAt": 1793200589.585,
+                  "transcriptionDelay": 0,
+                  "endOfTurnDelay": 0.003,
+                  "onUserTurnCompletedDelay": 0.038
+                }
+              },
+              {
+                "id": "item_deb77962-275",
+                "type": "message",
+                "role": "assistant",
+                "content": ["Fixture response."],
+                "interrupted": false,
+                "metrics": {
+                  "llmNodeTtft": 0.002508222999999976,
+                  "ttsNodeTtfb": 0.009782772000000328,
+                  "startedSpeakingAt": 1793200589.666,
+                  "stoppedSpeakingAt": 1793200589.669,
+                  "playbackLatency": 0,
+                  "e2eLatency": 0.08099985122680664
+                }
+              },
+              {
+                "id": "item_a7467fd2-f21",
+                "type": "message",
+                "role": "user",
+                "content": ["Actually, find a climate founder in Oslo."],
+                "interrupted": false
+              }
+            ],
+            "toolChoice": "none"
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.790Z",
+          "elapsedMs": 347.96246599999995,
+          "event": "COORDINATOR_COMMITTED",
+          "details": {
+            "generation": 8,
+            "messageId": "item_f0a0fa25-24a",
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "reused": false
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.822Z",
+          "elapsedMs": 379.8635029999996,
+          "event": "LLM_FIRST_TEXT_DELTA",
+          "details": {
+            "generation": 8,
+            "providerRequestId": "measured-scripted-request"
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.822Z",
+          "elapsedMs": 380.1002349999999,
+          "event": "LLM_COMPLETED",
+          "details": {
+            "generation": 8,
+            "characters": 17
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.823Z",
+          "elapsedMs": 380.21966099999963,
+          "event": "RESPONSE_RELEASED",
+          "details": {
+            "generation": 8,
+            "messageId": "item_f0a0fa25-24a"
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.823Z",
+          "elapsedMs": 380.33195899999964,
+          "event": "SPEECH_CREATED",
+          "details": {
+            "speechId": "speech_f63147a3-468",
+            "messageId": "item_f0a0fa25-24a"
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.824Z",
+          "elapsedMs": 381.41208499999993,
+          "event": "TRANSPORT_CLAIMED",
+          "details": {
+            "messageId": "item_f0a0fa25-24a",
+            "generation": 8,
+            "reused": false
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.824Z",
+          "elapsedMs": 381.57899199999974,
+          "event": "SDK_HISTORY_ITEM_ADDED",
+          "details": {
+            "item": {
+              "id": "item_f0a0fa25-24a",
+              "type": "message",
+              "role": "user",
+              "content": ["Actually, find a climate founder in Oslo."],
+              "interrupted": false,
+              "transcriptConfidence": 1,
+              "metrics": {
+                "startedSpeakingAt": 1793200589.675,
+                "stoppedSpeakingAt": 1793200589.788,
+                "transcriptionDelay": 0,
+                "endOfTurnDelay": 0,
+                "onUserTurnCompletedDelay": 0.034
+              }
+            }
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.824Z",
+          "elapsedMs": 381.99871399999984,
+          "event": "TTS_STARTED",
+          "details": {
+            "messageId": "item_f0a0fa25-24a",
+            "provider": "synthetic-silent-PCM"
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.826Z",
+          "elapsedMs": 383.65892099999974,
+          "event": "TTS_FIRST_FRAME",
+          "details": {
+            "messageId": "item_f0a0fa25-24a",
+            "provider": "synthetic-silent-PCM"
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.826Z",
+          "elapsedMs": 383.80926199999976,
+          "event": "SDK_PLAYBACK_STARTED",
+          "details": {
+            "speechId": "speech_f63147a3-468",
+            "correlation": "unique-live-speech-handle",
+            "sdkCreatedAt": 1793200589826
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.826Z",
+          "elapsedMs": 384.1045509999999,
+          "event": "SDK_PLAYBACK_FINISHED",
+          "details": {
+            "speechId": "speech_f63147a3-468",
+            "correlation": "unique-live-speech-handle",
+            "playbackPosition": 0.01,
+            "interrupted": false
+          }
+        },
+        {
+          "runId": "491afb19-0730-4975-97bf-444c3aa26df4",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:29.827Z",
+          "elapsedMs": 384.4378829999996,
+          "event": "SDK_HISTORY_ITEM_ADDED",
+          "details": {
+            "item": {
+              "id": "item_19af3579-fb9",
+              "type": "message",
+              "role": "assistant",
+              "content": ["Fixture response."],
+              "interrupted": false,
+              "metrics": {
+                "llmNodeTtft": 0.0005144930000002823,
+                "ttsNodeTtfb": 0.001003174000000051,
+                "startedSpeakingAt": 1793200589.826,
+                "stoppedSpeakingAt": 1793200589.827,
+                "playbackLatency": 0,
+                "e2eLatency": 0.037999868392944336
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+      "arm": "fastfloor",
+      "committedTurns": 2,
+      "playbackSamples": 2,
+      "commitToSdkPlaybackMs": {
+        "p50": 4.35315300000002,
+        "p95": 36.003781999999774
+      },
+      "speculativePreparations": 2,
+      "speculativeReuses": 1,
+      "rollbacks": 1,
+      "prematureSdkPlayback": 0,
+      "unattributedPlaybackEvents": 0,
+      "prematureAudibleResponses": null,
+      "turns": [
+        {
+          "messageId": "item_e9f97923-725",
+          "transcript": "Find a robotics founder in Lisbon.",
+          "commitMs": 118.63529900000003,
+          "commitToLlmStartMs": -63.755267,
+          "commitToFirstTextDeltaMs": -32.61133000000018,
+          "commitToTtsFirstFrameMs": 4.110545999999886,
+          "commitToSdkPlaybackMs": 4.35315300000002,
+          "audibleOnsetMs": null,
+          "reused": true
+        },
+        {
+          "messageId": "item_7e980a95-47d",
+          "transcript": "Actually, find a climate founder in Oslo.",
+          "commitMs": 282.62442699999974,
+          "commitToLlmStartMs": 0.11643999999978405,
+          "commitToFirstTextDeltaMs": 32.72025699999995,
+          "commitToTtsFirstFrameMs": 35.84592900000007,
+          "commitToSdkPlaybackMs": 36.003781999999774,
+          "audibleOnsetMs": null,
+          "reused": false
+        }
+      ],
+      "events": [
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.348Z",
+          "elapsedMs": 0.20234900000014022,
+          "event": "RUN_CONFIG",
+          "details": {
+            "llm": "scripted-real-llm-interface",
+            "prompt": "integration mechanics",
+            "stt": "scripted-flux-events",
+            "tts": "synthetic-silent-PCM",
+            "turnDetection": "stt",
+            "minDelay": 0,
+            "maxDelay": 0
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.352Z",
+          "elapsedMs": 4.013176999999814,
+          "event": "START_OF_SPEECH",
+          "details": {}
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.402Z",
+          "elapsedMs": 54.581756999999925,
+          "event": "PREFLIGHT_TRANSCRIPT",
+          "details": {
+            "transcript": "Find a robotics founder in Lisbon.",
+            "createdAt": 1793200590402
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.402Z",
+          "elapsedMs": 54.75222699999995,
+          "event": "PREPARATION_STARTED",
+          "details": {
+            "generation": 3,
+            "mode": "real",
+            "transcript": "Find a robotics founder in Lisbon.",
+            "phase": "preflight"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.402Z",
+          "elapsedMs": 54.88003200000003,
+          "event": "LLM_STARTED",
+          "details": {
+            "generation": 3,
+            "context": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_b0acb61f-2e4",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              },
+              {
+                "id": "item_47ecc647-88f",
+                "type": "message",
+                "role": "user",
+                "content": ["Find a robotics founder in Lisbon."],
+                "interrupted": false
+              }
+            ],
+            "toolChoice": "none"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.434Z",
+          "elapsedMs": 86.02396899999985,
+          "event": "LLM_FIRST_TEXT_DELTA",
+          "details": {
+            "generation": 3,
+            "providerRequestId": "measured-scripted-request"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.434Z",
+          "elapsedMs": 86.60770899999989,
+          "event": "LLM_COMPLETED",
+          "details": {
+            "generation": 3,
+            "characters": 17
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.465Z",
+          "elapsedMs": 117.1289969999998,
+          "event": "FINAL_TRANSCRIPT",
+          "details": {
+            "transcript": "Find a robotics founder in Lisbon.",
+            "createdAt": 1793200590465
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.465Z",
+          "elapsedMs": 117.20248200000015,
+          "event": "END_OF_SPEECH",
+          "details": {}
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.466Z",
+          "elapsedMs": 118.63529900000003,
+          "event": "USER_TURN_COMMITTED",
+          "details": {
+            "transcript": "Find a robotics founder in Lisbon.",
+            "messageId": "item_e9f97923-725",
+            "finalSegments": ["Find a robotics founder in Lisbon."],
+            "history": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_b0acb61f-2e4",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              }
+            ]
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.466Z",
+          "elapsedMs": 118.74615200000017,
+          "event": "COORDINATOR_COMMITTED",
+          "details": {
+            "generation": 3,
+            "messageId": "item_e9f97923-725",
+            "transcript": "Find a robotics founder in Lisbon.",
+            "reused": true
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.466Z",
+          "elapsedMs": 118.84824200000003,
+          "event": "RESPONSE_RELEASED",
+          "details": {
+            "generation": 3,
+            "messageId": "item_e9f97923-725"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.467Z",
+          "elapsedMs": 119.09691599999996,
+          "event": "SPEECH_CREATED",
+          "details": {
+            "speechId": "speech_56033ed9-9f1",
+            "messageId": "item_e9f97923-725"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.468Z",
+          "elapsedMs": 120.37756200000013,
+          "event": "TRANSPORT_CLAIMED",
+          "details": {
+            "messageId": "item_e9f97923-725",
+            "generation": 3,
+            "reused": true
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.468Z",
+          "elapsedMs": 120.71224200000006,
+          "event": "SDK_HISTORY_ITEM_ADDED",
+          "details": {
+            "item": {
+              "id": "item_e9f97923-725",
+              "type": "message",
+              "role": "user",
+              "content": ["Find a robotics founder in Lisbon."],
+              "interrupted": false,
+              "transcriptConfidence": 1,
+              "metrics": {
+                "startedSpeakingAt": 1793200590.352,
+                "stoppedSpeakingAt": 1793200590.465,
+                "transcriptionDelay": 0,
+                "endOfTurnDelay": 0.001,
+                "onUserTurnCompletedDelay": 0.001
+              }
+            }
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.469Z",
+          "elapsedMs": 121.40230900000006,
+          "event": "TTS_STARTED",
+          "details": {
+            "messageId": "item_e9f97923-725",
+            "provider": "synthetic-silent-PCM"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.470Z",
+          "elapsedMs": 122.74584499999992,
+          "event": "TTS_FIRST_FRAME",
+          "details": {
+            "messageId": "item_e9f97923-725",
+            "provider": "synthetic-silent-PCM"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.471Z",
+          "elapsedMs": 122.98845200000005,
+          "event": "SDK_PLAYBACK_STARTED",
+          "details": {
+            "speechId": "speech_56033ed9-9f1",
+            "correlation": "unique-live-speech-handle",
+            "sdkCreatedAt": 1793200590471
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.471Z",
+          "elapsedMs": 123.361175,
+          "event": "SDK_PLAYBACK_FINISHED",
+          "details": {
+            "speechId": "speech_56033ed9-9f1",
+            "correlation": "unique-live-speech-handle",
+            "playbackPosition": 0.01,
+            "interrupted": false
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.471Z",
+          "elapsedMs": 123.77839300000005,
+          "event": "SDK_HISTORY_ITEM_ADDED",
+          "details": {
+            "item": {
+              "id": "item_e35591a7-1ac",
+              "type": "message",
+              "role": "assistant",
+              "content": ["Fixture response."],
+              "interrupted": false,
+              "metrics": {
+                "llmNodeTtft": 0.0009123530000003655,
+                "ttsNodeTtfb": 0.0008438760000002432,
+                "startedSpeakingAt": 1793200590.471,
+                "stoppedSpeakingAt": 1793200590.471,
+                "playbackLatency": 0,
+                "e2eLatency": 0.006000041961669922
+              }
+            }
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.517Z",
+          "elapsedMs": 169.06210899999996,
+          "event": "START_OF_SPEECH",
+          "details": {}
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.567Z",
+          "elapsedMs": 219.50904900000023,
+          "event": "PREFLIGHT_TRANSCRIPT",
+          "details": {
+            "transcript": "Find a robotics founder in Lisbon.",
+            "createdAt": 1793200590567
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.567Z",
+          "elapsedMs": 219.65630899999996,
+          "event": "PREPARATION_STARTED",
+          "details": {
+            "generation": 6,
+            "mode": "real",
+            "transcript": "Find a robotics founder in Lisbon.",
+            "phase": "preflight"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.567Z",
+          "elapsedMs": 219.80953899999986,
+          "event": "LLM_STARTED",
+          "details": {
+            "generation": 6,
+            "context": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_b0acb61f-2e4",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              },
+              {
+                "id": "item_e9f97923-725",
+                "type": "message",
+                "role": "user",
+                "content": ["Find a robotics founder in Lisbon."],
+                "interrupted": false,
+                "transcriptConfidence": 1,
+                "metrics": {
+                  "startedSpeakingAt": 1793200590.352,
+                  "stoppedSpeakingAt": 1793200590.465,
+                  "transcriptionDelay": 0,
+                  "endOfTurnDelay": 0.001,
+                  "onUserTurnCompletedDelay": 0.001
+                }
+              },
+              {
+                "id": "item_e35591a7-1ac",
+                "type": "message",
+                "role": "assistant",
+                "content": ["Fixture response."],
+                "interrupted": false,
+                "metrics": {
+                  "llmNodeTtft": 0.0009123530000003655,
+                  "ttsNodeTtfb": 0.0008438760000002432,
+                  "startedSpeakingAt": 1793200590.471,
+                  "stoppedSpeakingAt": 1793200590.471,
+                  "playbackLatency": 0,
+                  "e2eLatency": 0.006000041961669922
+                }
+              },
+              {
+                "id": "item_91945283-fb6",
+                "type": "message",
+                "role": "user",
+                "content": ["Find a robotics founder in Lisbon."],
+                "interrupted": false
+              }
+            ],
+            "toolChoice": "none"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.599Z",
+          "elapsedMs": 250.9641670000001,
+          "event": "LLM_FIRST_TEXT_DELTA",
+          "details": {
+            "generation": 6,
+            "providerRequestId": "measured-scripted-request"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.599Z",
+          "elapsedMs": 251.18163699999968,
+          "event": "LLM_COMPLETED",
+          "details": {
+            "generation": 6,
+            "characters": 17
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.629Z",
+          "elapsedMs": 281.235721,
+          "event": "INTERIM_TRANSCRIPT",
+          "details": {
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "createdAt": 1793200590629
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.629Z",
+          "elapsedMs": 281.3955969999997,
+          "event": "PREPARATION_INVALIDATED",
+          "details": {
+            "generation": 6,
+            "phase": "preflight"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.629Z",
+          "elapsedMs": 281.51531199999954,
+          "event": "FINAL_TRANSCRIPT",
+          "details": {
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "createdAt": 1793200590629
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.629Z",
+          "elapsedMs": 281.5479610000002,
+          "event": "END_OF_SPEECH",
+          "details": {}
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.630Z",
+          "elapsedMs": 282.62442699999974,
+          "event": "USER_TURN_COMMITTED",
+          "details": {
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "messageId": "item_7e980a95-47d",
+            "finalSegments": ["Actually, find a climate founder in Oslo."],
+            "history": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_b0acb61f-2e4",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              },
+              {
+                "id": "item_e9f97923-725",
+                "type": "message",
+                "role": "user",
+                "content": ["Find a robotics founder in Lisbon."],
+                "interrupted": false,
+                "transcriptConfidence": 1,
+                "metrics": {
+                  "startedSpeakingAt": 1793200590.352,
+                  "stoppedSpeakingAt": 1793200590.465,
+                  "transcriptionDelay": 0,
+                  "endOfTurnDelay": 0.001,
+                  "onUserTurnCompletedDelay": 0.001
+                }
+              },
+              {
+                "id": "item_e35591a7-1ac",
+                "type": "message",
+                "role": "assistant",
+                "content": ["Fixture response."],
+                "interrupted": false,
+                "metrics": {
+                  "llmNodeTtft": 0.0009123530000003655,
+                  "ttsNodeTtfb": 0.0008438760000002432,
+                  "startedSpeakingAt": 1793200590.471,
+                  "stoppedSpeakingAt": 1793200590.471,
+                  "playbackLatency": 0,
+                  "e2eLatency": 0.006000041961669922
+                }
+              }
+            ]
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.630Z",
+          "elapsedMs": 282.69155599999976,
+          "event": "PREPARATION_STARTED",
+          "details": {
+            "generation": 9,
+            "mode": "real",
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "phase": "committed"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.630Z",
+          "elapsedMs": 282.7408669999995,
+          "event": "LLM_STARTED",
+          "details": {
+            "generation": 9,
+            "context": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_b0acb61f-2e4",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              },
+              {
+                "id": "item_e9f97923-725",
+                "type": "message",
+                "role": "user",
+                "content": ["Find a robotics founder in Lisbon."],
+                "interrupted": false,
+                "transcriptConfidence": 1,
+                "metrics": {
+                  "startedSpeakingAt": 1793200590.352,
+                  "stoppedSpeakingAt": 1793200590.465,
+                  "transcriptionDelay": 0,
+                  "endOfTurnDelay": 0.001,
+                  "onUserTurnCompletedDelay": 0.001
+                }
+              },
+              {
+                "id": "item_e35591a7-1ac",
+                "type": "message",
+                "role": "assistant",
+                "content": ["Fixture response."],
+                "interrupted": false,
+                "metrics": {
+                  "llmNodeTtft": 0.0009123530000003655,
+                  "ttsNodeTtfb": 0.0008438760000002432,
+                  "startedSpeakingAt": 1793200590.471,
+                  "stoppedSpeakingAt": 1793200590.471,
+                  "playbackLatency": 0,
+                  "e2eLatency": 0.006000041961669922
+                }
+              },
+              {
+                "id": "item_cc0160e3-b4f",
+                "type": "message",
+                "role": "user",
+                "content": ["Actually, find a climate founder in Oslo."],
+                "interrupted": false
+              }
+            ],
+            "toolChoice": "none"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.630Z",
+          "elapsedMs": 282.8876449999998,
+          "event": "COORDINATOR_COMMITTED",
+          "details": {
+            "generation": 9,
+            "messageId": "item_7e980a95-47d",
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "reused": false
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.663Z",
+          "elapsedMs": 315.3446839999997,
+          "event": "LLM_FIRST_TEXT_DELTA",
+          "details": {
+            "generation": 9,
+            "providerRequestId": "measured-scripted-request"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.663Z",
+          "elapsedMs": 315.6119470000003,
+          "event": "LLM_COMPLETED",
+          "details": {
+            "generation": 9,
+            "characters": 17
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.663Z",
+          "elapsedMs": 315.73483899999974,
+          "event": "RESPONSE_RELEASED",
+          "details": {
+            "generation": 9,
+            "messageId": "item_7e980a95-47d"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.663Z",
+          "elapsedMs": 315.865726,
+          "event": "SPEECH_CREATED",
+          "details": {
+            "speechId": "speech_7518c537-2d8",
+            "messageId": "item_7e980a95-47d"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.664Z",
+          "elapsedMs": 316.73560499999985,
+          "event": "TRANSPORT_CLAIMED",
+          "details": {
+            "messageId": "item_7e980a95-47d",
+            "generation": 9,
+            "reused": false
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.665Z",
+          "elapsedMs": 316.9127209999997,
+          "event": "SDK_HISTORY_ITEM_ADDED",
+          "details": {
+            "item": {
+              "id": "item_7e980a95-47d",
+              "type": "message",
+              "role": "user",
+              "content": ["Actually, find a climate founder in Oslo."],
+              "interrupted": false,
+              "transcriptConfidence": 1,
+              "metrics": {
+                "startedSpeakingAt": 1793200590.517,
+                "stoppedSpeakingAt": 1793200590.63,
+                "transcriptionDelay": 0,
+                "endOfTurnDelay": 0,
+                "onUserTurnCompletedDelay": 0.033
+              }
+            }
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.665Z",
+          "elapsedMs": 317.4437790000002,
+          "event": "TTS_STARTED",
+          "details": {
+            "messageId": "item_7e980a95-47d",
+            "provider": "synthetic-silent-PCM"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.666Z",
+          "elapsedMs": 318.4703559999998,
+          "event": "TTS_FIRST_FRAME",
+          "details": {
+            "messageId": "item_7e980a95-47d",
+            "provider": "synthetic-silent-PCM"
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.666Z",
+          "elapsedMs": 318.6282089999995,
+          "event": "SDK_PLAYBACK_STARTED",
+          "details": {
+            "speechId": "speech_7518c537-2d8",
+            "correlation": "unique-live-speech-handle",
+            "sdkCreatedAt": 1793200590666
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.666Z",
+          "elapsedMs": 318.8358559999997,
+          "event": "SDK_PLAYBACK_FINISHED",
+          "details": {
+            "speechId": "speech_7518c537-2d8",
+            "correlation": "unique-live-speech-handle",
+            "playbackPosition": 0.01,
+            "interrupted": false
+          }
+        },
+        {
+          "runId": "b2ccac97-ddcb-4a6e-898f-e5cb6e6b493c",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:30.667Z",
+          "elapsedMs": 319.08664899999985,
+          "event": "SDK_HISTORY_ITEM_ADDED",
+          "details": {
+            "item": {
+              "id": "item_29097a37-dcb",
+              "type": "message",
+              "role": "assistant",
+              "content": ["Fixture response."],
+              "interrupted": false,
+              "metrics": {
+                "llmNodeTtft": 0.0005642850000002753,
+                "ttsNodeTtfb": 0.0006073359999998473,
+                "startedSpeakingAt": 1793200590.666,
+                "stoppedSpeakingAt": 1793200590.667,
+                "playbackLatency": 0,
+                "e2eLatency": 0.03599977493286133
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+      "arm": "fastfloor",
+      "committedTurns": 2,
+      "playbackSamples": 2,
+      "commitToSdkPlaybackMs": {
+        "p50": 3.037836999999854,
+        "p95": 36.15364200000022
+      },
+      "speculativePreparations": 2,
+      "speculativeReuses": 1,
+      "rollbacks": 1,
+      "prematureSdkPlayback": 0,
+      "unattributedPlaybackEvents": 0,
+      "prematureAudibleResponses": null,
+      "turns": [
+        {
+          "messageId": "item_4f6dc3e1-5b6",
+          "transcript": "Find a robotics founder in Lisbon.",
+          "commitMs": 116.49604199999976,
+          "commitToLlmStartMs": -62.33285200000046,
+          "commitToFirstTextDeltaMs": -30.34417200000007,
+          "commitToTtsFirstFrameMs": 2.797733999999764,
+          "commitToSdkPlaybackMs": 3.037836999999854,
+          "audibleOnsetMs": null,
+          "reused": true
+        },
+        {
+          "messageId": "item_3e46ad30-d85",
+          "transcript": "Actually, find a climate founder in Oslo.",
+          "commitMs": 280.02133799999956,
+          "commitToLlmStartMs": 0.13040499999988242,
+          "commitToFirstTextDeltaMs": 32.47408600000017,
+          "commitToTtsFirstFrameMs": 35.99405500000012,
+          "commitToSdkPlaybackMs": 36.15364200000022,
+          "audibleOnsetMs": null,
+          "reused": false
+        }
+      ],
+      "events": [
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.183Z",
+          "elapsedMs": 0.15843199999926583,
+          "event": "RUN_CONFIG",
+          "details": {
+            "llm": "scripted-real-llm-interface",
+            "prompt": "integration mechanics",
+            "stt": "scripted-flux-events",
+            "tts": "synthetic-silent-PCM",
+            "turnDetection": "stt",
+            "minDelay": 0,
+            "maxDelay": 0
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.186Z",
+          "elapsedMs": 2.910513999999239,
+          "event": "START_OF_SPEECH",
+          "details": {}
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.237Z",
+          "elapsedMs": 53.99503099999947,
+          "event": "PREFLIGHT_TRANSCRIPT",
+          "details": {
+            "transcript": "Find a robotics founder in Lisbon.",
+            "createdAt": 1793200591237
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.237Z",
+          "elapsedMs": 54.091919999999845,
+          "event": "PREPARATION_STARTED",
+          "details": {
+            "generation": 3,
+            "mode": "real",
+            "transcript": "Find a robotics founder in Lisbon.",
+            "phase": "preflight"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.237Z",
+          "elapsedMs": 54.163189999999304,
+          "event": "LLM_STARTED",
+          "details": {
+            "generation": 3,
+            "context": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_a8754556-df6",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              },
+              {
+                "id": "item_ca7478ac-a8d",
+                "type": "message",
+                "role": "user",
+                "content": ["Find a robotics founder in Lisbon."],
+                "interrupted": false
+              }
+            ],
+            "toolChoice": "none"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.269Z",
+          "elapsedMs": 86.15186999999969,
+          "event": "LLM_FIRST_TEXT_DELTA",
+          "details": {
+            "generation": 3,
+            "providerRequestId": "measured-scripted-request"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.270Z",
+          "elapsedMs": 86.5202589999999,
+          "event": "LLM_COMPLETED",
+          "details": {
+            "generation": 3,
+            "characters": 17
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.299Z",
+          "elapsedMs": 115.66064199999983,
+          "event": "FINAL_TRANSCRIPT",
+          "details": {
+            "transcript": "Find a robotics founder in Lisbon.",
+            "createdAt": 1793200591299
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.299Z",
+          "elapsedMs": 115.70475299999998,
+          "event": "END_OF_SPEECH",
+          "details": {}
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.300Z",
+          "elapsedMs": 116.49604199999976,
+          "event": "USER_TURN_COMMITTED",
+          "details": {
+            "transcript": "Find a robotics founder in Lisbon.",
+            "messageId": "item_4f6dc3e1-5b6",
+            "finalSegments": ["Find a robotics founder in Lisbon."],
+            "history": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_a8754556-df6",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              }
+            ]
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.300Z",
+          "elapsedMs": 116.53909299999941,
+          "event": "COORDINATOR_COMMITTED",
+          "details": {
+            "generation": 3,
+            "messageId": "item_4f6dc3e1-5b6",
+            "transcript": "Find a robotics founder in Lisbon.",
+            "reused": true
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.300Z",
+          "elapsedMs": 116.58532299999933,
+          "event": "RESPONSE_RELEASED",
+          "details": {
+            "generation": 3,
+            "messageId": "item_4f6dc3e1-5b6"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.300Z",
+          "elapsedMs": 116.72795899999983,
+          "event": "SPEECH_CREATED",
+          "details": {
+            "speechId": "speech_da80aec2-fbc",
+            "messageId": "item_4f6dc3e1-5b6"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.301Z",
+          "elapsedMs": 117.45009699999991,
+          "event": "TRANSPORT_CLAIMED",
+          "details": {
+            "messageId": "item_4f6dc3e1-5b6",
+            "generation": 3,
+            "reused": true
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.301Z",
+          "elapsedMs": 117.58069499999965,
+          "event": "SDK_HISTORY_ITEM_ADDED",
+          "details": {
+            "item": {
+              "id": "item_4f6dc3e1-5b6",
+              "type": "message",
+              "role": "user",
+              "content": ["Find a robotics founder in Lisbon."],
+              "interrupted": false,
+              "transcriptConfidence": 1,
+              "metrics": {
+                "startedSpeakingAt": 1793200591.186,
+                "stoppedSpeakingAt": 1793200591.299,
+                "transcriptionDelay": 0,
+                "endOfTurnDelay": 0,
+                "onUserTurnCompletedDelay": 0
+              }
+            }
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.301Z",
+          "elapsedMs": 118.17454799999996,
+          "event": "TTS_STARTED",
+          "details": {
+            "messageId": "item_4f6dc3e1-5b6",
+            "provider": "synthetic-silent-PCM"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.302Z",
+          "elapsedMs": 119.29377599999953,
+          "event": "TTS_FIRST_FRAME",
+          "details": {
+            "messageId": "item_4f6dc3e1-5b6",
+            "provider": "synthetic-silent-PCM"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.303Z",
+          "elapsedMs": 119.53387899999962,
+          "event": "SDK_PLAYBACK_STARTED",
+          "details": {
+            "speechId": "speech_da80aec2-fbc",
+            "correlation": "unique-live-speech-handle",
+            "sdkCreatedAt": 1793200591303
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.303Z",
+          "elapsedMs": 119.8474669999996,
+          "event": "SDK_PLAYBACK_FINISHED",
+          "details": {
+            "speechId": "speech_da80aec2-fbc",
+            "correlation": "unique-live-speech-handle",
+            "playbackPosition": 0.01,
+            "interrupted": false
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.303Z",
+          "elapsedMs": 120.14660800000001,
+          "event": "SDK_HISTORY_ITEM_ADDED",
+          "details": {
+            "item": {
+              "id": "item_85e59f7f-6b9",
+              "type": "message",
+              "role": "assistant",
+              "content": ["Fixture response."],
+              "interrupted": false,
+              "metrics": {
+                "llmNodeTtft": 0.0004231899999993516,
+                "ttsNodeTtfb": 0.0008063150000001684,
+                "startedSpeakingAt": 1793200591.303,
+                "stoppedSpeakingAt": 1793200591.303,
+                "playbackLatency": 0,
+                "e2eLatency": 0.003999948501586914
+              }
+            }
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.350Z",
+          "elapsedMs": 167.2478059999994,
+          "event": "START_OF_SPEECH",
+          "details": {}
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.401Z",
+          "elapsedMs": 218.25575599999956,
+          "event": "PREFLIGHT_TRANSCRIPT",
+          "details": {
+            "transcript": "Find a robotics founder in Lisbon.",
+            "createdAt": 1793200591401
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.402Z",
+          "elapsedMs": 218.4203520000001,
+          "event": "PREPARATION_STARTED",
+          "details": {
+            "generation": 6,
+            "mode": "real",
+            "transcript": "Find a robotics founder in Lisbon.",
+            "phase": "preflight"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.402Z",
+          "elapsedMs": 218.50433499999963,
+          "event": "LLM_STARTED",
+          "details": {
+            "generation": 6,
+            "context": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_a8754556-df6",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              },
+              {
+                "id": "item_4f6dc3e1-5b6",
+                "type": "message",
+                "role": "user",
+                "content": ["Find a robotics founder in Lisbon."],
+                "interrupted": false,
+                "transcriptConfidence": 1,
+                "metrics": {
+                  "startedSpeakingAt": 1793200591.186,
+                  "stoppedSpeakingAt": 1793200591.299,
+                  "transcriptionDelay": 0,
+                  "endOfTurnDelay": 0,
+                  "onUserTurnCompletedDelay": 0
+                }
+              },
+              {
+                "id": "item_85e59f7f-6b9",
+                "type": "message",
+                "role": "assistant",
+                "content": ["Fixture response."],
+                "interrupted": false,
+                "metrics": {
+                  "llmNodeTtft": 0.0004231899999993516,
+                  "ttsNodeTtfb": 0.0008063150000001684,
+                  "startedSpeakingAt": 1793200591.303,
+                  "stoppedSpeakingAt": 1793200591.303,
+                  "playbackLatency": 0,
+                  "e2eLatency": 0.003999948501586914
+                }
+              },
+              {
+                "id": "item_2ae35938-99a",
+                "type": "message",
+                "role": "user",
+                "content": ["Find a robotics founder in Lisbon."],
+                "interrupted": false
+              }
+            ],
+            "toolChoice": "none"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.432Z",
+          "elapsedMs": 249.384188,
+          "event": "LLM_FIRST_TEXT_DELTA",
+          "details": {
+            "generation": 6,
+            "providerRequestId": "measured-scripted-request"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.433Z",
+          "elapsedMs": 249.83126300000004,
+          "event": "LLM_COMPLETED",
+          "details": {
+            "generation": 6,
+            "characters": 17
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.462Z",
+          "elapsedMs": 278.97434299999986,
+          "event": "INTERIM_TRANSCRIPT",
+          "details": {
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "createdAt": 1793200591462
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.462Z",
+          "elapsedMs": 278.99302699999953,
+          "event": "PREPARATION_INVALIDATED",
+          "details": {
+            "generation": 6,
+            "phase": "preflight"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.462Z",
+          "elapsedMs": 279.1658090000001,
+          "event": "FINAL_TRANSCRIPT",
+          "details": {
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "createdAt": 1793200591462
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.462Z",
+          "elapsedMs": 279.19412399999965,
+          "event": "END_OF_SPEECH",
+          "details": {}
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.463Z",
+          "elapsedMs": 280.02133799999956,
+          "event": "USER_TURN_COMMITTED",
+          "details": {
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "messageId": "item_3e46ad30-d85",
+            "finalSegments": ["Actually, find a climate founder in Oslo."],
+            "history": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_a8754556-df6",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              },
+              {
+                "id": "item_4f6dc3e1-5b6",
+                "type": "message",
+                "role": "user",
+                "content": ["Find a robotics founder in Lisbon."],
+                "interrupted": false,
+                "transcriptConfidence": 1,
+                "metrics": {
+                  "startedSpeakingAt": 1793200591.186,
+                  "stoppedSpeakingAt": 1793200591.299,
+                  "transcriptionDelay": 0,
+                  "endOfTurnDelay": 0,
+                  "onUserTurnCompletedDelay": 0
+                }
+              },
+              {
+                "id": "item_85e59f7f-6b9",
+                "type": "message",
+                "role": "assistant",
+                "content": ["Fixture response."],
+                "interrupted": false,
+                "metrics": {
+                  "llmNodeTtft": 0.0004231899999993516,
+                  "ttsNodeTtfb": 0.0008063150000001684,
+                  "startedSpeakingAt": 1793200591.303,
+                  "stoppedSpeakingAt": 1793200591.303,
+                  "playbackLatency": 0,
+                  "e2eLatency": 0.003999948501586914
+                }
+              }
+            ]
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.463Z",
+          "elapsedMs": 280.09414899999956,
+          "event": "PREPARATION_STARTED",
+          "details": {
+            "generation": 9,
+            "mode": "real",
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "phase": "committed"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.463Z",
+          "elapsedMs": 280.15174299999944,
+          "event": "LLM_STARTED",
+          "details": {
+            "generation": 9,
+            "context": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_a8754556-df6",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              },
+              {
+                "id": "item_4f6dc3e1-5b6",
+                "type": "message",
+                "role": "user",
+                "content": ["Find a robotics founder in Lisbon."],
+                "interrupted": false,
+                "transcriptConfidence": 1,
+                "metrics": {
+                  "startedSpeakingAt": 1793200591.186,
+                  "stoppedSpeakingAt": 1793200591.299,
+                  "transcriptionDelay": 0,
+                  "endOfTurnDelay": 0,
+                  "onUserTurnCompletedDelay": 0
+                }
+              },
+              {
+                "id": "item_85e59f7f-6b9",
+                "type": "message",
+                "role": "assistant",
+                "content": ["Fixture response."],
+                "interrupted": false,
+                "metrics": {
+                  "llmNodeTtft": 0.0004231899999993516,
+                  "ttsNodeTtfb": 0.0008063150000001684,
+                  "startedSpeakingAt": 1793200591.303,
+                  "stoppedSpeakingAt": 1793200591.303,
+                  "playbackLatency": 0,
+                  "e2eLatency": 0.003999948501586914
+                }
+              },
+              {
+                "id": "item_aa95247d-764",
+                "type": "message",
+                "role": "user",
+                "content": ["Actually, find a climate founder in Oslo."],
+                "interrupted": false
+              }
+            ],
+            "toolChoice": "none"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.463Z",
+          "elapsedMs": 280.30670699999973,
+          "event": "COORDINATOR_COMMITTED",
+          "details": {
+            "generation": 9,
+            "messageId": "item_3e46ad30-d85",
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "reused": false
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.496Z",
+          "elapsedMs": 312.49542399999973,
+          "event": "LLM_FIRST_TEXT_DELTA",
+          "details": {
+            "generation": 9,
+            "providerRequestId": "measured-scripted-request"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.496Z",
+          "elapsedMs": 312.98420199999964,
+          "event": "LLM_COMPLETED",
+          "details": {
+            "generation": 9,
+            "characters": 17
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.496Z",
+          "elapsedMs": 313.1535159999994,
+          "event": "RESPONSE_RELEASED",
+          "details": {
+            "generation": 9,
+            "messageId": "item_3e46ad30-d85"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.497Z",
+          "elapsedMs": 313.40507999999954,
+          "event": "SPEECH_CREATED",
+          "details": {
+            "speechId": "speech_2ddb7acb-53a",
+            "messageId": "item_3e46ad30-d85"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.498Z",
+          "elapsedMs": 314.49801599999955,
+          "event": "TRANSPORT_CLAIMED",
+          "details": {
+            "messageId": "item_3e46ad30-d85",
+            "generation": 9,
+            "reused": false
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.498Z",
+          "elapsedMs": 314.63805199999933,
+          "event": "SDK_HISTORY_ITEM_ADDED",
+          "details": {
+            "item": {
+              "id": "item_3e46ad30-d85",
+              "type": "message",
+              "role": "user",
+              "content": ["Actually, find a climate founder in Oslo."],
+              "interrupted": false,
+              "transcriptConfidence": 1,
+              "metrics": {
+                "startedSpeakingAt": 1793200591.35,
+                "stoppedSpeakingAt": 1793200591.463,
+                "transcriptionDelay": 0,
+                "endOfTurnDelay": 0,
+                "onUserTurnCompletedDelay": 0.033
+              }
+            }
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.498Z",
+          "elapsedMs": 314.9965199999997,
+          "event": "TTS_STARTED",
+          "details": {
+            "messageId": "item_3e46ad30-d85",
+            "provider": "synthetic-silent-PCM"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.499Z",
+          "elapsedMs": 316.0153929999997,
+          "event": "TTS_FIRST_FRAME",
+          "details": {
+            "messageId": "item_3e46ad30-d85",
+            "provider": "synthetic-silent-PCM"
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.499Z",
+          "elapsedMs": 316.1749799999998,
+          "event": "SDK_PLAYBACK_STARTED",
+          "details": {
+            "speechId": "speech_2ddb7acb-53a",
+            "correlation": "unique-live-speech-handle",
+            "sdkCreatedAt": 1793200591499
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.500Z",
+          "elapsedMs": 316.44339799999943,
+          "event": "SDK_PLAYBACK_FINISHED",
+          "details": {
+            "speechId": "speech_2ddb7acb-53a",
+            "correlation": "unique-live-speech-handle",
+            "playbackPosition": 0.01,
+            "interrupted": false
+          }
+        },
+        {
+          "runId": "da399790-971b-49fd-886d-1069bcec7e54",
+          "arm": "fastfloor",
+          "timestamp": "2026-10-28T15:16:31.500Z",
+          "elapsedMs": 316.72693699999945,
+          "event": "SDK_HISTORY_ITEM_ADDED",
+          "details": {
+            "item": {
+              "id": "item_4816fe83-75c",
+              "type": "message",
+              "role": "assistant",
+              "content": ["Fixture response."],
+              "interrupted": false,
+              "metrics": {
+                "llmNodeTtft": 0.0004419699999997917,
+                "ttsNodeTtfb": 0.0007903270000007012,
+                "startedSpeakingAt": 1793200591.499,
+                "stoppedSpeakingAt": 1793200591.5,
+                "playbackLatency": 0,
+                "e2eLatency": 0.03600001335144043
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+      "arm": "baseline",
+      "committedTurns": 2,
+      "playbackSamples": 2,
+      "commitToSdkPlaybackMs": {
+        "p50": 35.282028999999966,
+        "p95": 36.46337700000004
+      },
+      "speculativePreparations": 0,
+      "speculativeReuses": 0,
+      "rollbacks": 0,
+      "prematureSdkPlayback": 0,
+      "unattributedPlaybackEvents": 0,
+      "prematureAudibleResponses": null,
+      "turns": [
+        {
+          "messageId": "item_1dee0cb1-557",
+          "transcript": "Find a robotics founder in Lisbon.",
+          "commitMs": 115.55267800000001,
+          "commitToLlmStartMs": 0.11191299999973126,
+          "commitToFirstTextDeltaMs": 32.872041999999965,
+          "commitToTtsFirstFrameMs": 36.30658299999959,
+          "commitToSdkPlaybackMs": 36.46337700000004,
+          "audibleOnsetMs": null,
+          "reused": false
+        },
+        {
+          "messageId": "item_09990a9e-825",
+          "transcript": "Actually, find a climate founder in Oslo.",
+          "commitMs": 277.3776049999997,
+          "commitToLlmStartMs": 0.17143399999986286,
+          "commitToFirstTextDeltaMs": 32.432770000000346,
+          "commitToTtsFirstFrameMs": 35.06638900000053,
+          "commitToSdkPlaybackMs": 35.282028999999966,
+          "audibleOnsetMs": null,
+          "reused": false
+        }
+      ],
+      "events": [
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.016Z",
+          "elapsedMs": 0.15149699999983568,
+          "event": "RUN_CONFIG",
+          "details": {
+            "llm": "scripted-real-llm-interface",
+            "prompt": "integration mechanics",
+            "stt": "scripted-flux-events",
+            "tts": "synthetic-silent-PCM",
+            "turnDetection": "stt",
+            "minDelay": 0,
+            "maxDelay": 0
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.018Z",
+          "elapsedMs": 2.4858789999998407,
+          "event": "START_OF_SPEECH",
+          "details": {}
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.069Z",
+          "elapsedMs": 53.50923899999998,
+          "event": "PREFLIGHT_TRANSCRIPT",
+          "details": {
+            "transcript": "Find a robotics founder in Lisbon.",
+            "createdAt": 1793200592069
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.130Z",
+          "elapsedMs": 114.74241499999971,
+          "event": "FINAL_TRANSCRIPT",
+          "details": {
+            "transcript": "Find a robotics founder in Lisbon.",
+            "createdAt": 1793200592130
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.130Z",
+          "elapsedMs": 114.78845099999944,
+          "event": "END_OF_SPEECH",
+          "details": {}
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.131Z",
+          "elapsedMs": 115.55267800000001,
+          "event": "USER_TURN_COMMITTED",
+          "details": {
+            "transcript": "Find a robotics founder in Lisbon.",
+            "messageId": "item_1dee0cb1-557",
+            "finalSegments": ["Find a robotics founder in Lisbon."],
+            "history": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_ded73f82-cb2",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              }
+            ]
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.131Z",
+          "elapsedMs": 115.61595399999987,
+          "event": "PREPARATION_STARTED",
+          "details": {
+            "generation": 4,
+            "mode": "real",
+            "transcript": "Find a robotics founder in Lisbon.",
+            "phase": "committed"
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.131Z",
+          "elapsedMs": 115.66459099999975,
+          "event": "LLM_STARTED",
+          "details": {
+            "generation": 4,
+            "context": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_ded73f82-cb2",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              },
+              {
+                "id": "item_256f3375-7d3",
+                "type": "message",
+                "role": "user",
+                "content": ["Find a robotics founder in Lisbon."],
+                "interrupted": false
+              }
+            ],
+            "toolChoice": "none"
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.132Z",
+          "elapsedMs": 115.90777600000001,
+          "event": "COORDINATOR_COMMITTED",
+          "details": {
+            "generation": 4,
+            "messageId": "item_1dee0cb1-557",
+            "transcript": "Find a robotics founder in Lisbon.",
+            "reused": false
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.164Z",
+          "elapsedMs": 148.42471999999998,
+          "event": "LLM_FIRST_TEXT_DELTA",
+          "details": {
+            "generation": 4,
+            "providerRequestId": "measured-scripted-request"
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.165Z",
+          "elapsedMs": 148.84010899999976,
+          "event": "LLM_COMPLETED",
+          "details": {
+            "generation": 4,
+            "characters": 17
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.165Z",
+          "elapsedMs": 148.99170200000026,
+          "event": "RESPONSE_RELEASED",
+          "details": {
+            "generation": 4,
+            "messageId": "item_1dee0cb1-557"
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.165Z",
+          "elapsedMs": 149.18673200000012,
+          "event": "SPEECH_CREATED",
+          "details": {
+            "speechId": "speech_d097b89b-637",
+            "messageId": "item_1dee0cb1-557"
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.166Z",
+          "elapsedMs": 150.21783499999947,
+          "event": "TRANSPORT_CLAIMED",
+          "details": {
+            "messageId": "item_1dee0cb1-557",
+            "generation": 4,
+            "reused": false
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.166Z",
+          "elapsedMs": 150.52236999999968,
+          "event": "SDK_HISTORY_ITEM_ADDED",
+          "details": {
+            "item": {
+              "id": "item_1dee0cb1-557",
+              "type": "message",
+              "role": "user",
+              "content": ["Find a robotics founder in Lisbon."],
+              "interrupted": false,
+              "transcriptConfidence": 1,
+              "metrics": {
+                "startedSpeakingAt": 1793200592.018,
+                "stoppedSpeakingAt": 1793200592.131,
+                "transcriptionDelay": 0,
+                "endOfTurnDelay": 0,
+                "onUserTurnCompletedDelay": 0.034
+              }
+            }
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.167Z",
+          "elapsedMs": 151.00363599999946,
+          "event": "TTS_STARTED",
+          "details": {
+            "messageId": "item_1dee0cb1-557",
+            "provider": "synthetic-silent-PCM"
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.168Z",
+          "elapsedMs": 151.8592609999996,
+          "event": "TTS_FIRST_FRAME",
+          "details": {
+            "messageId": "item_1dee0cb1-557",
+            "provider": "synthetic-silent-PCM"
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.168Z",
+          "elapsedMs": 152.01605500000005,
+          "event": "SDK_PLAYBACK_STARTED",
+          "details": {
+            "speechId": "speech_d097b89b-637",
+            "correlation": "unique-live-speech-handle",
+            "sdkCreatedAt": 1793200592168
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.168Z",
+          "elapsedMs": 152.51195899999948,
+          "event": "SDK_PLAYBACK_FINISHED",
+          "details": {
+            "speechId": "speech_d097b89b-637",
+            "correlation": "unique-live-speech-handle",
+            "playbackPosition": 0.01,
+            "interrupted": false
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.169Z",
+          "elapsedMs": 152.98754199999985,
+          "event": "SDK_HISTORY_ITEM_ADDED",
+          "details": {
+            "item": {
+              "id": "item_38c611ac-cdd",
+              "type": "message",
+              "role": "assistant",
+              "content": ["Fixture response."],
+              "interrupted": false,
+              "metrics": {
+                "llmNodeTtft": 0.0007754950000000704,
+                "ttsNodeTtfb": 0.0005254720000005264,
+                "startedSpeakingAt": 1793200592.168,
+                "stoppedSpeakingAt": 1793200592.169,
+                "playbackLatency": 0,
+                "e2eLatency": 0.03699994087219238
+              }
+            }
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.182Z",
+          "elapsedMs": 166.0807109999996,
+          "event": "START_OF_SPEECH",
+          "details": {}
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.232Z",
+          "elapsedMs": 215.9456449999998,
+          "event": "PREFLIGHT_TRANSCRIPT",
+          "details": {
+            "transcript": "Find a robotics founder in Lisbon.",
+            "createdAt": 1793200592232
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.292Z",
+          "elapsedMs": 276.31442999999945,
+          "event": "INTERIM_TRANSCRIPT",
+          "details": {
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "createdAt": 1793200592292
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.292Z",
+          "elapsedMs": 276.34861999999976,
+          "event": "FINAL_TRANSCRIPT",
+          "details": {
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "createdAt": 1793200592292
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.292Z",
+          "elapsedMs": 276.3745279999994,
+          "event": "END_OF_SPEECH",
+          "details": {}
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.293Z",
+          "elapsedMs": 277.3776049999997,
+          "event": "USER_TURN_COMMITTED",
+          "details": {
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "messageId": "item_09990a9e-825",
+            "finalSegments": ["Actually, find a climate founder in Oslo."],
+            "history": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_ded73f82-cb2",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              },
+              {
+                "id": "item_1dee0cb1-557",
+                "type": "message",
+                "role": "user",
+                "content": ["Find a robotics founder in Lisbon."],
+                "interrupted": false,
+                "transcriptConfidence": 1,
+                "metrics": {
+                  "startedSpeakingAt": 1793200592.018,
+                  "stoppedSpeakingAt": 1793200592.131,
+                  "transcriptionDelay": 0,
+                  "endOfTurnDelay": 0,
+                  "onUserTurnCompletedDelay": 0.034
+                }
+              },
+              {
+                "id": "item_38c611ac-cdd",
+                "type": "message",
+                "role": "assistant",
+                "content": ["Fixture response."],
+                "interrupted": false,
+                "metrics": {
+                  "llmNodeTtft": 0.0007754950000000704,
+                  "ttsNodeTtfb": 0.0005254720000005264,
+                  "startedSpeakingAt": 1793200592.168,
+                  "stoppedSpeakingAt": 1793200592.169,
+                  "playbackLatency": 0,
+                  "e2eLatency": 0.03699994087219238
+                }
+              }
+            ]
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.293Z",
+          "elapsedMs": 277.470738,
+          "event": "PREPARATION_STARTED",
+          "details": {
+            "generation": 8,
+            "mode": "real",
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "phase": "committed"
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.293Z",
+          "elapsedMs": 277.54903899999954,
+          "event": "LLM_STARTED",
+          "details": {
+            "generation": 8,
+            "context": [
+              {
+                "id": "lk.agent_task.instructions",
+                "type": "message",
+                "role": "system",
+                "content": ["integration mechanics"],
+                "interrupted": false
+              },
+              {
+                "id": "item_ded73f82-cb2",
+                "type": "agent_config_update",
+                "instructions": "integration mechanics"
+              },
+              {
+                "id": "item_1dee0cb1-557",
+                "type": "message",
+                "role": "user",
+                "content": ["Find a robotics founder in Lisbon."],
+                "interrupted": false,
+                "transcriptConfidence": 1,
+                "metrics": {
+                  "startedSpeakingAt": 1793200592.018,
+                  "stoppedSpeakingAt": 1793200592.131,
+                  "transcriptionDelay": 0,
+                  "endOfTurnDelay": 0,
+                  "onUserTurnCompletedDelay": 0.034
+                }
+              },
+              {
+                "id": "item_38c611ac-cdd",
+                "type": "message",
+                "role": "assistant",
+                "content": ["Fixture response."],
+                "interrupted": false,
+                "metrics": {
+                  "llmNodeTtft": 0.0007754950000000704,
+                  "ttsNodeTtfb": 0.0005254720000005264,
+                  "startedSpeakingAt": 1793200592.168,
+                  "stoppedSpeakingAt": 1793200592.169,
+                  "playbackLatency": 0,
+                  "e2eLatency": 0.03699994087219238
+                }
+              },
+              {
+                "id": "item_fd18cd41-b6f",
+                "type": "message",
+                "role": "user",
+                "content": ["Actually, find a climate founder in Oslo."],
+                "interrupted": false
+              }
+            ],
+            "toolChoice": "none"
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.293Z",
+          "elapsedMs": 277.7244209999999,
+          "event": "COORDINATOR_COMMITTED",
+          "details": {
+            "generation": 8,
+            "messageId": "item_09990a9e-825",
+            "transcript": "Actually, find a climate founder in Oslo.",
+            "reused": false
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.325Z",
+          "elapsedMs": 309.810375,
+          "event": "LLM_FIRST_TEXT_DELTA",
+          "details": {
+            "generation": 8,
+            "providerRequestId": "measured-scripted-request"
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.326Z",
+          "elapsedMs": 310.1235769999994,
+          "event": "LLM_COMPLETED",
+          "details": {
+            "generation": 8,
+            "characters": 17
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.326Z",
+          "elapsedMs": 310.30194500000016,
+          "event": "RESPONSE_RELEASED",
+          "details": {
+            "generation": 8,
+            "messageId": "item_09990a9e-825"
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.326Z",
+          "elapsedMs": 310.43138699999963,
+          "event": "SPEECH_CREATED",
+          "details": {
+            "speechId": "speech_193418e6-46e",
+            "messageId": "item_09990a9e-825"
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.327Z",
+          "elapsedMs": 311.16383099999985,
+          "event": "TRANSPORT_CLAIMED",
+          "details": {
+            "messageId": "item_09990a9e-825",
+            "generation": 8,
+            "reused": false
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.327Z",
+          "elapsedMs": 311.2970289999994,
+          "event": "SDK_HISTORY_ITEM_ADDED",
+          "details": {
+            "item": {
+              "id": "item_09990a9e-825",
+              "type": "message",
+              "role": "user",
+              "content": ["Actually, find a climate founder in Oslo."],
+              "interrupted": false,
+              "transcriptConfidence": 1,
+              "metrics": {
+                "startedSpeakingAt": 1793200592.182,
+                "stoppedSpeakingAt": 1793200592.292,
+                "transcriptionDelay": 0,
+                "endOfTurnDelay": 0.001,
+                "onUserTurnCompletedDelay": 0.033
+              }
+            }
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.327Z",
+          "elapsedMs": 311.6532820000002,
+          "event": "TTS_STARTED",
+          "details": {
+            "messageId": "item_09990a9e-825",
+            "provider": "synthetic-silent-PCM"
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.328Z",
+          "elapsedMs": 312.4439940000002,
+          "event": "TTS_FIRST_FRAME",
+          "details": {
+            "messageId": "item_09990a9e-825",
+            "provider": "synthetic-silent-PCM"
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.328Z",
+          "elapsedMs": 312.65963399999964,
+          "event": "SDK_PLAYBACK_STARTED",
+          "details": {
+            "speechId": "speech_193418e6-46e",
+            "correlation": "unique-live-speech-handle",
+            "sdkCreatedAt": 1793200592328
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.329Z",
+          "elapsedMs": 312.8493669999998,
+          "event": "SDK_PLAYBACK_FINISHED",
+          "details": {
+            "speechId": "speech_193418e6-46e",
+            "correlation": "unique-live-speech-handle",
+            "playbackPosition": 0.01,
+            "interrupted": false
+          }
+        },
+        {
+          "runId": "957692af-0eaa-48f7-a8d3-10bd5373f66d",
+          "arm": "baseline",
+          "timestamp": "2026-10-28T15:16:32.329Z",
+          "elapsedMs": 313.0959219999995,
+          "event": "SDK_HISTORY_ITEM_ADDED",
+          "details": {
+            "item": {
+              "id": "item_7eb20f84-f56",
+              "type": "message",
+              "role": "assistant",
+              "content": ["Fixture response."],
+              "interrupted": false,
+              "metrics": {
+                "llmNodeTtft": 0.00043127999999992284,
+                "ttsNodeTtfb": 0.0006294879999995118,
+                "startedSpeakingAt": 1793200592.328,
+                "stoppedSpeakingAt": 1793200592.329,
+                "playbackLatency": 0,
+                "e2eLatency": 0.03600001335144043
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

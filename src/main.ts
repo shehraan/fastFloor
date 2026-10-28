@@ -3,6 +3,7 @@ import { EnhancerModel, audioEnhancement } from '@livekit/plugins-ai-coustics';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'node:url';
 import { createAgent } from './agent.ts';
+import { EvaluationTrace } from './fastfloor/evaluation.ts';
 import { FluxIntegrationSpike } from './fastfloor/livekit-flux-spike.ts';
 
 // Load environment variables from a local file.
@@ -13,8 +14,29 @@ dotenv.config({ path: '.env.local' });
 export default defineAgent({
   entry: async (ctx) => {
     // Explicit opt-in: the working baseline stays the default.
+    const simulation = ctx.simulationContext();
+    const boardy =
+      process.env.FASTFLOOR_BOARDY === '1' || simulation?.userdata().workload === 'boardy';
+    const arm = process.env.FASTFLOOR_EVAL_ARM;
+    if (arm !== undefined && arm !== 'baseline' && arm !== 'fastfloor')
+      throw new Error('FASTFLOOR_EVAL_ARM must be baseline or fastfloor');
+    const realLlm = boardy || arm !== undefined || process.env.FASTFLOOR_REAL_LLM === '1';
+    if (process.env.FASTFLOOR_TRACE_PATH && !realLlm && process.env.FASTFLOOR_FLUX_SPIKE !== '1')
+      throw new Error(
+        'FASTFLOOR_TRACE_PATH requires an evaluation arm, real mode, fake mode, or Boardy workload',
+      );
+    const trace = process.env.FASTFLOOR_TRACE_PATH
+      ? new EvaluationTrace({ arm: arm ?? 'fastfloor', path: process.env.FASTFLOOR_TRACE_PATH })
+      : undefined;
     const fluxSpike =
-      process.env.FASTFLOOR_FLUX_SPIKE === '1' ? new FluxIntegrationSpike() : undefined;
+      realLlm || process.env.FASTFLOOR_FLUX_SPIKE === '1'
+        ? new FluxIntegrationSpike({
+            mode: realLlm ? 'real' : 'fake',
+            speculate: arm !== 'baseline',
+            committedTools: boardy,
+            ...(trace ? { log: trace.log } : {}),
+          })
+        : undefined;
     // Set up a voice AI pipeline using AssemblyAI, Fish Audio, and the LiveKit turn detector
     const session = new voice.AgentSession({
       // Speech-to-text (STT) is your agent's ears, turning the user's speech into text that the LLM can understand
@@ -72,8 +94,29 @@ export default defineAgent({
     });
 
     // Start the session, which initializes the voice pipeline and warms up the models
+    // Text simulations use the ordinary SDK pipeline, never fabricated audio
+    // commitment. They evaluate workload semantics, not speculative/audio safety.
+    const agent = createAgent(simulation && boardy ? undefined : fluxSpike, {
+      boardy,
+      ...(trace ? { log: trace.log } : {}),
+    });
+    trace?.log('RUN_CONFIG', {
+      arm,
+      llm: realLlm ? 'google/gemma-4-31b-it' : 'fake-no-llm',
+      stt: 'deepgram/flux-general-en',
+      eagerEotThreshold: 0.5,
+      tts: 'fishaudio/s2.1-pro',
+      voice: 'fa4c9eb3dccc4806b382b40d61c6b10a',
+      prompt: agent.instructions,
+      endpointing: 'unchanged SDK defaults',
+      turnDetection: 'stt',
+      preemptiveGeneration: false,
+      preparation: boardy ? 'committed-sdk-tool-loop' : 'full-response-buffer',
+      workload: boardy ? 'fictional-networking' : 'assistant',
+      speculationEnabled: !boardy && arm !== 'baseline',
+    });
     await session.start({
-      agent: createAgent(fluxSpike),
+      agent,
       room: ctx.room,
       inputOptions: {
         // ai-coustics QUAIL audio enhancement for noise cancellation
@@ -81,6 +124,7 @@ export default defineAgent({
         noiseCancellation: audioEnhancement({ model: EnhancerModel.QuailVfS }),
       },
     });
+    trace?.attach(session);
 
     // // Add a virtual avatar to the session, if desired
     // // For other providers, see https://docs.livekit.io/agents/models/avatar/
