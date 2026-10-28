@@ -23,6 +23,7 @@ export class FluxIntegrationSpike {
   private readonly committedMessages = new Set<string>();
   private readonly speeches = new Set<voice.SpeechHandle>();
   private session: voice.AgentSession | undefined;
+  private agent: voice.Agent | undefined;
 
   constructor(options: { log?: SpikeLog; fakePrepare?: FakePrepare } = {}) {
     this.log = options.log ?? ((event, details) => console.log('[FastFloor]', event, details));
@@ -106,7 +107,20 @@ export class FluxIntegrationSpike {
     candidate.messageId = message.id;
     this.coordinator.onCommitted(candidate.generation);
     await candidate.task;
-    if (this.candidate !== candidate || candidate.released === null) throw new voice.StopResponse();
+    if (this.candidate !== candidate || candidate.released === null) {
+      // StopResponse in Agents 1.9.4 drops the whole user turn, not just its reply.
+      // Preserve only a provenance-validated commitment; never store speculation
+      // or a cancelled assistant answer. Use current history, not a stale snapshot.
+      if (this.agent && !this.agent.chatCtx.items.some((item) => item.id === message.id)) {
+        const retained = this.agent.chatCtx.copy();
+        retained.insert(message);
+        await this.agent.updateChatCtx(retained);
+      }
+      if (this.session && !this.session.history.items.some((item) => item.id === message.id))
+        this.session.history.insert(message);
+      this.log('COMMITTED_INPUT_RETAINED', { messageId: message.id, transcript: text });
+      throw new voice.StopResponse();
+    }
   }
 
   hooks(): Pick<
@@ -157,7 +171,8 @@ export class FluxIntegrationSpike {
           spike.invalidate();
         }
       },
-      onUserTurnCompleted(_ctx, _chatCtx, newMessage) {
+      onUserTurnCompleted(ctx, _chatCtx, newMessage) {
+        spike.agent = ctx.agent;
         return spike.committed(newMessage);
       },
       async *llmNode(_ctx, chatCtx) {
