@@ -1,0 +1,66 @@
+::group::Setup
+✓ Agent registered (11.863s)
+✓ Simulation created (1.09s)
+✓ Loaded 2 scenarios from spikes/002-history-evaluation/audio-scenarios.yaml ("FastFloor real audio verification")
+::endgroup::
+
+Run:       SR_j5fV2qGsWGpu
+
+::group::✗ Destination correction during a lengthy reply and recovery (SRJ_Hbrsc9YYjgZQ)
+Instructions:
+  PERSONA: An English-speaking caller discussing a fictional trip.
+  OPENING LINE: "I want to travel to New York on Monday. Give me a detailed spoken explanation of three neighborhoods I could visit."
+  DO, IN ORDER:
+  1. As soon as possible, interrupt the reply with "Wait, change the destination to Boston instead, and keep Monday."
+  2. After the revised reply, ask "Which destination did I originally mention, and which destination do I want now?"
+  3. Ask for a detailed explanation of Boston neighborhoods. While it is speaking,
+     interrupt with "Stop. Just tell me the current destination and day in one sentence."
+  4. After the short reply, ask "What was my original destination before Boston?"
+  End after its reply. Do not send introductions, book, or perform any real action.
+  
+Expected:
+  Acknowledges Boston as the revised destination with Monday retained, recalls New York as the original destination, and answers the final recall question. Responds to the stop request with a short answer rather than restarting the superseded neighborhood explanation. Never claims to have booked anything.
+  
+Error: agent under test went silent for 30s
+Transcript:
+  [handoff] -> default_agent
+::endgroup::
+::error::Job 1 failed: agent under test went silent for 30s
+::group::✗ Original destination and dense corrected utterance survive consecutive turns (SRJ_N5r5ruHnyk9a)
+Instructions:
+  PERSONA: An English-speaking caller testing a fictional travel discussion.
+  OPENING LINE: "I want to travel to New York on Monday. Please remember that destination and day."
+  DO, IN ORDER, waiting for a reply after each line:
+  1. Say "Actually, change the destination to Boston instead. Keep the same day."
+  2. Ask "What destination did I mention originally, before I changed it, and what is my current destination?"
+  3. In one continuous turn say "For a separate fictional trip, I am traveling with my sister, we prefer a quiet hotel near the station, we need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, corrected day, number of rooms, and hotel preference without making any booking."
+  4. Ask "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?"
+  5. Say "Remember the luggage color is green."
+  6. Ask "What luggage color did I just say?"
+  7. Say "Change the luggage color to blue instead."
+  8. Ask "What was the original luggage color, and what is the current color?"
+  9. Ask "Briefly repeat the two destinations for the first trip and the final day and city for the separate trip."
+  End after the reply. Do not make real reservations or invent facts.
+  
+Expected:
+  Recalls New York as the original first destination and Boston as the revised one. Captures Lisbon, Tuesday rather than Monday, two rooms, and a quiet hotel near the station for the separate trip. Recalls green then blue luggage. Does not claim to have made any booking. Replies to consecutive turns without getting stuck.
+  
+Error: agent under test went silent for 30s
+Transcript:
+  [handoff] -> default_agent
+::endgroup::
+::error::Job 2 failed: agent under test went silent for 30s
+
+::group::Summary
+2 total, 0 passed, 2 failed
+
+Going well:
+  No user-facing behavior is recorded, so there is nothing to assess as going well.
+
+To improve:
+  Restore or verify conversation startup and recording before evaluating destination changes or recall: neither transcript contains an exchange.
+
+Issues:
+  1. Both failed simulations have transcripts containing only the setup instructions— first record and second record—with no user turns or agent replies. The reported thirty-second silence cannot be distinguished from a conversation capture or startup failure using these records.
+     Suggestion: Check voice-session initialization, turn delivery, response generation, and transcript capture; record timestamped user and agent events so the point of failure is identifiable.
+::endgroup::

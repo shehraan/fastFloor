@@ -1,0 +1,261 @@
+{
+  "text": "What destination did I mention originally, before I changed it, and what is my current destination?",
+  "heard": "What destination did I mention originally before I changed it, and what is my current destination?",
+  "events": [
+    {
+      "type": "log",
+      "text": "[17:49:41.004] DEBUG (3104): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:41.392] DEBUG (3104): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What does\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:44.803] DEBUG (3104): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"What destination did I mention originally before I changed it, and what is my current destination\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:44.803] DEBUG (3104): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What destination did I mention originally before I changed it, and what is my current destination\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:44.918] DEBUG (3104): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What destination did I mention originally before I changed it, and what is my current destination?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.033] DEBUG (3104): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"What destination did I mention originally before I changed it, and what is my current destination?\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.033] DEBUG (3104): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What destination did I mention originally before I changed it, and what is my current destination?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.047] DEBUG (3104): received user transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"What destination did I mention originally before I changed it, and what is my current destination?\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.048] WARN (3104): stt end of speech received while vad is still in a speech segment, flushing vad"
+    },
+    {
+      "type": "log",
+      "text": "    vadSpeechStartTime: 1793209780927.8835"
+    },
+    {
+      "type": "log",
+      "text": "    flushed: true"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.049] DEBUG (3104): running EOU detection on stt END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.049] DEBUG (3104): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"What destination did I mention originally before I changed it, and what is my current destination?\""
+    },
+    {
+      "type": "log",
+      "text": "    turnDetectionMode: \"stt\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.548] DEBUG (3104): end of user turn"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What destination did I mention originally before I changed it, and what is my current destination?\""
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:49:45.556Z",
+      "role": "user",
+      "text": "What destination did I mention originally before I changed it, and what is my current destination?"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.548] DEBUG (3104): Task.runTask: task AgentActivity.userTurnCompleted started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.550] DEBUG (3104): EOU detection task completed"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.550] INFO (3104): Creating speech handle"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_334c4312-f4c\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.551] DEBUG (3104): Task.runTask: task AgentActivity.pipelineReply started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.552] DEBUG (3104): Task.runTask: task performLLMInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.554] DEBUG (3104): Task.runTask: task AgentActivity.userTurnCompleted done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.556] DEBUG (3104): Task.runTask: task AgentActivity.pipelineReply.produceSegments started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.557] DEBUG (3104): Task.runTask: task performTTSInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.560] DEBUG (3104): Task.runTask: task performToolExecutions started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.561] DEBUG (3104): Task.runTask: task performTextForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.562] DEBUG (3104): Task.runTask: task performAudioForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.562] DEBUG (3104): Task.runTask: task performToolExecutions done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.562] DEBUG (3104): Task.runTask: task performLLMInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.562] DEBUG (3104): Task.runTask: task AgentActivity.pipelineReply.produceSegments done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.563] DEBUG (3104): Task.runTask: task performTextForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.568] DEBUG (3104): Task.runTask: task inference-tts-input started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.568] DEBUG (3104): Task.runTask: task inference-tts-sentence started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.569] DEBUG (3104): Task.runTask: task inference-tts-ws-listener started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.569] DEBUG (3104): Task.runTask: task inference-tts-recv started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.572] DEBUG (3104): Task.runTask: task inference-tts-input done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:45.573] DEBUG (3104): Task.runTask: task inference-tts-sentence done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:46.025] DEBUG (3104): agent speech started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:47.155] DEBUG (3104): Task.runTask: task inference-tts-recv done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:47.157] DEBUG (3104): Task.runTask: task inference-tts-ws-listener done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:47.174] DEBUG (3104): Task.runTask: task performAudioForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:47.175] DEBUG (3104): Task.runTask: task performTTSInference done"
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:49:53.620Z",
+      "role": "assistant",
+      "text": "Your original destination was New York, and your current destination is Boston. Do you need help with anything else for your trip?",
+      "metrics": {
+        "e2e_latency": 0.9750001430511475,
+        "llm_ttft": 0.002125913000007529,
+        "tts_ttfb": 0.45070837000000097
+      }
+    },
+    {
+      "type": "log",
+      "text": "[17:49:53.621] INFO (3104): playout completed without interruption"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_334c4312-f4c\""
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.message: \"Your original destination was New York, and your current destination is Boston. Do you need help with anything else for your trip?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:53.622] DEBUG (3104): agent speech ended"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:53.623] DEBUG (3104): Task.runTask: task AgentActivity.pipelineReply done"
+    }
+  ],
+  "reply": "Your original destination was New York, and your current destination is Boston. Do you need help with anything else for your trip?",
+  "duration_ms": 15360
+}

@@ -1,0 +1,297 @@
+{
+  "text": "Actually, change the destination to Boston instead. Keep the same day.",
+  "heard": "Actually, change the destination to Boston instead. Keep the same day.",
+  "events": [
+    {
+      "type": "log",
+      "text": "[17:53:19.189] DEBUG (3462): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:19.553] DEBUG (3462): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"Actually,\""
+    },
+    {
+      "type": "log",
+      "text": "[17:53:21.830] DEBUG (3462): VAD task: END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:22.315] DEBUG (3462): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"Actually, change the destination to Boston instead.\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:53:22.315] DEBUG (3462): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"Actually, change the destination to Boston instead.\""
+    },
+    {
+      "type": "log",
+      "text": "[17:53:22.503] DEBUG (3462): received user transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"Actually, change the destination to Boston instead.\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:53:22.503] DEBUG (3462): running EOU detection on stt END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:22.504] DEBUG (3462): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"Actually, change the destination to Boston instead.\""
+    },
+    {
+      "type": "log",
+      "text": "    turnDetectionMode: \"stt\""
+    },
+    {
+      "type": "log",
+      "text": "[17:53:22.510] DEBUG (3462): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:22.960] DEBUG (3462): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"Keep\""
+    },
+    {
+      "type": "log",
+      "text": "[17:53:23.381] DEBUG (3462): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"Keep the same day.\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:53:23.382] DEBUG (3462): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"Actually, change the destination to Boston instead. Keep the same day.\""
+    },
+    {
+      "type": "log",
+      "text": "[17:53:23.421] DEBUG (3462): received user transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"Keep the same day.\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:53:23.422] WARN (3462): stt end of speech received while vad is still in a speech segment, flushing vad"
+    },
+    {
+      "type": "log",
+      "text": "    vadSpeechStartTime: 1793210002444.8457"
+    },
+    {
+      "type": "log",
+      "text": "    flushed: true"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:23.423] DEBUG (3462): running EOU detection on stt END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:23.423] DEBUG (3462): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"Actually, change the destination to Boston instead. Keep the same day.\""
+    },
+    {
+      "type": "log",
+      "text": "    turnDetectionMode: \"stt\""
+    },
+    {
+      "type": "log",
+      "text": "[17:53:23.922] DEBUG (3462): end of user turn"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"Actually, change the destination to Boston instead. Keep the same day.\""
+    },
+    {
+      "type": "log",
+      "text": "[17:53:23.923] DEBUG (3462): Task.runTask: task AgentActivity.userTurnCompleted started"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:23.925] DEBUG (3462): EOU detection task completed"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.491] INFO (3462): Creating speech handle"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_8fd6f4f9-1ec\""
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:53:24.495Z",
+      "role": "user",
+      "text": "Actually, change the destination to Boston instead. Keep the same day."
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.491] DEBUG (3462): Task.runTask: task AgentActivity.pipelineReply started"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.492] DEBUG (3462): Task.runTask: task performLLMInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.494] DEBUG (3462): Task.runTask: task AgentActivity.userTurnCompleted done"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.495] DEBUG (3462): Task.runTask: task AgentActivity.pipelineReply.produceSegments started"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.497] DEBUG (3462): Task.runTask: task performTTSInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.498] DEBUG (3462): Task.runTask: task performToolExecutions started"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.499] DEBUG (3462): Task.runTask: task performTextForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.499] DEBUG (3462): Task.runTask: task performAudioForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.499] DEBUG (3462): Task.runTask: task performToolExecutions done"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.499] DEBUG (3462): Task.runTask: task performLLMInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.500] DEBUG (3462): Task.runTask: task AgentActivity.pipelineReply.produceSegments done"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.500] DEBUG (3462): Task.runTask: task performTextForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.501] DEBUG (3462): Task.runTask: task inference-tts-input started"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.501] DEBUG (3462): Task.runTask: task inference-tts-sentence started"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.501] DEBUG (3462): Task.runTask: task inference-tts-ws-listener started"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.502] DEBUG (3462): Task.runTask: task inference-tts-recv started"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.503] DEBUG (3462): Task.runTask: task inference-tts-input done"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.504] DEBUG (3462): Task.runTask: task inference-tts-sentence done"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:24.905] DEBUG (3462): agent speech started"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:25.917] DEBUG (3462): Task.runTask: task inference-tts-recv done"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:25.917] DEBUG (3462): Task.runTask: task inference-tts-ws-listener done"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:25.930] DEBUG (3462): Task.runTask: task performTTSInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:25.930] DEBUG (3462): Task.runTask: task performAudioForwarding done"
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:53:32.515Z",
+      "role": "assistant",
+      "text": "I have updated your destination to Boston for this Monday. Would you like me to look for any travel options for you?",
+      "metrics": {
+        "e2e_latency": 1.4820001125335693,
+        "llm_ttft": 0.001408554999997591,
+        "tts_ttfb": 0.40061327300000116
+      }
+    },
+    {
+      "type": "log",
+      "text": "[17:53:32.515] INFO (3462): playout completed without interruption"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_8fd6f4f9-1ec\""
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.message: \"I have updated your destination to Boston for this Monday. Would you like me to look for any travel options for you?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:53:32.517] DEBUG (3462): agent speech ended"
+    },
+    {
+      "type": "log",
+      "text": "[17:53:32.517] DEBUG (3462): Task.runTask: task AgentActivity.pipelineReply done"
+    }
+  ],
+  "reply": "I have updated your destination to Boston for this Monday. Would you like me to look for any travel options for you?",
+  "duration_ms": 16115
+}

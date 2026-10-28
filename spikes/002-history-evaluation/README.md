@@ -1,5 +1,15 @@
 # History correctness, matched A/B evaluation, and fictional networking workload
 
+## Real-audio verification follow-up — October 28, 2026
+
+Read [`REAL_AUDIO_VERIFICATION.md`](REAL_AUDIO_VERIFICATION.md) for this phase's
+results, raw evidence, repaired finalized-input history loss, buffer measurements,
+and exact manual tests. The older scripted-STT tables below remain historical.
+Actual Flux/Gemma/Fish audio now ran over the CLI console transport in both arms,
+with ten post-fix samples each. Room simulations failed before conversation;
+client audible onset and real interruption/leakage are still unverified. No
+synthetic-STT latency is promoted to real-audio performance.
+
 ## History finding
 
 A deterministic real-SDK reproduction exposed an integration bug, not an STT

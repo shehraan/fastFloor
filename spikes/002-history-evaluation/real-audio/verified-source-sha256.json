@@ -1,0 +1,6 @@
+{
+  "src/fastfloor/livekit-flux-spike.ts": "2b037715b5fc23f543ed1704d299ad6fb6b9e121e94d0334f00451ce5bf6e456",
+  "src/fastfloor/livekit-flux-session.test.ts": "5a9d93000e45e982a6632720225bcaca3af300303c06bc855e0be427a4ff5cfc",
+  "spikes/002-history-evaluation/run-audio-debugger.ts": "92a2fce094e9afed33fe7238ec50a86787e549ede83c48cb4fd34a4f77048795",
+  "spikes/002-history-evaluation/audio-scenarios.yaml": "286c7b20831fe9a926f2b5b3ebbba1060d4878dedc3a148c31077c22b2ff61da"
+}

@@ -1,0 +1,5 @@
+{
+  "error": "no session running on 127.0.0.1:8787 (run `lk agent debugger start` first)",
+  "port": 8787,
+  "running": false
+}

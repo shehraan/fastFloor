@@ -1,5 +1,35 @@
 # FastFloor architecture
 
+## Real-audio verification phase — October 28, 2026
+
+See `spikes/002-history-evaluation/REAL_AUDIO_VERIFICATION.md` for raw artifact
+locations, measurement definitions, failure evidence, and exact manual tests.
+
+- Actual generated caller speech exercised hosted Flux → Gemma → Fish → LiveKit
+  CLI console output, not scripted STT/silent TTS. A separate original-default
+  AssemblyAI agent audio smoke passed. Room/WebRTC and client audible onset remain
+  unverified: both audio-simulation arms captured zero conversational turns.
+- A real long utterance exposed a second history-loss path: the SDK committed an
+  observed final after a newer interim arrived. The early rejected-hook branch
+  raised `StopResponse` without retaining that input. The adapter now reuses the
+  existing history recovery only when the SDK message exactly equals the observed
+  final aggregate. Reply suppression, coordinator and cancellation policy stay
+  unchanged. Unproven hypotheses/truncated/invented aggregates are not retained.
+- Fresh post-fix ABBA console audio: ten utterances/commitments/playback samples per
+  arm. Commit → SDK output p50/p95: baseline 1016.374/1778.332 ms; FastFloor
+  474.035/997.356 ms. Nearest-rank p95 is the maximum of ten samples, not a production
+  tail estimate. FastFloor reused nine candidates; two were rolled back. No SDK
+  before-commit or unattributed playback events occurred. No acoustic claim follows.
+- Full-response first-delta → completion wait: baseline p50/max 127.109/318.241 ms;
+  FastFloor 139.932/411.005 ms. Post-commit exposed wait was 127.109/318.241 versus
+  0/370.828 ms. These are observed buffer intervals, not a streaming counterfactual.
+  Full buffering remains: private/error-rejecting output simplicity was preserved.
+- All original sixty tests plus five focused regressions pass (65 total), as do
+  typecheck, lint, declaration checks and supplemental strict test/runner types.
+  No baseline, provider, endpointing, tool policy, dependency or coordinator changes.
+  Physical interruption/leakage and caller-side measurements still need the manual
+  checks. Stop after this phase; no final packaging, commit or push.
+
 ## Current phase — history correctness, matched evaluation, fictional networking
 
 This section supersedes Prompt 2's history and deferred-evaluation limitations

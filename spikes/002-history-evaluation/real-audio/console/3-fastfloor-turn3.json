@@ -1,0 +1,333 @@
+{
+  "text": "What destination did I mention originally, before I changed it, and what is my current destination?",
+  "heard": "What destination did I mention originally before I changed it? And what is my current destination?",
+  "events": [
+    {
+      "type": "log",
+      "text": "[17:25:53.946] DEBUG (658): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:54.364] DEBUG (658): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What does\""
+    },
+    {
+      "type": "log",
+      "text": "[17:25:56.896] DEBUG (658): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"What destination did I mention originally before I changed it?\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:25:56.896] DEBUG (658): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What destination did I mention originally before I changed it?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:25:56.927] DEBUG (658): received user transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"What destination did I mention originally before I changed it?\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:25:56.929] WARN (658): stt end of speech received while vad is still in a speech segment, flushing vad"
+    },
+    {
+      "type": "log",
+      "text": "    vadSpeechStartTime: 1793208353881.5413"
+    },
+    {
+      "type": "log",
+      "text": "    flushed: true"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:56.930] DEBUG (658): running EOU detection on stt END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:56.930] DEBUG (658): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"What destination did I mention originally before I changed it?\""
+    },
+    {
+      "type": "log",
+      "text": "    turnDetectionMode: \"stt\""
+    },
+    {
+      "type": "log",
+      "text": "[17:25:57.165] DEBUG (658): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:57.624] DEBUG (658): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"And what\""
+    },
+    {
+      "type": "log",
+      "text": "[17:25:58.445] DEBUG (658): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"And what is my current destiny\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:25:58.446] DEBUG (658): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What destination did I mention originally before I changed it? And what is my current destiny\""
+    },
+    {
+      "type": "log",
+      "text": "[17:25:58.582] DEBUG (658): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"And what is my current destination?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:25:58.662] DEBUG (658): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"And what is my current destination?\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:25:58.663] DEBUG (658): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What destination did I mention originally before I changed it? And what is my current destination?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:25:58.673] DEBUG (658): received user transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"And what is my current destination?\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:25:58.682] WARN (658): stt end of speech received while vad is still in a speech segment, flushing vad"
+    },
+    {
+      "type": "log",
+      "text": "    vadSpeechStartTime: 1793208353881.5413"
+    },
+    {
+      "type": "log",
+      "text": "    flushed: true"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:58.682] DEBUG (658): running EOU detection on stt END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:58.683] DEBUG (658): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"What destination did I mention originally before I changed it? And what is my current destination?\""
+    },
+    {
+      "type": "log",
+      "text": "    turnDetectionMode: \"stt\""
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.181] DEBUG (658): end of user turn"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What destination did I mention originally before I changed it? And what is my current destination?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.183] DEBUG (658): Task.runTask: task AgentActivity.userTurnCompleted started"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.191] DEBUG (658): EOU detection task completed"
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:25:59.486Z",
+      "role": "user",
+      "text": "What destination did I mention originally before I changed it? And what is my current destination?"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.480] INFO (658): Creating speech handle"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_550369d8-a0c\""
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.480] DEBUG (658): Task.runTask: task AgentActivity.pipelineReply started"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.481] DEBUG (658): Task.runTask: task performLLMInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.485] DEBUG (658): Task.runTask: task AgentActivity.userTurnCompleted done"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.486] DEBUG (658): Task.runTask: task AgentActivity.pipelineReply.produceSegments started"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.489] DEBUG (658): Task.runTask: task performTTSInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.501] DEBUG (658): Task.runTask: task performToolExecutions started"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.503] DEBUG (658): Task.runTask: task performTextForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.503] DEBUG (658): Task.runTask: task performAudioForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.516] DEBUG (658): Task.runTask: task performToolExecutions done"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.517] DEBUG (658): Task.runTask: task performLLMInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.517] DEBUG (658): Task.runTask: task AgentActivity.pipelineReply.produceSegments done"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.518] DEBUG (658): Task.runTask: task performTextForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.530] DEBUG (658): Task.runTask: task inference-tts-input started"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.532] DEBUG (658): Task.runTask: task inference-tts-sentence started"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.537] DEBUG (658): Task.runTask: task inference-tts-ws-listener started"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.538] DEBUG (658): Task.runTask: task inference-tts-recv started"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.541] DEBUG (658): Task.runTask: task inference-tts-input done"
+    },
+    {
+      "type": "log",
+      "text": "[17:25:59.545] DEBUG (658): Task.runTask: task inference-tts-sentence done"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:00.123] DEBUG (658): agent speech started"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:01.038] DEBUG (658): Task.runTask: task inference-tts-recv done"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:01.038] DEBUG (658): Task.runTask: task inference-tts-ws-listener done"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:01.055] DEBUG (658): Task.runTask: task performAudioForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:01.055] DEBUG (658): Task.runTask: task performTTSInference done"
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:26:05.129Z",
+      "role": "assistant",
+      "text": "You originally mentioned New York, but your current destination is Boston. Is there anything else you would like to change?",
+      "metrics": {
+        "e2e_latency": 1.4089999198913574,
+        "llm_ttft": 0.0024732129999947006,
+        "tts_ttfb": 0.5493797219999976
+      }
+    },
+    {
+      "type": "log",
+      "text": "[17:26:05.129] INFO (658): playout completed without interruption"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_550369d8-a0c\""
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.message: \"You originally mentioned New York, but your current destination is Boston. Is there anything else you would like to change?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:26:05.131] DEBUG (658): agent speech ended"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:05.132] DEBUG (658): Task.runTask: task AgentActivity.pipelineReply done"
+    }
+  ],
+  "reply": "You originally mentioned New York, but your current destination is Boston. Is there anything else you would like to change?",
+  "duration_ms": 15447
+}

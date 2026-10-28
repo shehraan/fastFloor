@@ -1,0 +1,233 @@
+{
+  "text": "For a separate fictional trip, I am traveling with my sister, we prefer a quiet hotel near the station, we need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, corrected day, number of rooms, and hotel preference without making any booking.",
+  "heard": "For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, correct the day, number of rooms, and hotel preference without making any booking.",
+  "events": [
+    {
+      "type": "log",
+      "text": "[17:23:33.107] DEBUG (488): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:33.656] DEBUG (488): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"For a separate\""
+    },
+    {
+      "type": "log",
+      "text": "[17:23:42.741] DEBUG (488): VAD task: END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:42.922] DEBUG (488): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:47.580] DEBUG (488): VAD task: END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:47.918] DEBUG (488): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, correct the day, number of rooms, and hotel preference without making any booking.\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:23:47.918] DEBUG (488): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the stati...\""
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.223] DEBUG (488): received user transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, correct the day, number of rooms, and hotel preference without making any booking.\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.224] DEBUG (488): running EOU detection on stt END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.225] DEBUG (488): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, correct the day, number of rooms, and hotel preference without making any booking.\""
+    },
+    {
+      "type": "log",
+      "text": "    turnDetectionMode: \"stt\""
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.725] DEBUG (488): end of user turn"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, correct the day, number of rooms, and hotel preference without making any booking.\""
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:23:48.730Z",
+      "role": "user",
+      "text": "For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, correct the day, number of rooms, and hotel preference without making any booking."
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.726] DEBUG (488): Task.runTask: task AgentActivity.userTurnCompleted started"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.727] DEBUG (488): EOU detection task completed"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.727] INFO (488): Creating speech handle"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_685f6a5e-2a8\""
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.727] DEBUG (488): Task.runTask: task AgentActivity.pipelineReply started"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.728] DEBUG (488): Task.runTask: task performLLMInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.729] DEBUG (488): Task.runTask: task AgentActivity.userTurnCompleted done"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.730] DEBUG (488): Task.runTask: task AgentActivity.pipelineReply.produceSegments started"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.731] DEBUG (488): Task.runTask: task performTTSInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.732] DEBUG (488): Task.runTask: task performToolExecutions started"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.733] DEBUG (488): Task.runTask: task performTextForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.734] DEBUG (488): Task.runTask: task performAudioForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.734] DEBUG (488): Task.runTask: task performToolExecutions done"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.734] DEBUG (488): Task.runTask: task performLLMInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.734] DEBUG (488): Task.runTask: task AgentActivity.pipelineReply.produceSegments done"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.734] DEBUG (488): Task.runTask: task performTextForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.735] DEBUG (488): Task.runTask: task inference-tts-input started"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.735] DEBUG (488): Task.runTask: task inference-tts-sentence started"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.736] DEBUG (488): Task.runTask: task inference-tts-ws-listener started"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.736] DEBUG (488): Task.runTask: task inference-tts-recv started"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.739] DEBUG (488): Task.runTask: task inference-tts-input done"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:48.740] DEBUG (488): Task.runTask: task inference-tts-sentence done"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:49.619] DEBUG (488): agent speech started"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:52.381] DEBUG (488): Task.runTask: task inference-tts-recv done"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:52.383] DEBUG (488): Task.runTask: task inference-tts-ws-listener done"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:52.388] DEBUG (488): Task.runTask: task performTTSInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:52.388] DEBUG (488): Task.runTask: task performAudioForwarding done"
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:23:56.586Z",
+      "role": "assistant",
+      "text": "You are traveling to Lisbon on Tuesday. You need two rooms at a quiet hotel near the station. Does that sound correct?",
+      "metrics": {
+        "e2e_latency": 1.3930001258850098,
+        "llm_ttft": 0.0012119100000091976,
+        "tts_ttfb": 0.8776026160000043
+      }
+    },
+    {
+      "type": "log",
+      "text": "[17:23:56.587] INFO (488): playout completed without interruption"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_685f6a5e-2a8\""
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.message: \"You are traveling to Lisbon on Tuesday. You need two rooms at a quiet hotel near the station. Does that sound correct?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:23:56.589] DEBUG (488): agent speech ended"
+    },
+    {
+      "type": "log",
+      "text": "[17:23:56.590] DEBUG (488): Task.runTask: task AgentActivity.pipelineReply done"
+    }
+  ],
+  "reply": "You are traveling to Lisbon on Tuesday. You need two rooms at a quiet hotel near the station. Does that sound correct?",
+  "duration_ms": 26110
+}

@@ -1,5 +1,31 @@
 # FastFloor checkpoint handoff
 
+## Latest verification phase — October 28, 2026
+
+Read `spikes/002-history-evaluation/REAL_AUDIO_VERIFICATION.md` first. The older
+credential-blocked statements below are historical, not this environment's status.
+
+- CLI 2.19.2 installed in the sandbox; launching CLI subprocesses with the existing
+  dotenv-loaded environment enabled real audio debugger turns without printing or
+  modifying credentials. Flux/Gemma/Fish console audio ran in both matched modes.
+- A long real-audio utterance reproduced accepted-final history loss when its SDK
+  commitment arrived after a newer interim. The adapter's early rejection now
+  retains only exact observed-final aggregates using the existing history recovery;
+  it still suppresses superseded replies. Coordinator/core cancellation untouched.
+- Pre-fix and fresh post-fix ABBA sets are separate under `real-audio/`. Post-fix:
+  ten playback samples per arm, SDK commit-to-output p50/p95 baseline
+  1016.374/1778.332 ms and FastFloor 474.035/997.356 ms. This is real hosted provider
+  audio but CLI console transport, not room/WebRTC or actual audible onset. With
+  ten samples p95 is the maximum. Raw failed/incomplete pre-fix input is retained.
+- Room audio simulations failed before conversational turns in both arms. Exports,
+  worker warnings and a timeboxed cancelled attempt are preserved. No caller-side
+  metric, acoustic cancellation, generation/playback interruption, or real-room
+  speedup was verified. Do not label the unresolved setup as a proven SDK defect.
+- Original baseline audio smoke passed separately. All original sixty tests plus
+  five regressions pass; typecheck/lint/SDK declarations/supplemental strict types
+  pass. Manual microphone/room tests and full-response-buffer measurements are
+  documented. No packaging, provider/dependency/endpointing changes, commit or push.
+
 ## Current phase update — history / A/B / networking
 
 Read `ARCHITECTURE.md`'s current-phase section and

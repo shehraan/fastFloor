@@ -1,0 +1,1003 @@
+{
+  "measurement": "Real hosted Flux/Gemma/Fish, LiveKit CLI console output; NOT room/WebRTC or client audible onset",
+  "audibleOnsetMeasured": false,
+  "callerSideMetrics": null,
+  "percentileMethod": "nearest rank; with 10 samples p95 is maximum; exploratory only",
+  "bufferingDefinition": "first delta to LLM completion; post-commit wait=max(0, completion-max(commit,first delta)); not measured counterfactual streaming onset",
+  "results": {
+    "beforeFix": {
+      "matchingConfigurations": true,
+      "arms": {
+        "baseline": {
+          "turns": [
+            {
+              "messageId": "item_7e4bb23e-a76",
+              "transcript": "I wanna travel to New York on Monday. Please remember that destination and day.",
+              "commitMs": 9795.196999,
+              "commitToLlmStartMs": 2.4064280000002327,
+              "commitToFirstTextDeltaMs": 687.8024609999993,
+              "commitToTtsFirstFrameMs": 1581.9961669999993,
+              "commitToSdkPlaybackMs": 1586.3184689999998,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "1-baseline",
+              "firstDeltaToCompletionMs": 111.40122100000008,
+              "postCommitBufferWaitMs": 111.40122100000008,
+              "ttsInvocationToFirstFrameMs": 746.9420129999999,
+              "commitToTtsInvocationMs": 835.0541539999995
+            },
+            {
+              "messageId": "item_518de292-dd7",
+              "transcript": "Actually, change the destination to Boston instead. Keep the same day.",
+              "commitMs": 25375.840108,
+              "commitToLlmStartMs": 0.4905270000017481,
+              "commitToFirstTextDeltaMs": 254.6913480000003,
+              "commitToTtsFirstFrameMs": 1112.2517619999999,
+              "commitToSdkPlaybackMs": 1113.1349410000003,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "1-baseline",
+              "firstDeltaToCompletionMs": 150.19037200000093,
+              "postCommitBufferWaitMs": 150.19037200000093,
+              "ttsInvocationToFirstFrameMs": 686.8895589999993,
+              "commitToTtsInvocationMs": 425.3622030000006
+            },
+            {
+              "messageId": "item_e038db40-b49",
+              "transcript": "What destination did I mention originally before I changed it? And what is my current destination?",
+              "commitMs": 41669.758402,
+              "commitToLlmStartMs": 0.9612429999979213,
+              "commitToFirstTextDeltaMs": 381.3522049999956,
+              "commitToTtsFirstFrameMs": 1302.3899119999987,
+              "commitToSdkPlaybackMs": 1303.5183899999975,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "1-baseline",
+              "firstDeltaToCompletionMs": 179.05963000000338,
+              "postCommitBufferWaitMs": 179.05963000000338,
+              "ttsInvocationToFirstFrameMs": 703.6506460000019,
+              "commitToTtsInvocationMs": 598.7392659999969
+            },
+            {
+              "messageId": "item_e3cd41a0-4ec",
+              "transcript": "For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday in Lisbon. Please repeat the city, correct a day, number of rooms, and hotel preference without making any booking.",
+              "commitMs": 67974.80621,
+              "commitToLlmStartMs": 0.49389500000688713,
+              "commitToFirstTextDeltaMs": 340.4350870000053,
+              "commitToTtsFirstFrameMs": 1131.845684,
+              "commitToSdkPlaybackMs": 1134.319377000007,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "1-baseline",
+              "firstDeltaToCompletionMs": 87.58105100000103,
+              "postCommitBufferWaitMs": 87.58105100000103,
+              "ttsInvocationToFirstFrameMs": 688.9399419999972,
+              "commitToTtsInvocationMs": 442.90574200000265
+            },
+            {
+              "messageId": "item_7490a9a1-248",
+              "transcript": "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?",
+              "commitMs": 85350.626815,
+              "commitToLlmStartMs": 0.7418690000049537,
+              "commitToFirstTextDeltaMs": 399.05521999999473,
+              "commitToTtsFirstFrameMs": 1715.213631000006,
+              "commitToSdkPlaybackMs": 1716.371226999996,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "1-baseline",
+              "firstDeltaToCompletionMs": 100.10146000000532,
+              "postCommitBufferWaitMs": 100.10146000000532,
+              "ttsInvocationToFirstFrameMs": 1204.4324909999996,
+              "commitToTtsInvocationMs": 510.7811400000064
+            },
+            {
+              "messageId": "item_979756ca-9e6",
+              "transcript": "I wanna travel to New York on Monday. Please remember that destination and day.",
+              "commitMs": 10245.779654,
+              "commitToLlmStartMs": 2.783423999999286,
+              "commitToFirstTextDeltaMs": 746.338092,
+              "commitToTtsFirstFrameMs": 2079.5669120000002,
+              "commitToSdkPlaybackMs": 2082.0836450000006,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "4-baseline",
+              "firstDeltaToCompletionMs": 726.3471160000008,
+              "postCommitBufferWaitMs": 726.3471160000008,
+              "ttsInvocationToFirstFrameMs": 570.2277770000001,
+              "commitToTtsInvocationMs": 1509.3391350000002
+            },
+            {
+              "messageId": "item_96b0ca45-ba9",
+              "transcript": "Actually, change the destination to Boston instead. Keep the same day.",
+              "commitMs": 28118.403253,
+              "commitToLlmStartMs": 0.3612780000003113,
+              "commitToFirstTextDeltaMs": 260.2678730000007,
+              "commitToTtsFirstFrameMs": 1110.893283999998,
+              "commitToSdkPlaybackMs": 1112.7087509999983,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "4-baseline",
+              "firstDeltaToCompletionMs": 408.4636470000005,
+              "postCommitBufferWaitMs": 408.4636470000005,
+              "ttsInvocationToFirstFrameMs": 434.4114419999969,
+              "commitToTtsInvocationMs": 676.481842000001
+            },
+            {
+              "messageId": "item_93b32f4b-dbc",
+              "transcript": "What destination did I mention originally before I changed it? And what is my current destination?",
+              "commitMs": 43149.44136,
+              "commitToLlmStartMs": 0.9758330000040587,
+              "commitToFirstTextDeltaMs": 330.81432200000563,
+              "commitToTtsFirstFrameMs": 1297.873357999997,
+              "commitToSdkPlaybackMs": 1299.2696649999998,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "4-baseline",
+              "firstDeltaToCompletionMs": 510.7419740000041,
+              "postCommitBufferWaitMs": 510.7419740000041,
+              "ttsInvocationToFirstFrameMs": 436.09021499998926,
+              "commitToTtsInvocationMs": 861.7831430000078
+            },
+            {
+              "messageId": "item_4602b226-777",
+              "transcript": "For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, corrected day, number of rooms, and hotel preference without making any booking.",
+              "commitMs": 69581.426921,
+              "commitToLlmStartMs": 0.7414459999999963,
+              "commitToFirstTextDeltaMs": 445.7346169999946,
+              "commitToTtsFirstFrameMs": 1029.0348309999972,
+              "commitToSdkPlaybackMs": 1030.1809189999913,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "4-baseline",
+              "firstDeltaToCompletionMs": 77.38442600000417,
+              "postCommitBufferWaitMs": 77.38442600000417,
+              "ttsInvocationToFirstFrameMs": 492.19740000000456,
+              "commitToTtsInvocationMs": 536.8374309999926
+            },
+            {
+              "messageId": "item_f66f5206-ab0",
+              "transcript": "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?",
+              "commitMs": 87039.20033400001,
+              "commitToLlmStartMs": 0.412345999997342,
+              "commitToFirstTextDeltaMs": 409.30063399999926,
+              "commitToTtsFirstFrameMs": 957.2375089999987,
+              "commitToSdkPlaybackMs": 958.6443549999967,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "4-baseline",
+              "firstDeltaToCompletionMs": 113.53589800000191,
+              "postCommitBufferWaitMs": 113.53589800000191,
+              "ttsInvocationToFirstFrameMs": 424.4691060000041,
+              "commitToTtsInvocationMs": 532.7684029999946
+            }
+          ],
+          "requestedUtterances": 10,
+          "debuggerErrors": 0,
+          "speculativePreparations": 0,
+          "rollbacks": 0,
+          "reuses": 0,
+          "prematureSdkPlayback": 0,
+          "unattributedPlaybackEvents": 0,
+          "requestHistoryChecks": [
+            {
+              "session": "1-baseline",
+              "turn": 3,
+              "requiredTerms": {
+                "New York": true,
+                "Boston": true
+              }
+            },
+            {
+              "session": "1-baseline",
+              "turn": 5,
+              "requiredTerms": {
+                "New York": true,
+                "Boston": true,
+                "Lisbon": true,
+                "Tuesday": true
+              }
+            },
+            {
+              "session": "4-baseline",
+              "turn": 3,
+              "requiredTerms": {
+                "New York": true,
+                "Boston": true
+              }
+            },
+            {
+              "session": "4-baseline",
+              "turn": 5,
+              "requiredTerms": {
+                "New York": true,
+                "Boston": true,
+                "Lisbon": true,
+                "Tuesday": true
+              }
+            }
+          ],
+          "committedTurns": 10,
+          "commitToSdkPlaybackMs": {
+            "n": 10,
+            "p50": 1134.319377000007,
+            "p95": 2082.0836450000006,
+            "max": 2082.0836450000006
+          },
+          "firstDeltaToCompletionMs": {
+            "n": 10,
+            "p50": 113.53589800000191,
+            "p95": 726.3471160000008,
+            "max": 726.3471160000008
+          },
+          "postCommitBufferWaitMs": {
+            "n": 10,
+            "p50": 113.53589800000191,
+            "p95": 726.3471160000008,
+            "max": 726.3471160000008
+          },
+          "ttsInvocationToFirstFrameMs": {
+            "n": 10,
+            "p50": 570.2277770000001,
+            "p95": 1204.4324909999996,
+            "max": 1204.4324909999996
+          },
+          "commitToTtsInvocationMs": {
+            "n": 10,
+            "p50": 536.8374309999926,
+            "p95": 1509.3391350000002,
+            "max": 1509.3391350000002
+          },
+          "incompleteCommitments": 0,
+          "allRequestHistoryChecksPassed": true
+        },
+        "fastfloor": {
+          "turns": [
+            {
+              "messageId": "item_164cab31-15c",
+              "transcript": "I wanna travel to New York on Monday. Please remember that destination and day.",
+              "commitMs": 10866.634945999998,
+              "commitToLlmStartMs": -775.0882439999987,
+              "commitToFirstTextDeltaMs": -385.6028589999987,
+              "commitToTtsFirstFrameMs": 1039.686776999999,
+              "commitToSdkPlaybackMs": 1043.7749509999994,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "2-fastfloor",
+              "firstDeltaToCompletionMs": 257.15233699999953,
+              "postCommitBufferWaitMs": 0,
+              "ttsInvocationToFirstFrameMs": 929.1039879999989,
+              "commitToTtsInvocationMs": 110.58278900000005
+            },
+            {
+              "messageId": "item_18e570c2-2b9",
+              "transcript": "Actually, change the destination to Boston instead. Keep the same day.",
+              "commitMs": 26543.980691,
+              "commitToLlmStartMs": -1115.257789000003,
+              "commitToFirstTextDeltaMs": -676.3798240000033,
+              "commitToTtsFirstFrameMs": 734.6894079999984,
+              "commitToSdkPlaybackMs": 736.1928279999993,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "2-fastfloor",
+              "firstDeltaToCompletionMs": 125.47184300000299,
+              "postCommitBufferWaitMs": 0,
+              "ttsInvocationToFirstFrameMs": 727.9856409999993,
+              "commitToTtsInvocationMs": 6.703766999999061
+            },
+            {
+              "messageId": "item_8c5bec70-da7",
+              "transcript": "What destination did I mention originally before I changed it, and what is my current destination",
+              "commitMs": 41909.554151000004,
+              "commitToLlmStartMs": -521.3023549999998,
+              "commitToFirstTextDeltaMs": 406.1607690000019,
+              "commitToTtsFirstFrameMs": 1299.0728759999984,
+              "commitToSdkPlaybackMs": 1300.6842619999952,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "2-fastfloor",
+              "firstDeltaToCompletionMs": 74.92675999999483,
+              "postCommitBufferWaitMs": 74.92675999999483,
+              "ttsInvocationToFirstFrameMs": 811.1525299999994,
+              "commitToTtsInvocationMs": 487.920345999999
+            },
+            {
+              "messageId": "item_ce4237b1-fc7",
+              "transcript": "For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, correct the day, number of rooms, and hotel preference without making any booking.",
+              "commitMs": 67388.444907,
+              "commitToLlmStartMs": -809.180607000002,
+              "commitToFirstTextDeltaMs": -604.7299349999957,
+              "commitToTtsFirstFrameMs": 888.8763670000044,
+              "commitToSdkPlaybackMs": 890.5476210000052,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "2-fastfloor",
+              "firstDeltaToCompletionMs": 73.36464400000114,
+              "postCommitBufferWaitMs": 0,
+              "ttsInvocationToFirstFrameMs": 883.8703689999966,
+              "commitToTtsInvocationMs": 5.005998000007821
+            },
+            {
+              "messageId": "item_848bd2df-ce3",
+              "transcript": "What were the corrected day and city for the separate trip? what was the original destination for my first trip?",
+              "commitMs": 85212.950322,
+              "commitToLlmStartMs": 0.5088099999993574,
+              "commitToFirstTextDeltaMs": 178.33533499999612,
+              "commitToTtsFirstFrameMs": 1026.9338810000045,
+              "commitToSdkPlaybackMs": 1027.970187999992,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "2-fastfloor",
+              "firstDeltaToCompletionMs": 131.3476420000079,
+              "postCommitBufferWaitMs": 131.3476420000079,
+              "ttsInvocationToFirstFrameMs": 709.4983860000066,
+              "commitToTtsInvocationMs": 317.4354949999979
+            },
+            {
+              "messageId": "item_a789eff5-bfb",
+              "transcript": "I wanna travel to New York on Monday. Please remember that destination and day.",
+              "commitMs": 9709.333962,
+              "commitToLlmStartMs": -798.2570429999996,
+              "commitToFirstTextDeltaMs": -149.1787260000001,
+              "commitToTtsFirstFrameMs": 614.5542590000005,
+              "commitToSdkPlaybackMs": 618.0721300000005,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "3-fastfloor",
+              "firstDeltaToCompletionMs": 125.9114699999991,
+              "postCommitBufferWaitMs": 0,
+              "ttsInvocationToFirstFrameMs": 551.6238979999998,
+              "commitToTtsInvocationMs": 62.93036100000063
+            },
+            {
+              "messageId": "item_fe94f84a-a9e",
+              "transcript": "Actually, change the destination to Boston instead. Keep the same day.",
+              "commitMs": 26158.227028,
+              "commitToLlmStartMs": -514.9812740000016,
+              "commitToFirstTextDeltaMs": -228.28499100000045,
+              "commitToTtsFirstFrameMs": 489.9397089999984,
+              "commitToSdkPlaybackMs": 491.1927829999986,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "3-fastfloor",
+              "firstDeltaToCompletionMs": 125.67961500000092,
+              "postCommitBufferWaitMs": 0,
+              "ttsInvocationToFirstFrameMs": 470.87193599999955,
+              "commitToTtsInvocationMs": 19.06777299999885
+            },
+            {
+              "messageId": "item_2ce97dd8-ec7",
+              "transcript": "What destination did I mention originally before I changed it? And what is my current destination?",
+              "commitMs": 42736.593796,
+              "commitToLlmStartMs": 1.4935140000015963,
+              "commitToFirstTextDeltaMs": 190.7743629999968,
+              "commitToTtsFirstFrameMs": 901.6118619999979,
+              "commitToSdkPlaybackMs": 902.992164000003,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "3-fastfloor",
+              "firstDeltaToCompletionMs": 99.01297899999918,
+              "postCommitBufferWaitMs": 99.01297899999918,
+              "ttsInvocationToFirstFrameMs": 588.7743659999978,
+              "commitToTtsInvocationMs": 312.8374960000001
+            },
+            {
+              "messageId": "item_5c5b5b43-0a3",
+              "transcript": "For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday in Lisbon.",
+              "commitMs": 66625.571707,
+              "commitToLlmStartMs": null,
+              "commitToFirstTextDeltaMs": null,
+              "commitToTtsFirstFrameMs": null,
+              "commitToSdkPlaybackMs": null,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "3-fastfloor",
+              "firstDeltaToCompletionMs": null,
+              "postCommitBufferWaitMs": null,
+              "ttsInvocationToFirstFrameMs": null,
+              "commitToTtsInvocationMs": null
+            },
+            {
+              "messageId": "item_b39a98a1-66e",
+              "transcript": "Please repeat the city corrected day, number of rooms, and hotel preference without making any booking.",
+              "commitMs": 67676.246785,
+              "commitToLlmStartMs": -662.095193000001,
+              "commitToFirstTextDeltaMs": -302.100603999992,
+              "commitToTtsFirstFrameMs": 457.5838159999985,
+              "commitToSdkPlaybackMs": 459.75629299999855,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "3-fastfloor",
+              "firstDeltaToCompletionMs": 144.58830899999884,
+              "postCommitBufferWaitMs": 0,
+              "ttsInvocationToFirstFrameMs": 449.9872419999883,
+              "commitToTtsInvocationMs": 7.5965740000101505
+            },
+            {
+              "messageId": "item_34822e5d-66b",
+              "transcript": "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?",
+              "commitMs": 85695.328475,
+              "commitToLlmStartMs": -548.8481540000066,
+              "commitToFirstTextDeltaMs": -313.34483499999624,
+              "commitToTtsFirstFrameMs": 399.633977999998,
+              "commitToSdkPlaybackMs": 400.60314199999266,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "3-fastfloor",
+              "firstDeltaToCompletionMs": 272.5766949999961,
+              "postCommitBufferWaitMs": 0,
+              "ttsInvocationToFirstFrameMs": 392.9492089999985,
+              "commitToTtsInvocationMs": 6.6847689999995055
+            }
+          ],
+          "requestedUtterances": 10,
+          "debuggerErrors": 0,
+          "speculativePreparations": 11,
+          "rollbacks": 3,
+          "reuses": 8,
+          "prematureSdkPlayback": 0,
+          "unattributedPlaybackEvents": 0,
+          "requestHistoryChecks": [
+            {
+              "session": "2-fastfloor",
+              "turn": 3,
+              "requiredTerms": {
+                "New York": true,
+                "Boston": true
+              }
+            },
+            {
+              "session": "2-fastfloor",
+              "turn": 5,
+              "requiredTerms": {
+                "New York": true,
+                "Boston": true,
+                "Lisbon": true,
+                "Tuesday": true
+              }
+            },
+            {
+              "session": "3-fastfloor",
+              "turn": 3,
+              "requiredTerms": {
+                "New York": true,
+                "Boston": true
+              }
+            },
+            {
+              "session": "3-fastfloor",
+              "turn": 5,
+              "requiredTerms": {
+                "New York": true,
+                "Boston": true,
+                "Lisbon": false,
+                "Tuesday": false
+              }
+            }
+          ],
+          "committedTurns": 11,
+          "commitToSdkPlaybackMs": {
+            "n": 10,
+            "p50": 736.1928279999993,
+            "p95": 1300.6842619999952,
+            "max": 1300.6842619999952
+          },
+          "firstDeltaToCompletionMs": {
+            "n": 10,
+            "p50": 125.67961500000092,
+            "p95": 272.5766949999961,
+            "max": 272.5766949999961
+          },
+          "postCommitBufferWaitMs": {
+            "n": 10,
+            "p50": 0,
+            "p95": 131.3476420000079,
+            "max": 131.3476420000079
+          },
+          "ttsInvocationToFirstFrameMs": {
+            "n": 10,
+            "p50": 588.7743659999978,
+            "p95": 929.1039879999989,
+            "max": 929.1039879999989
+          },
+          "commitToTtsInvocationMs": {
+            "n": 10,
+            "p50": 19.06777299999885,
+            "p95": 487.920345999999,
+            "max": 487.920345999999
+          },
+          "incompleteCommitments": 1,
+          "allRequestHistoryChecksPassed": false
+        }
+      }
+    },
+    "afterFix": {
+      "matchingConfigurations": true,
+      "arms": {
+        "baseline": {
+          "turns": [
+            {
+              "messageId": "item_0761a2dd-48a",
+              "transcript": "I wanna travel to New York on Monday. Please remember that destination and day.",
+              "commitMs": 10100.432228000001,
+              "commitToLlmStartMs": 4.695475999997143,
+              "commitToFirstTextDeltaMs": 512.214007999999,
+              "commitToTtsFirstFrameMs": 1451.7713309999963,
+              "commitToSdkPlaybackMs": 1455.8266589999985,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "1-baseline",
+              "firstDeltaToCompletionMs": 318.2410519999976,
+              "postCommitBufferWaitMs": 318.2410519999976,
+              "ttsInvocationToFirstFrameMs": 567.7210859999977,
+              "commitToTtsInvocationMs": 884.0502449999985
+            },
+            {
+              "messageId": "item_33701ccd-4dc",
+              "transcript": "Actually, change the destination to Boston instead. Keep the same day.",
+              "commitMs": 28991.637473999996,
+              "commitToLlmStartMs": 0.4494200000044657,
+              "commitToFirstTextDeltaMs": 255.91663400000107,
+              "commitToTtsFirstFrameMs": 802.4461360000059,
+              "commitToSdkPlaybackMs": 803.4266690000004,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "1-baseline",
+              "firstDeltaToCompletionMs": 118.26941400000214,
+              "postCommitBufferWaitMs": 118.26941400000214,
+              "ttsInvocationToFirstFrameMs": 420.8439550000039,
+              "commitToTtsInvocationMs": 381.602181000002
+            },
+            {
+              "messageId": "item_6c1e5df9-7c9",
+              "transcript": "What destination did I mention originally before I changed it, and what is my current destination",
+              "commitMs": 45241.209691,
+              "commitToLlmStartMs": 4.4524490000039805,
+              "commitToFirstTextDeltaMs": 491.7067950000055,
+              "commitToTtsFirstFrameMs": 1145.6445460000032,
+              "commitToSdkPlaybackMs": 1146.8076580000052,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "1-baseline",
+              "firstDeltaToCompletionMs": 194.15986499999417,
+              "postCommitBufferWaitMs": 194.15986499999417,
+              "ttsInvocationToFirstFrameMs": 445.03020999999717,
+              "commitToTtsInvocationMs": 700.614336000006
+            },
+            {
+              "messageId": "item_a28a11b7-290",
+              "transcript": "For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city. Corrected day, number of rooms, and hotel preference without making any booking.",
+              "commitMs": 69291.26160000001,
+              "commitToLlmStartMs": 1.0928060000005644,
+              "commitToFirstTextDeltaMs": 450.0126359999995,
+              "commitToTtsFirstFrameMs": 1071.7537519999896,
+              "commitToSdkPlaybackMs": 1075.0473059999931,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "1-baseline",
+              "firstDeltaToCompletionMs": 120.51139899999544,
+              "postCommitBufferWaitMs": 120.51139899999544,
+              "ttsInvocationToFirstFrameMs": 489.5800109999982,
+              "commitToTtsInvocationMs": 582.1737409999914
+            },
+            {
+              "messageId": "item_db2a9019-b5d",
+              "transcript": "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?",
+              "commitMs": 86550.92441600001,
+              "commitToLlmStartMs": 0.6545579999947222,
+              "commitToFirstTextDeltaMs": 276.4920039999997,
+              "commitToTtsFirstFrameMs": 981.4992469999997,
+              "commitToSdkPlaybackMs": 982.663109000001,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "1-baseline",
+              "firstDeltaToCompletionMs": 282.59684499999275,
+              "postCommitBufferWaitMs": 282.59684499999275,
+              "ttsInvocationToFirstFrameMs": 411.9516319999966,
+              "commitToTtsInvocationMs": 569.5476150000031
+            },
+            {
+              "messageId": "item_32731b25-a39",
+              "transcript": "I wanna travel to New York on Monday. Please remember that destination and day.",
+              "commitMs": 9810.528331000001,
+              "commitToLlmStartMs": 2.129892999997537,
+              "commitToFirstTextDeltaMs": 989.2624749999995,
+              "commitToTtsFirstFrameMs": 1755.958982,
+              "commitToSdkPlaybackMs": 1778.3318039999976,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "4-baseline",
+              "firstDeltaToCompletionMs": 124.72358199999871,
+              "postCommitBufferWaitMs": 124.72358199999871,
+              "ttsInvocationToFirstFrameMs": 589.8588560000026,
+              "commitToTtsInvocationMs": 1166.1001259999975
+            },
+            {
+              "messageId": "item_7736e650-32b",
+              "transcript": "Actually, change the destination to Boston instead. Keep the same day.",
+              "commitMs": 27025.380925999998,
+              "commitToLlmStartMs": 0.6264850000006845,
+              "commitToFirstTextDeltaMs": 261.0980410000011,
+              "commitToTtsFirstFrameMs": 863.6461170000002,
+              "commitToSdkPlaybackMs": 864.6014040000009,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "4-baseline",
+              "firstDeltaToCompletionMs": 89.62776300000041,
+              "postCommitBufferWaitMs": 89.62776300000041,
+              "ttsInvocationToFirstFrameMs": 498.05280800000037,
+              "commitToTtsInvocationMs": 365.59330899999986
+            },
+            {
+              "messageId": "item_957711d6-843",
+              "transcript": "What destination did I mention originally? before I changed it, and what is my current destination?",
+              "commitMs": 42447.702806,
+              "commitToLlmStartMs": 0.4837420000039856,
+              "commitToFirstTextDeltaMs": 372.2480740000028,
+              "commitToTtsFirstFrameMs": 1015.020206000001,
+              "commitToSdkPlaybackMs": 1016.3743969999996,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "4-baseline",
+              "firstDeltaToCompletionMs": 188.41512099999818,
+              "postCommitBufferWaitMs": 188.41512099999818,
+              "ttsInvocationToFirstFrameMs": 441.5410919999995,
+              "commitToTtsInvocationMs": 573.4791140000016
+            },
+            {
+              "messageId": "item_87bc05e1-572",
+              "transcript": "For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city. Corrected day, number of rooms, and hotel preference without making any booking.",
+              "commitMs": 67994.62301699999,
+              "commitToLlmStartMs": 0.44673900000634603,
+              "commitToFirstTextDeltaMs": 213.52575700001034,
+              "commitToTtsFirstFrameMs": 858.3816740000038,
+              "commitToSdkPlaybackMs": 859.7522150000004,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "4-baseline",
+              "firstDeltaToCompletionMs": 127.10867399998824,
+              "postCommitBufferWaitMs": 127.10867399998824,
+              "ttsInvocationToFirstFrameMs": 484.31424599999445,
+              "commitToTtsInvocationMs": 374.0674280000094
+            },
+            {
+              "messageId": "item_b3d5dc09-597",
+              "transcript": "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?",
+              "commitMs": 86299.248024,
+              "commitToLlmStartMs": 0.5961919999972451,
+              "commitToFirstTextDeltaMs": 407.96487199999683,
+              "commitToTtsFirstFrameMs": 1025.4533850000007,
+              "commitToSdkPlaybackMs": 1026.9952729999932,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "4-baseline",
+              "firstDeltaToCompletionMs": 170.46574200000032,
+              "postCommitBufferWaitMs": 170.46574200000032,
+              "ttsInvocationToFirstFrameMs": 429.87878400000045,
+              "commitToTtsInvocationMs": 595.5746010000003
+            }
+          ],
+          "requestedUtterances": 10,
+          "debuggerErrors": 0,
+          "speculativePreparations": 0,
+          "rollbacks": 0,
+          "reuses": 0,
+          "prematureSdkPlayback": 0,
+          "unattributedPlaybackEvents": 0,
+          "requestHistoryChecks": [
+            {
+              "session": "1-baseline",
+              "turn": 3,
+              "requiredTerms": {
+                "New York": true,
+                "Boston": true
+              }
+            },
+            {
+              "session": "1-baseline",
+              "turn": 5,
+              "requiredTerms": {
+                "New York": true,
+                "Boston": true,
+                "Lisbon": true,
+                "Tuesday": true
+              }
+            },
+            {
+              "session": "4-baseline",
+              "turn": 3,
+              "requiredTerms": {
+                "New York": true,
+                "Boston": true
+              }
+            },
+            {
+              "session": "4-baseline",
+              "turn": 5,
+              "requiredTerms": {
+                "New York": true,
+                "Boston": true,
+                "Lisbon": true,
+                "Tuesday": true
+              }
+            }
+          ],
+          "committedTurns": 10,
+          "commitToSdkPlaybackMs": {
+            "n": 10,
+            "p50": 1016.3743969999996,
+            "p95": 1778.3318039999976,
+            "max": 1778.3318039999976
+          },
+          "firstDeltaToCompletionMs": {
+            "n": 10,
+            "p50": 127.10867399998824,
+            "p95": 318.2410519999976,
+            "max": 318.2410519999976
+          },
+          "postCommitBufferWaitMs": {
+            "n": 10,
+            "p50": 127.10867399998824,
+            "p95": 318.2410519999976,
+            "max": 318.2410519999976
+          },
+          "ttsInvocationToFirstFrameMs": {
+            "n": 10,
+            "p50": 445.03020999999717,
+            "p95": 589.8588560000026,
+            "max": 589.8588560000026
+          },
+          "commitToTtsInvocationMs": {
+            "n": 10,
+            "p50": 573.4791140000016,
+            "p95": 1166.1001259999975,
+            "max": 1166.1001259999975
+          },
+          "incompleteCommitments": 0,
+          "allRequestHistoryChecksPassed": true
+        },
+        "fastfloor": {
+          "turns": [
+            {
+              "messageId": "item_269a07b4-417",
+              "transcript": "I wanna travel to New York on Monday. Please remember that destination and day.",
+              "commitMs": 10743.088726000002,
+              "commitToLlmStartMs": -777.8803310000003,
+              "commitToFirstTextDeltaMs": -414.5029910000012,
+              "commitToTtsFirstFrameMs": 621.7579729999998,
+              "commitToSdkPlaybackMs": 624.1922729999969,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "2-fastfloor",
+              "firstDeltaToCompletionMs": 343.2555119999997,
+              "postCommitBufferWaitMs": 0,
+              "ttsInvocationToFirstFrameMs": 585.0043880000012,
+              "commitToTtsInvocationMs": 36.753584999998566
+            },
+            {
+              "messageId": "item_0adf890e-a5c",
+              "transcript": "Actually, change the destination to Boston instead. Keep the same day.",
+              "commitMs": 28094.007166,
+              "commitToLlmStartMs": -1155.0390819999993,
+              "commitToFirstTextDeltaMs": -641.0036540000001,
+              "commitToTtsFirstFrameMs": 491.020074,
+              "commitToSdkPlaybackMs": 492.49554999999964,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "2-fastfloor",
+              "firstDeltaToCompletionMs": 133.05325000000084,
+              "postCommitBufferWaitMs": 0,
+              "ttsInvocationToFirstFrameMs": 465.2654609999954,
+              "commitToTtsInvocationMs": 25.75461300000461
+            },
+            {
+              "messageId": "item_43729dfb-225",
+              "transcript": "What destination did I mention originally before I changed it, and what is my current destination?",
+              "commitMs": 44463.808206999995,
+              "commitToLlmStartMs": -517.9341859999986,
+              "commitToFirstTextDeltaMs": -317.8402539999952,
+              "commitToTtsFirstFrameMs": 471.68064000000595,
+              "commitToSdkPlaybackMs": 472.9454990000013,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "2-fastfloor",
+              "firstDeltaToCompletionMs": 81.95223599999736,
+              "postCommitBufferWaitMs": 0,
+              "ttsInvocationToFirstFrameMs": 463.03533200000675,
+              "commitToTtsInvocationMs": 8.645307999999204
+            },
+            {
+              "messageId": "item_6be7f675-1e3",
+              "transcript": "For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, corrected day, number of rooms, and hotel preference without making any booking.",
+              "commitMs": 69926.29953999999,
+              "commitToLlmStartMs": -657.7022649999999,
+              "commitToFirstTextDeltaMs": -315.64122099999804,
+              "commitToTtsFirstFrameMs": 461.9910550000059,
+              "commitToSdkPlaybackMs": 463.05999500000325,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "2-fastfloor",
+              "firstDeltaToCompletionMs": 97.86622599999828,
+              "postCommitBufferWaitMs": 0,
+              "ttsInvocationToFirstFrameMs": 456.15637300000526,
+              "commitToTtsInvocationMs": 5.834682000000612
+            },
+            {
+              "messageId": "item_8756d28b-5b0",
+              "transcript": "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?",
+              "commitMs": 88752.536201,
+              "commitToLlmStartMs": -521.5390440000047,
+              "commitToFirstTextDeltaMs": -137.48540000000503,
+              "commitToTtsFirstFrameMs": 550.8808989999961,
+              "commitToSdkPlaybackMs": 552.1049840000051,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "2-fastfloor",
+              "firstDeltaToCompletionMs": 161.2348420000053,
+              "postCommitBufferWaitMs": 23.749442000000272,
+              "ttsInvocationToFirstFrameMs": 515.8434989999951,
+              "commitToTtsInvocationMs": 35.03740000000107
+            },
+            {
+              "messageId": "item_fa90218a-eb3",
+              "transcript": "I wanna travel to New York on Monday. Please remember that destination and day.",
+              "commitMs": 9309.928965,
+              "commitToLlmStartMs": -548.1374969999997,
+              "commitToFirstTextDeltaMs": 209.68102900000122,
+              "commitToTtsFirstFrameMs": 994.5525340000004,
+              "commitToSdkPlaybackMs": 997.3559720000012,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "3-fastfloor",
+              "firstDeltaToCompletionMs": 148.96386399999938,
+              "postCommitBufferWaitMs": 148.96386399999938,
+              "ttsInvocationToFirstFrameMs": 614.2520100000002,
+              "commitToTtsInvocationMs": 380.3005240000002
+            },
+            {
+              "messageId": "item_4deb0fab-fb0",
+              "transcript": "Actually, change the destination to Boston instead. Keep the same day.",
+              "commitMs": 26609.632023,
+              "commitToLlmStartMs": 0.5029040000008536,
+              "commitToFirstTextDeltaMs": 194.7518940000009,
+              "commitToTtsFirstFrameMs": 979.0617060000004,
+              "commitToSdkPlaybackMs": 979.9056899999996,
+              "audibleOnsetMs": null,
+              "reused": false,
+              "session": "3-fastfloor",
+              "firstDeltaToCompletionMs": 370.8280369999993,
+              "postCommitBufferWaitMs": 370.8280369999993,
+              "ttsInvocationToFirstFrameMs": 405.65400299999965,
+              "commitToTtsInvocationMs": 573.4077030000008
+            },
+            {
+              "messageId": "item_d0bb829f-92e",
+              "transcript": "What destination did I mention originally before I changed it, and what is my current destination",
+              "commitMs": 42869.081939,
+              "commitToLlmStartMs": -520.911662999999,
+              "commitToFirstTextDeltaMs": -275.4057109999994,
+              "commitToTtsFirstFrameMs": 453.6371320000035,
+              "commitToSdkPlaybackMs": 454.428691000001,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "3-fastfloor",
+              "firstDeltaToCompletionMs": 78.4495190000016,
+              "postCommitBufferWaitMs": 0,
+              "ttsInvocationToFirstFrameMs": 440.73245000000315,
+              "commitToTtsInvocationMs": 12.90468200000032
+            },
+            {
+              "messageId": "item_fa4fcf64-85b",
+              "transcript": "For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, corrected day, number of rooms, and hotel preference without making any booking.",
+              "commitMs": 67401.421954,
+              "commitToLlmStartMs": -770.1586700000043,
+              "commitToFirstTextDeltaMs": -403.0234950000013,
+              "commitToTtsFirstFrameMs": 453.40299999999115,
+              "commitToSdkPlaybackMs": 454.34555199999886,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "3-fastfloor",
+              "firstDeltaToCompletionMs": 139.9318970000022,
+              "postCommitBufferWaitMs": 0,
+              "ttsInvocationToFirstFrameMs": 446.2950739999942,
+              "commitToTtsInvocationMs": 7.107925999996951
+            },
+            {
+              "messageId": "item_6394b336-d26",
+              "transcript": "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?",
+              "commitMs": 85751.96779000001,
+              "commitToLlmStartMs": -546.3183640000061,
+              "commitToFirstTextDeltaMs": -367.4760430000024,
+              "commitToTtsFirstFrameMs": 473.2720779999945,
+              "commitToSdkPlaybackMs": 474.03464699999313,
+              "audibleOnsetMs": null,
+              "reused": true,
+              "session": "3-fastfloor",
+              "firstDeltaToCompletionMs": 411.00535500000115,
+              "postCommitBufferWaitMs": 43.529311999998754,
+              "ttsInvocationToFirstFrameMs": 422.91239700000733,
+              "commitToTtsInvocationMs": 50.35968099998718
+            }
+          ],
+          "requestedUtterances": 10,
+          "debuggerErrors": 0,
+          "speculativePreparations": 11,
+          "rollbacks": 2,
+          "reuses": 9,
+          "prematureSdkPlayback": 0,
+          "unattributedPlaybackEvents": 0,
+          "requestHistoryChecks": [
+            {
+              "session": "2-fastfloor",
+              "turn": 3,
+              "requiredTerms": {
+                "New York": true,
+                "Boston": true
+              }
+            },
+            {
+              "session": "2-fastfloor",
+              "turn": 5,
+              "requiredTerms": {
+                "New York": true,
+                "Boston": true,
+                "Lisbon": true,
+                "Tuesday": true
+              }
+            },
+            {
+              "session": "3-fastfloor",
+              "turn": 3,
+              "requiredTerms": {
+                "New York": true,
+                "Boston": true
+              }
+            },
+            {
+              "session": "3-fastfloor",
+              "turn": 5,
+              "requiredTerms": {
+                "New York": true,
+                "Boston": true,
+                "Lisbon": true,
+                "Tuesday": true
+              }
+            }
+          ],
+          "committedTurns": 10,
+          "commitToSdkPlaybackMs": {
+            "n": 10,
+            "p50": 474.03464699999313,
+            "p95": 997.3559720000012,
+            "max": 997.3559720000012
+          },
+          "firstDeltaToCompletionMs": {
+            "n": 10,
+            "p50": 139.9318970000022,
+            "p95": 411.00535500000115,
+            "max": 411.00535500000115
+          },
+          "postCommitBufferWaitMs": {
+            "n": 10,
+            "p50": 0,
+            "p95": 370.8280369999993,
+            "max": 370.8280369999993
+          },
+          "ttsInvocationToFirstFrameMs": {
+            "n": 10,
+            "p50": 456.15637300000526,
+            "p95": 614.2520100000002,
+            "max": 614.2520100000002
+          },
+          "commitToTtsInvocationMs": {
+            "n": 10,
+            "p50": 25.75461300000461,
+            "p95": 573.4077030000008,
+            "max": 573.4077030000008
+          },
+          "incompleteCommitments": 0,
+          "allRequestHistoryChecksPassed": true
+        }
+      }
+    }
+  }
+}

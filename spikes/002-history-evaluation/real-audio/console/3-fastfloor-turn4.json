@@ -1,0 +1,321 @@
+{
+  "text": "For a separate fictional trip, I am traveling with my sister, we prefer a quiet hotel near the station, we need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, corrected day, number of rooms, and hotel preference without making any booking.",
+  "heard": "Please repeat the city corrected day, number of rooms, and hotel preference without making any booking.",
+  "events": [
+    {
+      "type": "log",
+      "text": "[17:26:09.385] DEBUG (658): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:10.021] DEBUG (658): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"For a\""
+    },
+    {
+      "type": "log",
+      "text": "[17:26:18.747] DEBUG (658): VAD task: END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:19.548] DEBUG (658): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday in Lisbon.\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:26:19.548] DEBUG (658): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the stati...\""
+    },
+    {
+      "type": "log",
+      "text": "[17:26:19.592] DEBUG (658): received user transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday in Lisbon.\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:26:19.593] DEBUG (658): running EOU detection on stt END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:19.593] DEBUG (658): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday in Lisbon.\""
+    },
+    {
+      "type": "log",
+      "text": "    turnDetectionMode: \"stt\""
+    },
+    {
+      "type": "log",
+      "text": "[17:26:19.667] DEBUG (658): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:20.354] DEBUG (658): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"Please repeat the\""
+    },
+    {
+      "type": "log",
+      "text": "[17:26:24.128] DEBUG (658): VAD task: END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:24.129] DEBUG (658): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday in Lisbon.\""
+    },
+    {
+      "type": "log",
+      "text": "    turnDetectionMode: \"stt\""
+    },
+    {
+      "type": "log",
+      "text": "[17:26:24.373] DEBUG (658): end of user turn"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday in Lisbon.\""
+    },
+    {
+      "type": "log",
+      "text": "[17:26:24.374] DEBUG (658): Task.runTask: task AgentActivity.userTurnCompleted started"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:24.375] DEBUG (658): EOU detection task completed"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:24.376] DEBUG (658): Task.runTask: task AgentActivity.userTurnCompleted done"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:24.765] DEBUG (658): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"Please repeat the city corrected day, number of rooms, and hotel preference without making any booking.\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:26:24.765] DEBUG (658): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"Please repeat the city corrected day, number of rooms, and hotel preference without making any booki...\""
+    },
+    {
+      "type": "log",
+      "text": "[17:26:24.923] DEBUG (658): received user transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"Please repeat the city corrected day, number of rooms, and hotel preference without making any booking.\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:26:24.924] DEBUG (658): running EOU detection on stt END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:24.924] DEBUG (658): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"Please repeat the city corrected day, number of rooms, and hotel preference without making any booking.\""
+    },
+    {
+      "type": "log",
+      "text": "    turnDetectionMode: \"stt\""
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.424] DEBUG (658): end of user turn"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"Please repeat the city corrected day, number of rooms, and hotel preference without making any booking.\""
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:26:25.431Z",
+      "role": "user",
+      "text": "Please repeat the city corrected day, number of rooms, and hotel preference without making any booking."
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.424] DEBUG (658): Task.runTask: task AgentActivity.userTurnCompleted started"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.426] DEBUG (658): EOU detection task completed"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.427] INFO (658): Creating speech handle"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_6942eb84-a6a\""
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.427] DEBUG (658): Task.runTask: task AgentActivity.pipelineReply started"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.428] DEBUG (658): Task.runTask: task performLLMInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.430] DEBUG (658): Task.runTask: task AgentActivity.userTurnCompleted done"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.431] DEBUG (658): Task.runTask: task AgentActivity.pipelineReply.produceSegments started"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.433] DEBUG (658): Task.runTask: task performTTSInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.434] DEBUG (658): Task.runTask: task performToolExecutions started"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.435] DEBUG (658): Task.runTask: task performTextForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.435] DEBUG (658): Task.runTask: task performAudioForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.436] DEBUG (658): Task.runTask: task performToolExecutions done"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.436] DEBUG (658): Task.runTask: task performLLMInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.436] DEBUG (658): Task.runTask: task AgentActivity.pipelineReply.produceSegments done"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.437] DEBUG (658): Task.runTask: task performTextForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.441] DEBUG (658): Task.runTask: task inference-tts-input started"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.441] DEBUG (658): Task.runTask: task inference-tts-sentence started"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.442] DEBUG (658): Task.runTask: task inference-tts-ws-listener started"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.442] DEBUG (658): Task.runTask: task inference-tts-recv started"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.445] DEBUG (658): Task.runTask: task inference-tts-input done"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.446] DEBUG (658): Task.runTask: task inference-tts-sentence done"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:25.887] DEBUG (658): agent speech started"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:27.359] DEBUG (658): Task.runTask: task inference-tts-recv done"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:27.360] DEBUG (658): Task.runTask: task inference-tts-ws-listener done"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:27.363] DEBUG (658): Task.runTask: task performTTSInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:27.364] DEBUG (658): Task.runTask: task performAudioForwarding done"
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:26:33.878Z",
+      "role": "assistant",
+      "text": "Your destination is Boston for this Monday. You have not mentioned a number of rooms or a hotel preference yet. Would you like to provide those details now?",
+      "metrics": {
+        "e2e_latency": 0.9609999656677246,
+        "llm_ttft": 0.0015228440000072396,
+        "tts_ttfb": 0.44005906699999287
+      }
+    },
+    {
+      "type": "log",
+      "text": "[17:26:33.878] INFO (658): playout completed without interruption"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_6942eb84-a6a\""
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.message: \"Your destination is Boston for this Monday. You have not mentioned a number of rooms or a hotel preference yet. Would you like to provide those details now?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:26:33.879] DEBUG (658): agent speech ended"
+    },
+    {
+      "type": "log",
+      "text": "[17:26:33.880] DEBUG (658): Task.runTask: task AgentActivity.pipelineReply done"
+    }
+  ],
+  "reply": "Your destination is Boston for this Monday. You have not mentioned a number of rooms or a hotel preference yet. Would you like to provide those details now?",
+  "duration_ms": 27187
+}
