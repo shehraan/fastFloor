@@ -1,5 +1,33 @@
 # FastFloor architecture
 
+## Final packaging — October 28, 2026
+
+The runtime is feature-complete for this demo and frozen. Start with the root
+[README](README.md) for the architecture diagram, mode commands, measurement
+boundaries, and evidence index; [DEMO.md](DEMO.md) is the 60–90-second checklist.
+The sections below are chronological engineering records, not new shipping tasks.
+
+Final developer-reported microphone testing succeeded overall: multi-turn context,
+corrections, interruptions, and Boardy mode's real `find_people` call returning
+fictional Maya Chen, followed by an offer to help draft an introduction. These are
+manual observations, not additional timestamped benchmark samples. One isolated
+missed-speech instance after an agent response remains unconfirmed and undiagnosed.
+It is not attributed to the earlier reproduced history-loss defects.
+
+The measured result remains SDK commitment → SDK console playback p50
+1016.374 ms baseline / 474.035 ms FastFloor, ten post-fix samples per arm. Caller
+acoustic onset/yield metrics, leakage bounds, and production speedup are unverified.
+Networking remains opt-in, committed-only, and non-speculative; it performs no
+real introductions or writes. No provider, endpointing, coordinator, cancellation
+policy, runtime source, dependency, or executable-test changes belong to packaging.
+
+Packaging retains reviewed fictional benchmark inputs/results while excluding
+local learning exercises, recordings, credentials, and machine-specific diagnostic
+logs/test-runner dumps. Raw measurement artifacts are not reformatted. The existing
+comment-only starter test placeholder is omitted; all 65 executable tests remain.
+CI runs the actual offline suite with the committed lockfile; the starter-only
+workflow rejecting that lockfile is removed. Local tutoring edits stay untouched.
+
 ## Real-audio verification phase — October 28, 2026
 
 See `spikes/002-history-evaluation/REAL_AUDIO_VERIFICATION.md` for raw artifact

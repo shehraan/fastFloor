@@ -1,5 +1,27 @@
 # History correctness, matched A/B evaluation, and fictional networking workload
 
+## Published evidence index
+
+Start with the root [README](../../README.md) for the current product overview and
+[DEMO.md](../../DEMO.md) for the demo/share checklist. Older status statements below
+describe their own experiment phase, not the final shipping state.
+
+| Evidence                                                                                                              | What it establishes                                                                               | What it does not establish                                |
+| --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| `real-audio/postfix-console/*.jsonl`, `real-audio/postfix-console-report.json`, `real-audio/measured-comparison.json` | Post-fix real Flux/Gemma/Fish console-audio timestamps; ten SDK playback samples per arm          | Remote acoustic onset or production distributions         |
+| `real-audio/console/`, `real-audio/console-report.json`                                                               | Separate pre-fix run, including the history-loss failure                                          | A valid replacement for the post-fix sample               |
+| `REAL_AUDIO_VERIFICATION.md`, `real-audio/simulation-*-export.json`                                                   | Full method, limitations, and failed room attempts                                                | Successful room-audio latency or interruption measurement |
+| `scripted-sdk-results.json`, `hosted-llm-results.json`                                                                | SDK mechanics; separately, actual hosted Gemma with fixture STT/TTS                               | Hosted audio or microphone latency                        |
+| `boardy-hosted-results.json`                                                                                          | Hosted model used local `find_people`, preserved constraints/history, and retrieved Leo then Maya | Speculative tools, real contacts, or sent introductions   |
+| `history-debugger-results.json`                                                                                       | One hosted text-only semantic recall sample                                                       | Audio commitment/cancellation behavior                    |
+
+Final microphone success and Maya Chen's live retrieval/intro-draft offer are
+developer-reported observations. One isolated missed-speech instance is unconfirmed.
+No additional timing samples were created during packaging. Raw fictional benchmark
+traces are intentional evidence, not production logs; do not add private calls.
+Machine-specific diagnostic logs/test-runner dumps are local-only. Ignore rules
+prevent accidental new captures; they do not retroactively remove Git history.
+
 ## Real-audio verification follow-up — October 28, 2026
 
 Read [`REAL_AUDIO_VERIFICATION.md`](REAL_AUDIO_VERIFICATION.md) for this phase's

@@ -22,7 +22,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 10.15.0 
+          version: 10.15.0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -30,7 +30,10 @@ jobs:
           node-version: 24
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
+
+      - name: Run offline regression tests
+        run: pnpm test
 
       - name: Run type checking
         run: pnpm run typecheck

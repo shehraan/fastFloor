@@ -13,6 +13,7 @@ lerna-debug.log*
 # Caches
 
 .cache
+.pnpm-store/
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 
@@ -223,3 +224,28 @@ ehthumbs.db
 
 # GitHub CLI
 .github/personal-instructions.md
+
+# Private local configuration, recordings, and ad-hoc experiment output
+.env.*
+!.env.example
+*.bak
+*.log
+*.stderr
+*.stdout
+*.wav
+*.mp3
+*.ogg
+*.flac
+*.pcm
+*.jsonl
+# Only reviewed, fictional benchmark traces belong in the published evidence set.
+!spikes/002-history-evaluation/real-audio/console/*.jsonl
+!spikes/002-history-evaluation/real-audio/postfix-console/*.jsonl
+!spikes/002-history-evaluation/real-audio/simulation-*.jsonl
+spikes/002-history-evaluation/real-audio/regression-*.json
+spikes/002-history-evaluation/real-audio/tests-*.json
+src/fastfloor/abort-experiment.ts
+src/fastfloor/combined-experiment.ts
+src/fastfloor/coordinator-demo.ts
+src/fastfloor/experiment.ts
+src/fastfloor/state-experiment.ts

@@ -1,8 +1,0 @@
-::group::Setup
-✓ Agent registered (15.868s)
-✓ Simulation created (703ms)
-✓ Loaded 2 scenarios from spikes/002-history-evaluation/audio-scenarios.yaml ("FastFloor real audio verification")
-::endgroup::
-
-Run:       SR_JKzbzVikHxJ5
-

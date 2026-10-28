@@ -1,5 +1,23 @@
 # Real-audio verification — October 28, 2026
 
+## Final manual verification / publication note
+
+After the instrumented phase below, the developer reported successful live
+microphone testing of multi-turn conversation, corrections and interruptions.
+Boardy mode also called `find_people`, retrieved fictional Maya Chen in Boston,
+and offered help drafting an introduction. Those observations have no new acoustic
+timing capture; they do not turn the SDK metrics into caller-audible measurements.
+One isolated missed-speech observation after an agent response remains unconfirmed,
+with no established cause or measured recurrence rate.
+
+The following sections preserve the instrumented phase as historical evidence.
+References to unperformed manual tests describe that earlier phase. The detailed
+caller-side onset/yield measurements below remain outstanding. Final packaging is
+documented in the root README and DEMO.md, without changing runtime behavior.
+Machine-specific worker logs and generated test-runner dumps referenced below are
+kept locally rather than in the publication tree; fictional raw traces, per-turn
+CLI observations, simulation exports, and measurement reports remain reviewable.
+
 ## Result and boundary
 
 Real generated caller speech traversed hosted Deepgram Flux → configured Gemma →

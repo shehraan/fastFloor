@@ -1,5 +1,34 @@
 # FastFloor checkpoint handoff
 
+## Final packaging status — October 28, 2026
+
+The root README and DEMO.md supersede the older phase-specific stopping points.
+Implementation is feature-complete for the demo; do not resume feature work.
+
+- Final microphone tests are developer-reported successes for multi-turn context,
+  corrections and interruptions. One missed-speech instance after an agent response
+  is an isolated, unconfirmed observation; no cause or recurrence rate is established.
+- Boardy mode successfully called `find_people`, retrieved fictional Boston robotics
+  founder Maya Chen, and offered help drafting an intro. No introduction was sent.
+  All speculation remains disabled in this opt-in tool-enabled workload.
+- The post-fix SDK commitment → console playback evidence remains 10 samples/arm,
+  p50 1016.374 ms baseline / 474.035 ms FastFloor. No caller-side acoustic metric or
+  verified production speedup was added by manual testing or packaging.
+- README: architecture diagram, ownership, gating/cancellation/history, exact setup
+  and mode commands, benchmark method/limits, reproduction, and evidence links.
+  DEMO.md: 60–90-second checklist and exact sharing sequence.
+- Packaging changes documentation/CI/ignore rules only, plus omission of the already
+  deleted comment-only starter test. All executable tests and runtime source stay
+  unchanged. Local tutoring changes and learning experiments remain uncommitted.
+- Machine-specific worker logs and generated test-runner dumps are retained locally
+  but excluded from the publication tree. Reviewed fictional traces, original failure
+  evidence, reports, and reproducible runners remain available. Ignore rules do not
+  erase earlier Git history; no history rewrite is authorized.
+- Publication from this sandbox requires Git author identity and authenticated GitHub
+  access. Neither is configured here; do not invent identity, bypass SSH host-key
+  verification, or put credentials in chat. Complete review/approval before commit,
+  use a normal feature-branch push, then verify the remote SHA and CI separately.
+
 ## Latest verification phase — October 28, 2026
 
 Read `spikes/002-history-evaluation/REAL_AUDIO_VERIFICATION.md` first. The older
