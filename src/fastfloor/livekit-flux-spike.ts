@@ -280,6 +280,12 @@ export class FluxIntegrationSpike {
         : this.latestTranscript === null || text === this.latestTranscript;
     if (!text || this.session?.userState === 'speaking' || !matches) {
       this.invalidate();
+      // Flux may finalize a segment, resume with a newer interim, then deliver
+      // the SDK hook for the earlier final. Suppress its reply, not accepted
+      // history. Only the exact observed final aggregate proves provenance;
+      // an interim/preflight hypothesis or truncated aggregate is never retained.
+      if (finals.length && text === finals.join(' ').trimStart())
+        await this.retainCommittedInput(message);
       throw new voice.StopResponse();
     }
     if (this.committedTools) {
@@ -314,17 +320,24 @@ export class FluxIntegrationSpike {
       // StopResponse in Agents 1.9.4 drops the whole user turn, not just its reply.
       // Preserve only a provenance-validated commitment; never store speculation
       // or a cancelled assistant answer. Use current history, not a stale snapshot.
-      if (this.agent && !this.agent.chatCtx.items.some((item) => item.id === message.id)) {
-        const retained = this.agent.chatCtx.copy();
-        retained.insert(message);
-        await this.agent.updateChatCtx(retained);
-      }
-      if (this.session && !this.session.history.items.some((item) => item.id === message.id))
-        this.session.history.insert(message);
-      this.log('COMMITTED_INPUT_RETAINED', { messageId: message.id, transcript: text });
+      await this.retainCommittedInput(message);
       throw new voice.StopResponse();
     }
     this.log('RESPONSE_RELEASED', { generation: candidate.generation, messageId: message.id });
+  }
+
+  private async retainCommittedInput(message: llm.ChatMessage): Promise<void> {
+    if (this.agent && !this.agent.chatCtx.items.some((item) => item.id === message.id)) {
+      const retained = this.agent.chatCtx.copy();
+      retained.insert(message);
+      await this.agent.updateChatCtx(retained);
+    }
+    if (this.session && !this.session.history.items.some((item) => item.id === message.id))
+      this.session.history.insert(message);
+    this.log('COMMITTED_INPUT_RETAINED', {
+      messageId: message.id,
+      transcript: message.textContent,
+    });
   }
 
   hooks(): Pick<

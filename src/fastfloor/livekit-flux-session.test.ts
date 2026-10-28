@@ -192,6 +192,94 @@ class ScriptedLLMStream extends llm.LLMStream {
   }
 }
 
+it.each([true, false])(
+  'retains a finalized SDK commitment overtaken by a newer interim (speculate=%s)',
+  async (speculate) => {
+    const model = new ScriptedLLM();
+    const trace = new EvaluationTrace({ arm: speculate ? 'fastfloor' : 'baseline' });
+    const { provider, session, agent, log, synthesized, sink } = await setup(
+      undefined,
+      undefined,
+      model,
+      { speculate, trace },
+    );
+    const original = 'For a separate trip, Lisbon on Tuesday, two rooms near the station.';
+    const continuation = 'Please repeat the city, day, rooms and hotel preference.';
+    try {
+      // Replay the real Flux ordering: a prior final is committed by the SDK
+      // after a newer interim arrived, but before that segment's final.
+      provider.send(stt.SpeechEventType.FINAL_TRANSCRIPT, original);
+      provider.send(stt.SpeechEventType.INTERIM_TRANSCRIPT, continuation);
+      provider.send(stt.SpeechEventType.END_OF_SPEECH);
+      await vi.waitFor(() =>
+        expect(log).toHaveBeenCalledWith(
+          'COMMITTED_INPUT_RETAINED',
+          expect.objectContaining({ transcript: original }),
+        ),
+      );
+      const message = session.history.items.find(
+        (item) => item.type === 'message' && item.textContent === original,
+      );
+      if (!message || message.type !== 'message') throw new Error('Missing committed input');
+      for (const history of [agent.chatCtx, session.history]) {
+        expect(history.items.filter((item) => item.id === message.id)).toEqual([message]);
+        expect(
+          history.items.some((item) => item.type === 'message' && item.role === 'assistant'),
+        ).toBe(false);
+      }
+      expect(model.requests).toHaveLength(0);
+      expect(synthesized).toEqual([]);
+      expect(sink.frames).toHaveLength(0);
+      // Duplicate callbacks cannot duplicate retained input or authorize output.
+      await expect(agent.onUserTurnCompleted(agent.chatCtx.copy(), message)).rejects.toBeInstanceOf(
+        voice.StopResponse,
+      );
+      provider.send(stt.SpeechEventType.FINAL_TRANSCRIPT, continuation);
+      provider.send(stt.SpeechEventType.END_OF_SPEECH);
+      await vi.waitFor(() => expect(synthesized).toHaveLength(1));
+      await session.waitForIdle();
+      expect(model.requests).toHaveLength(1);
+      const inputs = model.requests[0]!.chatCtx.items.filter(
+        (item) => item.type === 'message' && item.role === 'user',
+      ).map((item) => (item.type === 'message' ? item.textContent : undefined));
+      expect(inputs).toEqual([original, continuation]);
+      for (const history of [agent.chatCtx, session.history])
+        expect(history.items.filter((item) => item.id === message.id)).toHaveLength(1);
+    } finally {
+      await session.close();
+    }
+  },
+);
+
+it.each([
+  { finals: [], text: 'Uncommitted hypothesis' },
+  { finals: ['first', 'second'], text: 'second' },
+  { finals: ['first', 'second'], text: 'invented first second' },
+])('never retains unproven stopped input ($text)', async ({ finals, text }) => {
+  const model = new ScriptedLLM();
+  const { provider, session, agent, log, synthesized } = await setup(undefined, undefined, model);
+  try {
+    for (const final of finals) provider.send(stt.SpeechEventType.FINAL_TRANSCRIPT, final);
+    provider.send(stt.SpeechEventType.INTERIM_TRANSCRIPT, 'newer interim');
+    await vi.waitFor(() =>
+      expect(log).toHaveBeenCalledWith(
+        'INTERIM_TRANSCRIPT',
+        expect.objectContaining({ transcript: 'newer interim' }),
+      ),
+    );
+    const message = llm.ChatMessage.create({ role: 'user', content: text });
+    await expect(agent.onUserTurnCompleted(agent.chatCtx.copy(), message)).rejects.toBeInstanceOf(
+      voice.StopResponse,
+    );
+    for (const history of [agent.chatCtx, session.history])
+      expect(history.items.some((item) => item.id === message.id)).toBe(false);
+    expect(model.requests).toHaveLength(0);
+    expect(synthesized).toEqual([]);
+  } finally {
+    await session.close();
+  }
+});
+
 it('buffers real LLM chunks privately and reuses them for exactly one committed SDK reply', async () => {
   const model = new ScriptedLLM();
   const { provider, session, synthesized, sink } = await setup(undefined, undefined, model);
