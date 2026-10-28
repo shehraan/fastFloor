@@ -4,8 +4,8 @@
 
 This is an opt-in mechanics experiment, not production LLM speculation. The working
 voice-agent baseline remains the default. Set `FASTFLOOR_FLUX_SPIKE=1` to select the
-experiment. No tools, production speculative model requests, or new dependencies
-were added.
+experiment. No tools or production speculative model requests were added.
+The checkpoint pins RTC to 1.1.0 and adds development-only WebSocket typings.
 
 ## Components and ownership
 
@@ -95,14 +95,19 @@ TTS waiting to emit audio. The callback itself never starts TTS or plays audio.
   commitment, stale completion ignoring abort, invalidation during a pending
   commitment, preparation failure, empty/contradictory commitment, repeated words,
   STT failure, consecutive turns, and listener cleanup.
-- This is deterministic mechanics evidence, NOT real microphone, Deepgram Cloud,
-  Fish Audio, WebRTC playback, audible-quality, or latency evidence. No live audio
-  was tested and no latency improvement is claimed.
+- The tests above provide deterministic mechanics evidence, not acoustic safety.
+- The subsequent checkpoint exercised two sequential generated-speech turns through
+  real hosted Flux and Fish Audio using the audio debugger. Each logged interim,
+  preflight, final, and session commitment, then one fake reply and one speech handle.
+  Commitment preceded TTS-task and speech-start logs. Sanitized evidence is in
+  `spikes/001-livekit-flux/audio-smoke-results.json`. Physical microphone, WebRTC,
+  same-turn resumption, audible interruption, and latency improvement remain unverified.
 
 ## Installed API verification and references
 
 `package.json` declares agents `^1.9.3`; `pnpm-lock.yaml` and the actual installed
-package resolve `@livekit/agents` **1.9.4**. RTC is **0.13.35**. Inspected source:
+package resolve `@livekit/agents` **1.9.4**. The checkpoint updates RTC from
+**0.13.35** to **1.1.0**, satisfying the Agents and ai-coustics peers. Inspected source:
 
 - `node_modules/@livekit/agents/src/inference/stt.ts`: Flux model/options, normalized
   `preflight_transcript`/interim/final conversion, `SpeechData.metadata` passthrough.
@@ -147,14 +152,11 @@ Current docs were fetched with LiveKit CLI **2.19.2** after running `lk docs`:
    unchanged; they do not validate this audio-path spike. No cloud simulation was run.
 6. `committedMessages` retains message IDs for one session. Instantiate one adapter
    per session; no long-lived retention/eviction design is included.
-7. Pre-existing dependency skew: installed agents 1.9.4 declares peer RTC `^1.1.0`,
-   whereas this project locks RTC 0.13.35. The normal project typecheck uses
-   `skipLibCheck: true`. An extra `pnpm exec tsc --noEmit --skipLibCheck false`
-   check fails in SDK declarations (including missing newer RTC RPC exports and
-   `ws` declarations). The deterministic pipeline tests and text debugger boot work,
-   but this does not prove real room/telemetry compatibility. No dependency upgrade
-   was made during the spike.
+7. RTC compatibility is resolved at checkpoint: RTC 1.1.0 and `@types/ws` 8.18.2
+   make `pnpm exec tsc --noEmit --skipLibCheck false` pass without suppressing
+   declaration errors. The existing OpenTelemetry peer-range warning is unchanged;
+   real room/telemetry compatibility is not comprehensively validated.
 
-Next: review the dependency skew separately, then capture a real Flux audio event
-trace and test preflight/resumption/final/commit ordering with fake responses only.
-Do not start production LLM speculation until that boundary has live evidence.
+Next: follow `HANDOFF.md` for microphone/WebRTC and same-turn resumption testing
+with fake responses only. Normal sequential hosted-audio traces are recorded, but
+do not establish interruption safety. Do not start production LLM speculation yet.

@@ -1,0 +1,50 @@
+{
+  "scope": "Real hosted inference audio via local CLI debugger; generated input speech, no physical microphone or browser WebRTC",
+  "configured_stt": "deepgram/flux-general-en",
+  "configured_tts": "fishaudio/s2.1-pro",
+  "agents_version": "1.9.4",
+  "rtc_version": "1.1.0",
+  "fake_response_provider": true,
+  "turns": [
+    {
+      "sent_text": "Please book Monday.",
+      "heard_text": "Please book Monday.",
+      "reply": "Integration spike. I heard: Please book Monday.",
+      "assistant_message_time_utc": "2026-10-28T02:02:23.902Z",
+      "observed_fastfloor_signals": [
+        "INTERIM_TRANSCRIPT",
+        "PREFLIGHT_TRANSCRIPT",
+        "FINAL_TRANSCRIPT",
+        "USER_TURN_COMMITTED"
+      ],
+      "assistant_message_count": 1,
+      "speech_handle_count": 1,
+      "commit_before_tts_task": true,
+      "commit_before_agent_speech_log": true,
+      "debugger_duration_ms": 9720
+    },
+    {
+      "sent_text": "Please book Tuesday instead.",
+      "heard_text": "Please book Tuesday instead.",
+      "reply": "Integration spike. I heard: Please book Tuesday instead.",
+      "assistant_message_time_utc": "2026-10-28T02:08:53.515Z",
+      "observed_fastfloor_signals": [
+        "INTERIM_TRANSCRIPT",
+        "PREFLIGHT_TRANSCRIPT",
+        "FINAL_TRANSCRIPT",
+        "USER_TURN_COMMITTED"
+      ],
+      "assistant_message_count": 1,
+      "speech_handle_count": 1,
+      "commit_before_tts_task": true,
+      "commit_before_agent_speech_log": true,
+      "debugger_duration_ms": 11853
+    }
+  ],
+  "limitations": [
+    "Sequential turns, not same-turn resumption or mid-response interruption",
+    "Speech start logs are not a measurement of what a remote listener heard",
+    "No comparison baseline or claimed latency improvement",
+    "Human microphone, browser WebRTC and acoustic echo/barge-in checks remain manual"
+  ]
+}
