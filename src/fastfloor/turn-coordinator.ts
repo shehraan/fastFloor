@@ -28,7 +28,6 @@ export class TurnCoordinator {
 
     this.state = 'SPECULATING';
 
-    // TODO 1:
     // Increment this.generation.
     this.generation++;
 
@@ -58,7 +57,6 @@ export class TurnCoordinator {
   }
 
   onResumed() {
-    // TODO 2:
     // Increment generation to invalidate old work.
     // Clear the prepared response.
     // Change the state back to LISTENING.
@@ -71,7 +69,6 @@ export class TurnCoordinator {
   }
 
   onPrepared(result: string, generation: number) {
-    // TODO 3:
     // If generation is not the current generation,
     // return immediately.
     if (
@@ -95,7 +92,6 @@ export class TurnCoordinator {
   }
 
   private tryPublish() {
-    // TODO 1:
     // Check that state is COMMITTED
     // AND prepared is not null.
     if (this.state !== 'COMMITTED' || this.prepared === null || this.hasPublished) {
@@ -103,12 +99,10 @@ export class TurnCoordinator {
       return;
     }
 
-    // TODO 2:
     // If both conditions pass:
     // Print "Agent:" followed by the prepared response.
     this.publish(this.prepared);
 
-    // TODO 3:
     // Set prepared to null after publishing.
     // This prevents the same answer being published twice.
     this.prepared = null;
