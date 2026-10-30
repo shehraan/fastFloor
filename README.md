@@ -2,16 +2,15 @@
 
 Start thinking before the caller finishes. Speak only after commitment.
 
-FastFloor is a speculative turn-taking runtime integrated with LiveKit Agents for
-Node.js. Deepgram Flux preflight transcripts can start a private Gemma response;
-a custom TurnCoordinator decides whether that work is still valid and authorized
-for LiveKit's normal Fish Audio output pipeline. The hard part is not starting
-early—it is cancelling stale work without speaking it or losing accepted history.
+What: A working LiveKit voice-agent prototype that uses Deepgram Flux preflight signals to prepare LLM responses early, while a custom TurnCoordinator controls cancellation and release to TTS.
 
-This is a feature-complete engineering demo, not a production-ready service.
-Real Flux → Gemma → Fish audio works. Manual microphone checks covered multi-turn
-conversation, corrections, interruptions, and the fictional networking workflow.
-Caller-perceived audible latency has not been measured.
+The hard problem: Preventing stale responses from speaking without losing valid conversation history when users correct themselves or interrupt.
+
+Measured: Median commitment-to-first-SDK-playback dropped from 1,016 ms to 474 ms (53.4%), across 10 samples per arm. Both arms use full-response buffering; only speculative preparation differs.
+
+Limitations: Exploratory SDK console measurement, not caller-audible latency or a comparison against an optimized streaming baseline. Rollback-specific tail latency remains unmeasured.
+
+Next: Measure caller-audible onset, quantify rollback latency under corrections and interruptions, and compare against an optimized streaming agent.
 
 ## Architecture and ownership
 
