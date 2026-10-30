@@ -1,0 +1,225 @@
+{
+  "text": "Actually, change the destination to Boston instead. Keep the same day.",
+  "heard": "Actually, change the destination to Boston instead. Keep the same day.",
+  "events": [
+    {
+      "type": "log",
+      "text": "[17:27:41.775] DEBUG (774): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:42.233] DEBUG (774): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"Actually,\""
+    },
+    {
+      "type": "log",
+      "text": "[17:27:45.374] DEBUG (774): VAD task: END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:45.479] DEBUG (774): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"Actually, change the destination to Boston instead. Keep the same day.\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:27:45.480] DEBUG (774): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"Actually, change the destination to Boston instead. Keep the same day.\""
+    },
+    {
+      "type": "log",
+      "text": "[17:27:45.904] DEBUG (774): received user transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"Actually, change the destination to Boston instead. Keep the same day.\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:27:45.905] DEBUG (774): running EOU detection on stt END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:45.905] DEBUG (774): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"Actually, change the destination to Boston instead. Keep the same day.\""
+    },
+    {
+      "type": "log",
+      "text": "    turnDetectionMode: \"stt\""
+    },
+    {
+      "type": "log",
+      "text": "[17:27:46.404] DEBUG (774): end of user turn"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"Actually, change the destination to Boston instead. Keep the same day.\""
+    },
+    {
+      "type": "log",
+      "text": "[17:27:46.405] DEBUG (774): Task.runTask: task AgentActivity.userTurnCompleted started"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:46.406] DEBUG (774): EOU detection task completed"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.075] INFO (774): Creating speech handle"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_28365225-cb4\""
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:27:47.080Z",
+      "role": "user",
+      "text": "Actually, change the destination to Boston instead. Keep the same day."
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.076] DEBUG (774): Task.runTask: task AgentActivity.pipelineReply started"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.077] DEBUG (774): Task.runTask: task performLLMInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.079] DEBUG (774): Task.runTask: task AgentActivity.userTurnCompleted done"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.081] DEBUG (774): Task.runTask: task AgentActivity.pipelineReply.produceSegments started"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.082] DEBUG (774): Task.runTask: task performTTSInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.083] DEBUG (774): Task.runTask: task performToolExecutions started"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.084] DEBUG (774): Task.runTask: task performTextForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.084] DEBUG (774): Task.runTask: task performAudioForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.084] DEBUG (774): Task.runTask: task performToolExecutions done"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.085] DEBUG (774): Task.runTask: task performLLMInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.085] DEBUG (774): Task.runTask: task AgentActivity.pipelineReply.produceSegments done"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.085] DEBUG (774): Task.runTask: task performTextForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.086] DEBUG (774): Task.runTask: task inference-tts-input started"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.086] DEBUG (774): Task.runTask: task inference-tts-sentence started"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.086] DEBUG (774): Task.runTask: task inference-tts-ws-listener started"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.086] DEBUG (774): Task.runTask: task inference-tts-recv started"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.087] DEBUG (774): Task.runTask: task inference-tts-input done"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.088] DEBUG (774): Task.runTask: task inference-tts-sentence done"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:47.521] DEBUG (774): agent speech started"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:48.138] DEBUG (774): Task.runTask: task inference-tts-recv done"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:48.139] DEBUG (774): Task.runTask: task inference-tts-ws-listener done"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:48.143] DEBUG (774): Task.runTask: task performTTSInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:48.143] DEBUG (774): Task.runTask: task performAudioForwarding done"
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:27:53.369Z",
+      "role": "assistant",
+      "text": "I have updated your destination to Boston for this Monday. What would you like to do next?",
+      "metrics": {
+        "e2e_latency": 1.613999843597412,
+        "llm_ttft": 0.0016250339999999142,
+        "tts_ttfb": 0.4304355700000002
+      }
+    },
+    {
+      "type": "log",
+      "text": "[17:27:53.369] INFO (774): playout completed without interruption"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_28365225-cb4\""
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.message: \"I have updated your destination to Boston for this Monday. What would you like to do next?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:27:53.371] DEBUG (774): agent speech ended"
+    },
+    {
+      "type": "log",
+      "text": "[17:27:53.372] DEBUG (774): Task.runTask: task AgentActivity.pipelineReply done"
+    }
+  ],
+  "reply": "I have updated your destination to Boston for this Monday. What would you like to do next?",
+  "duration_ms": 14150
+}

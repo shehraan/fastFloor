@@ -1,0 +1,233 @@
+{
+  "text": "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?",
+  "heard": "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?",
+  "events": [
+    {
+      "type": "log",
+      "text": "[17:58:33.780] DEBUG (3850): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:34.153] DEBUG (3850): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What were the\""
+    },
+    {
+      "type": "log",
+      "text": "[17:58:38.516] DEBUG (3850): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"What were the corrected day and city for the separate trip, and what was the original destination for my first trip?\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:58:38.516] DEBUG (3850): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What were the corrected day and city for the separate trip, and what was the original destination fo...\""
+    },
+    {
+      "type": "log",
+      "text": "[17:58:38.556] DEBUG (3850): received user transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"What were the corrected day and city for the separate trip, and what was the original destination for my first trip?\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:58:38.557] WARN (3850): stt end of speech received while vad is still in a speech segment, flushing vad"
+    },
+    {
+      "type": "log",
+      "text": "    vadSpeechStartTime: 1793210313715.299"
+    },
+    {
+      "type": "log",
+      "text": "    flushed: true"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:38.558] DEBUG (3850): running EOU detection on stt END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:38.558] DEBUG (3850): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"What were the corrected day and city for the separate trip, and what was the original destination for my first trip?\""
+    },
+    {
+      "type": "log",
+      "text": "    turnDetectionMode: \"stt\""
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.057] DEBUG (3850): end of user turn"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What were the corrected day and city for the separate trip, and what was the original destination for my first trip?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.057] DEBUG (3850): Task.runTask: task AgentActivity.userTurnCompleted started"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.059] DEBUG (3850): EOU detection task completed"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.638] INFO (3850): Creating speech handle"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_e5566db0-fec\""
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:58:39.650Z",
+      "role": "user",
+      "text": "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.639] DEBUG (3850): Task.runTask: task AgentActivity.pipelineReply started"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.642] DEBUG (3850): Task.runTask: task performLLMInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.647] DEBUG (3850): Task.runTask: task AgentActivity.userTurnCompleted done"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.650] DEBUG (3850): Task.runTask: task AgentActivity.pipelineReply.produceSegments started"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.652] DEBUG (3850): Task.runTask: task performTTSInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.656] DEBUG (3850): Task.runTask: task performToolExecutions started"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.658] DEBUG (3850): Task.runTask: task performTextForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.659] DEBUG (3850): Task.runTask: task performAudioForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.660] DEBUG (3850): Task.runTask: task performToolExecutions done"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.661] DEBUG (3850): Task.runTask: task performLLMInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.662] DEBUG (3850): Task.runTask: task AgentActivity.pipelineReply.produceSegments done"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.663] DEBUG (3850): Task.runTask: task performTextForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.666] DEBUG (3850): Task.runTask: task inference-tts-input started"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.667] DEBUG (3850): Task.runTask: task inference-tts-sentence started"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.668] DEBUG (3850): Task.runTask: task inference-tts-ws-listener started"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.668] DEBUG (3850): Task.runTask: task inference-tts-recv started"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.678] DEBUG (3850): Task.runTask: task inference-tts-input done"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:39.678] DEBUG (3850): Task.runTask: task inference-tts-sentence done"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:40.087] DEBUG (3850): agent speech started"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:43.216] DEBUG (3850): Task.runTask: task inference-tts-recv done"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:43.217] DEBUG (3850): Task.runTask: task inference-tts-ws-listener done"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:43.225] DEBUG (3850): Task.runTask: task performAudioForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:43.226] DEBUG (3850): Task.runTask: task performTTSInference done"
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:58:51.484Z",
+      "role": "assistant",
+      "text": "For the separate trip, the corrected day is Tuesday and the city is Lisbon. Your original destination for the first trip was New York. Is there anything else you need?",
+      "metrics": {
+        "e2e_latency": 1.5280001163482666,
+        "llm_ttft": 0.0036677150000059555,
+        "tts_ttfb": 0.4120983989999871
+      }
+    },
+    {
+      "type": "log",
+      "text": "[17:58:51.484] INFO (3850): playout completed without interruption"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_e5566db0-fec\""
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.message: \"For the separate trip, the corrected day is Tuesday and the city is Lisbon. Your original destination for the first trip was New York. Is there anything else you need?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:58:51.486] DEBUG (3850): agent speech ended"
+    },
+    {
+      "type": "log",
+      "text": "[17:58:51.487] DEBUG (3850): Task.runTask: task AgentActivity.pipelineReply done"
+    }
+  ],
+  "reply": "For the separate trip, the corrected day is Tuesday and the city is Lisbon. Your original destination for the first trip was New York. Is there anything else you need?",
+  "duration_ms": 20338
+}

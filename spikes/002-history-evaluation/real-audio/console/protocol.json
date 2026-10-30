@@ -1,0 +1,19 @@
+{
+  "transport": "LiveKit CLI console audio; no room or acoustic measurement",
+  "order": [
+    "baseline",
+    "fastfloor",
+    "fastfloor",
+    "baseline"
+  ],
+  "utterances": [
+    "I want to travel to New York on Monday. Please remember that destination and day.",
+    "Actually, change the destination to Boston instead. Keep the same day.",
+    "What destination did I mention originally, before I changed it, and what is my current destination?",
+    "For a separate fictional trip, I am traveling with my sister, we prefer a quiet hotel near the station, we need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, corrected day, number of rooms, and hotel preference without making any booking.",
+    "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?"
+  ],
+  "callerAudio": "fresh CLI-generated speech per turn; not identical waveforms",
+  "endpointingChanges": false,
+  "failed": false
+}

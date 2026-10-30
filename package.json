@@ -11,6 +11,8 @@
     "format:check": "prettier --check \"**/*.{ts,js,json,md}\"",
     "test": "vitest --run",
     "test:watch": "vitest",
+    "eval:sdk": "vitest --run src/fastfloor/livekit-flux-session.test.ts -t \"exports matched\"",
+    "eval:report": "node scripts/summarize-traces.ts",
     "dev": "lk agent dev",
     "start": "node src/main.ts start"
   },
@@ -22,9 +24,11 @@
     "@eslint/js": "^9.39.5",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^24.13.5",
+    "@types/ws": "8.18.2",
     "eslint": "^9.39.5",
     "globals": "^16.5.0",
     "jiti": "^2.7.0",
+    "prettier": "3.9.10",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.70.0",
     "vitest": "^4.1.11"
@@ -32,7 +36,7 @@
   "dependencies": {
     "@livekit/agents": "^1.9.3",
     "@livekit/plugins-ai-coustics": "^0.3.2",
-    "@livekit/rtc-node": "^0.13.35",
+    "@livekit/rtc-node": "1.1.0",
     "dotenv": "^17.4.2",
     "zod": "^4.6.5"
   }

@@ -1,9 +1,19 @@
-import { Agent, dedent, inference } from '@livekit/agents';
+import { Agent, dedent, inference, llm } from '@livekit/agents';
+import type { FluxIntegrationSpike } from './fastfloor/livekit-flux-spike.ts';
+import { boardyInstructions, createFindPeopleTool } from './fastfloor/people.ts';
 
 // Build a custom voice AI assistant with the functional `Agent.create` API
-export function createAgent() {
+export function createAgent(
+  fluxSpike?: FluxIntegrationSpike,
+  options: {
+    boardy?: boolean;
+    model?: llm.LLM;
+    log?: (event: string, details: Record<string, unknown>) => void;
+  } = {},
+) {
   return Agent.create({
-    instructions: dedent`
+    instructions:
+      dedent`
         You are a friendly, reliable voice assistant that answers questions, explains topics, and completes tasks with available tools.
 
         # Output rules
@@ -35,11 +45,16 @@ export function createAgent() {
         - Stay within safe, lawful, and appropriate use; decline harmful or out-of-scope requests.
         - For medical, legal, or financial topics, provide general information only and suggest consulting a qualified professional.
         - Protect privacy and minimize sensitive data.
-      `,
+      ` + (options.boardy ? boardyInstructions : ''),
+    ...(options.boardy ? { tools: [createFindPeopleTool(options.log)] } : {}),
 
     // A Large Language Model (LLM) is your agent's brain, processing user input and generating a response
     // See all available models at https://docs.livekit.io/agents/models/llm/
-    llm: new inference.LLM({ model: 'google/gemma-4-31b-it' }),
+    llm: options.model ?? new inference.LLM({ model: 'google/gemma-4-31b-it' }),
+
+    // Optional Flux adapter: privately prepares fake or real output through the
+    // coordinator, then supplies it to the SDK's normal committed reply pipeline.
+    ...(fluxSpike?.hooks() ?? {}),
 
     // To use a realtime model instead of a voice pipeline, replace the LLM
     // with a realtime model and remove the stt, tts, turnHandling, and expressive

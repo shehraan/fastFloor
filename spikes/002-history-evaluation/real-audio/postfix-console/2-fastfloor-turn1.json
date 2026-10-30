@@ -1,0 +1,245 @@
+{
+  "text": "I want to travel to New York on Monday. Please remember that destination and day.",
+  "heard": "I wanna travel to New York on Monday. Please remember that destination and day.",
+  "events": [
+    {
+      "type": "log",
+      "text": "[17:49:05.004] DEBUG (3104): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:05.311] DEBUG (3104): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"I wanna\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:06.784] DEBUG (3104): VAD task: END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:07.022] DEBUG (3104): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:09.005] DEBUG (3104): VAD task: END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:09.707] DEBUG (3104): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"I wanna travel to New York on Monday. Please remember that destination and day.\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:09.707] DEBUG (3104): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"I wanna travel to New York on Monday. Please remember that destination and day.\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:09.973] DEBUG (3104): received user transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"I wanna travel to New York on Monday. Please remember that destination and day.\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:09.975] DEBUG (3104): running EOU detection on stt END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:09.976] DEBUG (3104): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"I wanna travel to New York on Monday. Please remember that destination and day.\""
+    },
+    {
+      "type": "log",
+      "text": "    turnDetectionMode: \"stt\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.476] DEBUG (3104): end of user turn"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"I wanna travel to New York on Monday. Please remember that destination and day.\""
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:49:10.509Z",
+      "role": "user",
+      "text": "I wanna travel to New York on Monday. Please remember that destination and day."
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.478] DEBUG (3104): Task.runTask: task AgentActivity.userTurnCompleted started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.482] DEBUG (3104): EOU detection task completed"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.485] INFO (3104): Creating speech handle"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_6f687222-3cb\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.486] DEBUG (3104): Task.runTask: task AgentActivity.pipelineReply started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.494] DEBUG (3104): Task.runTask: task performLLMInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.502] DEBUG (3104): Task.runTask: task AgentActivity.userTurnCompleted done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.509] DEBUG (3104): Task.runTask: task AgentActivity.pipelineReply.produceSegments started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.514] DEBUG (3104): Task.runTask: task performTTSInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.523] DEBUG (3104): Task.runTask: task performToolExecutions started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.534] DEBUG (3104): Task.runTask: task performTextForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.535] DEBUG (3104): Task.runTask: task performAudioForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.537] DEBUG (3104): Task.runTask: task performToolExecutions done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.538] DEBUG (3104): Task.runTask: task performLLMInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.538] DEBUG (3104): Task.runTask: task AgentActivity.pipelineReply.produceSegments done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.539] DEBUG (3104): Task.runTask: task performTextForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.550] DEBUG (3104): Task.runTask: task inference-tts-input started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.551] DEBUG (3104): Task.runTask: task inference-tts-sentence started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.552] DEBUG (3104): Task.runTask: task inference-tts-ws-listener started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.553] DEBUG (3104): Task.runTask: task inference-tts-recv started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.576] DEBUG (3104): Task.runTask: task inference-tts-input done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:10.577] DEBUG (3104): Task.runTask: task inference-tts-sentence done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:11.108] DEBUG (3104): aec warmup active, disabling interruptions"
+    },
+    {
+      "type": "log",
+      "text": "    warmupDurationMs: 3000"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:11.112] DEBUG (3104): agent speech started"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:12.445] DEBUG (3104): Task.runTask: task inference-tts-recv done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:12.447] DEBUG (3104): Task.runTask: task inference-tts-ws-listener done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:12.452] DEBUG (3104): Task.runTask: task performTTSInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:12.452] DEBUG (3104): Task.runTask: task performAudioForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:14.108] DEBUG (3104): aec warmup expired, re-enabling interruptions"
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:49:19.928Z",
+      "role": "assistant",
+      "text": "I have noted that you want to travel to New York this coming Monday. Would you like me to help you look for flights or hotels?",
+      "metrics": {
+        "e2e_latency": 1.130000114440918,
+        "llm_ttft": 0.005101285000002065,
+        "tts_ttfb": 0.5316764529999976
+      }
+    },
+    {
+      "type": "log",
+      "text": "[17:49:19.928] INFO (3104): playout completed without interruption"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_6f687222-3cb\""
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.message: \"I have noted that you want to travel to New York this coming Monday. Would you like me to help you look for flights or hotels?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:49:19.931] DEBUG (3104): agent speech ended"
+    },
+    {
+      "type": "log",
+      "text": "[17:49:19.932] DEBUG (3104): Task.runTask: task AgentActivity.pipelineReply done"
+    }
+  ],
+  "reply": "I have noted that you want to travel to New York this coming Monday. Would you like me to help you look for flights or hotels?",
+  "duration_ms": 18344
+}

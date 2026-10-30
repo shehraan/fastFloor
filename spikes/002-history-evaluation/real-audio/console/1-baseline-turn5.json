@@ -1,0 +1,261 @@
+{
+  "text": "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?",
+  "heard": "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?",
+  "events": [
+    {
+      "type": "log",
+      "text": "[17:21:59.536] DEBUG (370): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:00.072] DEBUG (370): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What were the\""
+    },
+    {
+      "type": "log",
+      "text": "[17:22:01.874] DEBUG (370): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"What were the corrected day and city for the separate trip?\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:22:01.874] DEBUG (370): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What were the corrected day and city for the separate trip?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:22:02.217] DEBUG (370): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What were the corrected day and city for the separate trip? And\""
+    },
+    {
+      "type": "log",
+      "text": "[17:22:04.257] DEBUG (370): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"What were the corrected day and city for the separate trip, and what was the original destination for my first trip?\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:22:04.258] DEBUG (370): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What were the corrected day and city for the separate trip, and what was the original destination fo...\""
+    },
+    {
+      "type": "log",
+      "text": "[17:22:04.260] DEBUG (370): received user transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"What were the corrected day and city for the separate trip, and what was the original destination for my first trip?\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:22:04.262] WARN (370): stt end of speech received while vad is still in a speech segment, flushing vad"
+    },
+    {
+      "type": "log",
+      "text": "    vadSpeechStartTime: 1793208119471.503"
+    },
+    {
+      "type": "log",
+      "text": "    flushed: true"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:04.263] DEBUG (370): running EOU detection on stt END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:04.263] DEBUG (370): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"What were the corrected day and city for the separate trip, and what was the original destination for my first trip?\""
+    },
+    {
+      "type": "log",
+      "text": "    turnDetectionMode: \"stt\""
+    },
+    {
+      "type": "log",
+      "text": "[17:22:04.761] DEBUG (370): end of user turn"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What were the corrected day and city for the separate trip, and what was the original destination for my first trip?\""
+    },
+    {
+      "type": "log",
+      "text": "[17:22:04.762] DEBUG (370): Task.runTask: task AgentActivity.userTurnCompleted started"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:04.765] DEBUG (370): EOU detection task completed"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.264] INFO (370): Creating speech handle"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_988e8d47-bbb\""
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:22:05.271Z",
+      "role": "user",
+      "text": "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.265] DEBUG (370): Task.runTask: task AgentActivity.pipelineReply started"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.266] DEBUG (370): Task.runTask: task performLLMInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.270] DEBUG (370): Task.runTask: task AgentActivity.userTurnCompleted done"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.271] DEBUG (370): Task.runTask: task AgentActivity.pipelineReply.produceSegments started"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.273] DEBUG (370): Task.runTask: task performTTSInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.275] DEBUG (370): Task.runTask: task performToolExecutions started"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.277] DEBUG (370): Task.runTask: task performTextForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.278] DEBUG (370): Task.runTask: task performAudioForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.279] DEBUG (370): Task.runTask: task performToolExecutions done"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.279] DEBUG (370): Task.runTask: task performLLMInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.279] DEBUG (370): Task.runTask: task AgentActivity.pipelineReply.produceSegments done"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.280] DEBUG (370): Task.runTask: task performTextForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.282] DEBUG (370): Task.runTask: task inference-tts-input started"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.282] DEBUG (370): Task.runTask: task inference-tts-sentence started"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.283] DEBUG (370): Task.runTask: task inference-tts-ws-listener started"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.283] DEBUG (370): Task.runTask: task inference-tts-recv started"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.285] DEBUG (370): Task.runTask: task inference-tts-input done"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:05.286] DEBUG (370): Task.runTask: task inference-tts-sentence done"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:07.076] DEBUG (370): agent speech started"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:10.376] DEBUG (370): Task.runTask: task inference-tts-recv done"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:10.377] DEBUG (370): Task.runTask: task inference-tts-ws-listener done"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:10.381] DEBUG (370): Task.runTask: task performTTSInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:10.382] DEBUG (370): Task.runTask: task performAudioForwarding done"
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:22:15.398Z",
+      "role": "assistant",
+      "text": "For your separate trip, the city is Lisbon and the corrected day is Tuesday. The original destination for your first trip was New York.",
+      "metrics": {
+        "e2e_latency": 2.812999963760376,
+        "llm_ttft": 0.0024167029999944134,
+        "tts_ttfb": 1.1945124790000108
+      }
+    },
+    {
+      "type": "log",
+      "text": "[17:22:15.398] INFO (370): playout completed without interruption"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_988e8d47-bbb\""
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.message: \"For your separate trip, the city is Lisbon and the corrected day is Tuesday. The original destination for your first trip was New York.\""
+    },
+    {
+      "type": "log",
+      "text": "[17:22:15.401] DEBUG (370): agent speech ended"
+    },
+    {
+      "type": "log",
+      "text": "[17:22:15.402] DEBUG (370): Task.runTask: task AgentActivity.pipelineReply done"
+    }
+  ],
+  "reply": "For your separate trip, the city is Lisbon and the corrected day is Tuesday. The original destination for your first trip was New York.",
+  "duration_ms": 18790
+}

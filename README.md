@@ -1,161 +1,229 @@
-<a href="https://livekit.io/">
-  <img src="./.github/assets/livekit-mark.png" alt="LiveKit logo" width="100" height="100">
-</a>
+# FastFloor
 
-# LiveKit Agents starter for Node.js
+Start thinking before the caller finishes. Speak only after commitment.
 
-A starter project for building voice AI apps with [LiveKit Agents for Node.js](https://github.com/livekit/agents-js) and [LiveKit Cloud](https://cloud.livekit.io/).
+FastFloor is a speculative turn-taking runtime integrated with LiveKit Agents for
+Node.js. Deepgram Flux preflight transcripts can start a private Gemma response;
+a custom TurnCoordinator decides whether that work is still valid and authorized
+for LiveKit's normal Fish Audio output pipeline. The hard part is not starting
+early—it is cancelling stale work without speaking it or losing accepted history.
 
-The starter includes:
+This is a feature-complete engineering demo, not a production-ready service.
+Real Flux → Gemma → Fish audio works. Manual microphone checks covered multi-turn
+conversation, corrections, interruptions, and the fictional networking workflow.
+Caller-perceived audible latency has not been measured.
 
-- A simple [voice AI assistant](https://docs.livekit.io/agents/start/voice-ai/) to extend and customize.
-- A voice pipeline built on [LiveKit Inference](https://docs.livekit.io/agents/models/inference/), which gives you access to [models](https://docs.livekit.io/agents/models/) from top labs with no extra configuration:
-  - The default LLM is Gemma 4 31B, an open-weight model [hosted by LiveKit](https://docs.livekit.io/agents/models/llm/livekit/) and tuned for voice AI.
-  - The default TTS is [Fish Audio S2.1 Pro](https://docs.livekit.io/agents/models/tts/fishaudio/), an expressive and cost-effective voice.
-  - More than 50 other models are available from OpenAI, Cartesia, Deepgram, and other providers.
-  - [Realtime models](https://docs.livekit.io/agents/models/realtime/) such as OpenAI GPT-Live, OpenAI GPT Realtime, xAI Grok Voice, and Google Gemini Live, also with no provider API key.
-  - Many other models are available through the [plugin ecosystem](https://docs.livekit.io/agents/models/#plugins).
-- [Expressive mode](https://docs.livekit.io/agents/models/tts/expressive/), on by default, so your agent's voice carries emotion and pacing that fit the conversation.
-- [LiveKit Turn Detector](https://docs.livekit.io/agents/logic/turns/turn-detector/), which knows when the user has finished speaking, in 14 languages.
-- [Adaptive interruption handling](https://docs.livekit.io/agents/logic/turns/adaptive-interruption-handling/), which tells a real interruption from an "uh-huh" or background noise, so your agent doesn't stop talking when it shouldn't.
-- [Background voice cancellation](https://docs.livekit.io/transport/media/noise-cancellation/).
-- Session transcripts, traces, and recordings from LiveKit [Agent Observability](https://docs.livekit.io/testing/observability/).
-- [Simulations](https://docs.livekit.io/testing/simulations/) that test full conversations with your agent, run in CI on every merge to `main`.
-- A `Dockerfile` for [deploying to LiveKit Cloud](https://docs.livekit.io/deploy/agents/).
+## Architecture and ownership
 
-The starter works with any [custom web or mobile frontend](https://docs.livekit.io/frontends/) or with [telephony](https://docs.livekit.io/telephony/).
-
-## Using coding agents
-
-This project works with coding agents like [Claude Code](https://claude.com/product/claude-code), [Cursor](https://www.cursor.com/), and [Codex](https://openai.com/codex/).
-
-LiveKit offers both a CLI and an [MCP server](https://docs.livekit.io/reference/developer-tools/docs-mcp/) for browsing and searching its documentation. Search returns short excerpts, so fetch the full page to read the details:
-
-```console
-lk docs search "testing my agent"
-lk docs get-page /testing/unit-tests
+```mermaid
+flowchart TD
+    A[Caller audio] --> B[LiveKit STT: Deepgram Flux]
+    B --> C[FastFloor transcript observer]
+    C -->|Eligible preflight + history snapshot| D[Private text-only Gemma preparation]
+    D --> E[TurnCoordinator: generation ID + AbortController]
+    C -->|Changed text / resumed speech| X[Invalidate generation; close model stream]
+    X --> E
+    B --> F[LiveKit endpointing: onUserTurnCompleted]
+    F -->|Validated committed text + context| E
+    E -->|Current generation + prepared + committed; release once| G[Custom llmNode: one-shot text transport]
+    G --> H[LiveKit Fish TTS / speech handle / output / history]
+    X -->|Interrupt owned speech handles| H
+    F -->|Boardy mode only: speculation disabled| T[Ordinary SDK tool loop: find_people]
+    T --> H
 ```
 
-The project also includes an [`AGENTS.md`](AGENTS.md) file, so your coding agent follows LiveKit's best practices for workflows, handoffs, and testing, and tries its changes with the [agent debugger](https://docs.livekit.io/testing/debugger/).
+- Speculative execution: preparation buffers a complete response privately, with
+  no tools and no TTS. A preflight or final transcript alone never authorizes speech.
+- Commit gating: `onUserTurnCompleted` validates the complete SDK message and
+  conversation context. A matching candidate is reused; changed history or a
+  validated multi-final turn triggers fresh preparation from the complete committed
+  input. Ambiguous provenance fails closed. The output node checks message ID/text
+  and claims released text once. There is no parallel `say()`/`generateReply()` path.
+- Cancellation: the coordinator's generation ID rejects late results even if a
+  producer ignores abort. Its existing AbortSignal closes the public model stream;
+  invalidation also interrupts tracked SDK speech handles. Stream observers forward
+  cancellation upstream even during a stalled read. Transmitted audio cannot be
+  retracted.
+- History correctness: accepted input and permission to reply are separate.
+  Agents 1.9.4 can skip input persistence when a commit hook raises `StopResponse`.
+  On these stopped paths, the adapter retains only provenance-validated committed
+  input by SDK ID in agent/session history—not hypotheses or cancelled replies.
+  Regressions inspect both histories and the next actual model request.
+- Library versus custom: LiveKit owns STT transport, endpointing, reply scheduling,
+  tool execution, TTS, output, interruption machinery, and normal history. FastFloor
+  supplies candidate validity, commitment authorization, one-shot transport, targeted
+  stopped-input recovery, and experimental timing instrumentation.
 
-For more guidance at each stage of the work, from building and debugging to testing and deploying, install LiveKit's [agent skills](https://docs.livekit.io/intro/coding-agents/#agent-skills). The CLI installs them for the coding agents on your machine and adds the Docs MCP server to their config. `lk agent init` offers to do this when it creates your project, or you can run it yourself:
+Core code: [coordinator](src/fastfloor/turn-coordinator.ts),
+[adapter](src/fastfloor/livekit-flux-spike.ts), [mode selection](src/main.ts).
+[ARCHITECTURE.md](ARCHITECTURE.md) records decisions and the historical experiments.
 
-```console
-lk skills install
-```
+## Measured results—not caller-audible latency
 
-Run `lk skills update` to get the latest skills, and commit `skills-lock.json` along with them. See the [coding agents guide](https://docs.livekit.io/intro/coding-agents/) for more details.
+Matched Baseline vs. FastFloor experiment, October 28, 2026. Metric: SDK user-turn
+commitment → first associated SDK console-output playback event. Both arms run the
+same implementation: Baseline starts preparation at commitment; FastFloor can
+start at preflight. This compares non-speculative versus speculative execution,
+not two versions of the codebase.
 
-## Dev setup
+| Metric                            |     Baseline |  FastFloor |
+| --------------------------------- | -----------: | ---------: |
+| Median SDK playback latency (p50) | 1,016.374 ms | 474.035 ms |
+| p95 SDK playback latency          | 1,778.332 ms | 997.356 ms |
+| Speculative candidates reused     |            0 |          9 |
+| Rollbacks                         |            0 |          2 |
+| Pre-commit SDK playback events    |            0 |          0 |
 
-Install the [LiveKit CLI](https://docs.livekit.io/intro/basics/cli/), version 2.18.8 or later:
+FastFloor achieved a **53.4% lower median commitment-to-first-SDK-playback latency**
+in this exploratory comparison.
 
-- **macOS:** `brew install livekit-cli`
-- **Linux:** `curl -sSL https://get.livekit.io/cli | bash`
-- **Windows:** `winget install LiveKit.LiveKitCLI`
+Four fresh sessions in Baseline/FastFloor/FastFloor/Baseline order, five matched
+requested texts per session, with 10 requested turns, commitments, and playback
+samples per arm. Real hosted Deepgram Flux, Gemma, and Fish Audio ran through
+LiveKit CLI console output. Both arms used Flux `deepgram/flux-general-en`
+(`eager_eot_threshold: 0.5`), Gemma `google/gemma-4-31b-it`, Fish
+`fishaudio/s2.1-pro`, identical prompt/voice, unchanged STT endpointing defaults,
+disabled SDK preemption, and full-response buffering. Only custom preflight
+preparation differed. This control is not the default streaming AssemblyAI agent.
 
-Check your version with `lk --version`. To update an existing install, see [Update the CLI](https://docs.livekit.io/reference/developer-tools/livekit-cli/#updates).
+Reuse counts speculative candidates actually claimed by the output node; rollbacks
+count candidates invalidated before claim. Both arms had zero unattributed SDK
+playback events. None of these counts establishes acoustic leakage safety or
+semantically correct endpointing.
 
-Then create a project from this template. The CLI clones the template and configures your environment:
+Limitations: freshly generated caller audio, not identical waveform replay; only
+ten samples per arm; nearest-rank p95 is the maximum. Cold starts, provider/network
+variation, response length, synchronous trace I/O, and a constrained one-CPU host
+confound interpretation. The transport was CLI console audio, not a measured
+remote listener. Caller-side audible onset remains null. No verified production
+speedup or comparison against an optimized streaming baseline is claimed.
 
-```console
-lk cloud auth
-lk agent init my-agent --template agent-starter-node
-```
+Evidence: [methodology](spikes/002-history-evaluation/REAL_AUDIO_VERIFICATION.md),
+[per-turn comparison](spikes/002-history-evaluation/real-audio/measured-comparison.json),
+[benchmark report](spikes/002-history-evaluation/real-audio/postfix-console-report.json).
+Only the final measurement set supplies these results; archived diagnostics are
+separate and excluded from the headline comparison.
 
-<details>
-<summary>Set up the project manually</summary>
+## Boardy-inspired networking workload
 
-Clone the repository and install dependencies with [pnpm](https://pnpm.io/):
+`FASTFLOOR_BOARDY=1` enables a separate committed-only reference workload, not the
+real Boardy service. [The local dataset](src/fastfloor/people.ts) contains 18 frozen,
+fictional profiles with city, role, topic, offers, and seeking fields—no real
+contacts. The model interprets preferences and corrections; the read-only
+`find_people` tool validates/intersects city/role/topic filters, returns at most
+five profiles, and explicitly reports no matches.
 
-```console
-git clone https://github.com/livekit-examples/agent-starter-node.git
-cd agent-starter-node
-pnpm install
-```
+Verified interaction: a request for a robotics founder in Boston called
+`find_people`, retrieved fictional Maya Chen (warehouse automation expertise;
+seeking pilot customers), and naturally offered help drafting an introduction.
+This live interaction is a developer-reported manual result. Separately,
+[saved hosted-model evidence](spikes/002-history-evaluation/boardy-hosted-results.json)
+shows New York → Boston correction, Leo Navarro → Maya Chen retrieval, and tool
+history; its STT/TTS transports are fixtures, not microphone evidence.
 
-Sign up for [LiveKit Cloud](https://cloud.livekit.io/), then copy `.env.example` to `.env.local` and fill it in. To have the CLI write your project's URL and API keys into the file instead, run:
+All speculative preparation is disabled in this mode, even if an evaluation arm
+is set. The SDK executes tools only after validated audio commitment. There are no
+contact, send-introduction, scheduling, payment, or mutation capabilities. Offering
+to draft text is not sending an introduction. Tool-enabled speculation is disabled.
 
-```console
+## Setup and run
+
+Use Node.js 24+ (the project uses native TypeScript stripping), pnpm 10.15.0 as in
+CI, and the LiveKit CLI (audio benchmark captured with 2.19.2). A LiveKit Cloud
+project with inference access is required for hosted audio/model runs; they can
+incur charges. Install the CLI following the [official instructions](https://docs.livekit.io/intro/basics/cli/).
+
+```sh
+git clone --branch feat/fastfloor-livekit-integration-spike https://github.com/shehraan/fastFloor.git
+cd fastFloor
+pnpm install --frozen-lockfile
 lk cloud auth
 lk app env --write --destination .env.local
 ```
 
-</details>
+Alternatively copy `.env.example` to `.env.local` and configure it locally. Never
+commit credentials. The agent loads `.env.local`; CLI audio-debugger subprocesses
+also need project credentials (the benchmark runner uses `node --env-file`).
+Start one mode at a time from a shell with other `FASTFLOOR_*` flags unset:
 
-## Run the agent
+```sh
+# Original LiveKit default: AssemblyAI / SDK turn detector / streaming model output
+pnpm dev
 
-The `lk agent console`, `lk agent dev`, and `lk agent debugger` commands run your agent on your own machine. To talk to it in your terminal:
+# Matched baseline: Flux, preparation starts only after commitment
+FASTFLOOR_EVAL_ARM=baseline pnpm dev --no-reload
 
-```console
-lk agent console
+# FastFloor: same matched pipeline, eligible preflight starts preparation
+FASTFLOOR_EVAL_ARM=fastfloor pnpm dev --no-reload
+
+# Fictional networking: Flux + ordinary committed SDK tool loop, no speculation
+FASTFLOOR_BOARDY=1 pnpm dev --no-reload
 ```
 
-To connect it to LiveKit Cloud so a frontend, a phone call, or the [Agent Console](https://docs.livekit.io/testing/agent-console/) can reach it:
+Connect with microphone/headphones through [LiveKit Agent Console](https://docs.livekit.io/testing/agent-console/)
+to agent `fastfloor` in the local dev deployment. Flux modes intentionally have no
+greeting: speak first. `FASTFLOOR_REAL_LLM=1` is the existing real speculative mode;
+`FASTFLOOR_FLUX_SPIKE=1` alone retains the original fake-response experiment.
 
-```console
-lk agent dev
+## Reproduce tests and evidence
+
+```sh
+pnpm test
+pnpm typecheck
+pnpm lint
+pnpm format:check
+pnpm exec tsc --noEmit --skipLibCheck false
+
+# Test files/runners are outside the project's ordinary tsconfig check
+pnpm exec tsc --noEmit --target ES2022 --module ES2022 --moduleResolution bundler --allowImportingTsExtensions --erasableSyntaxOnly --strict --exactOptionalPropertyTypes --noUncheckedIndexedAccess --noImplicitOverride --skipLibCheck --esModuleInterop src/fastfloor/*.test.ts scripts/summarize-traces.ts spikes/002-history-evaluation/run-audio-debugger.ts
+
+# Offline matched mechanics; fixtures replace provider transport and output device
+FASTFLOOR_EVAL_OUTPUT=/tmp/ff-scripted.json pnpm eval:sdk
+node scripts/summarize-traces.ts /tmp/ff-scripted.json > /tmp/ff-scripted-report.json
+
+# Recompute saved real-provider audio reports; no inference calls
+node scripts/summarize-traces.ts spikes/002-history-evaluation/real-audio/postfix-console/*.jsonl > /tmp/ff-saved-report.json
 ```
 
-To let a coding agent or a script test it one text turn at a time, use the [agent debugger](https://docs.livekit.io/testing/debugger/). Each turn prints the agent's reply along with the tool calls and handoffs behind it:
+The suite has 65 executable tests: coordinator invariants, actual SDK session/hook
+integration with controlled transports, cancellation/failure/history regressions,
+reporting, and fictional search validation. Deterministic tests are not acoustic
+measurements. [CI](.github/workflows/tests.yml) runs the offline suite, typecheck,
+lint, and formatting; [semantic simulations](scenarios.yaml) run on merges to
+`main`/manual dispatch with configured LiveKit repository secrets. Text simulations
+bypass the audio commitment path and do not validate its gating/cancellation.
 
-```console
-lk agent debugger start
-lk agent debugger say "Hi, what can you do?"
-lk agent debugger stop
+For fresh hosted audio, execute sessions 1–4 in separate invocations, using a new
+output directory outside the repository (billable):
+
+```sh
+node --env-file=.env.local spikes/002-history-evaluation/run-audio-debugger.ts /tmp/ff-new-audio 1
+# Repeat with final argument 2, then 3, then 4; do not overwrite an earlier capture.
+node scripts/summarize-traces.ts /tmp/ff-new-audio/*.jsonl > /tmp/ff-new-audio/report.json
 ```
 
-In production, run the agent directly:
+The runner refuses existing session traces/occupied port 8787 and checks shutdown.
+[The evidence guide](spikes/002-history-evaluation/README.md) includes hosted-model
+and networking harness commands; the [audio report](spikes/002-history-evaluation/REAL_AUDIO_VERIFICATION.md)
+includes acoustic measurement procedures and failed room-simulation evidence.
 
-```console
-node src/main.ts start
-```
+## Tradeoffs and remaining limits
 
-## Frontends and telephony
+- Full-response buffering simplifies private, fail-closed preparation but delays
+  non-reused replies and may waste generation. Measured first-delta → completion
+  p50: 127 ms baseline / 140 ms FastFloor; not a streaming counterfactual.
+- Exact transcript/history matching sacrifices reuse for correctness. The normalized
+  STT API lacks a typed raw Flux resumed-turn/turn-ID contract; ambiguous event
+  ordering cannot be repaired by guessing. No endpointing changes were added.
+- Manual microphone testing succeeded overall, including corrections/interruptions.
+  One isolated instance of missed speech after an agent response remains an
+  unconfirmed intermittent observation—not a diagnosed bug or measured failure rate.
+- Caller-side acoustic onset, residual interrupted audio, and production reliability
+  remain unmeasured. Earlier room simulations captured zero conversational turns;
+  their cause remains unresolved. Manual success does not supply missing metrics.
+- Opt-in logs/traces contain transcripts and full model context, use synchronous I/O,
+  and have no production redaction/retention policy. Use fictional inputs only; keep
+  new captures outside Git. Trace-write failures are not isolated from the experiment.
 
-Pair the agent with a prebuilt frontend starter, or add telephony:
-
-| Platform         | Link                                                                                                                | Description                                        |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| **Web**          | [`livekit-examples/agent-starter-react`](https://github.com/livekit-examples/agent-starter-react)                   | Web voice AI assistant with React & Next.js        |
-| **iOS/macOS**    | [`livekit-examples/agent-starter-swift`](https://github.com/livekit-examples/agent-starter-swift)                   | Native iOS, macOS, and visionOS voice AI assistant |
-| **Flutter**      | [`livekit-examples/agent-starter-flutter`](https://github.com/livekit-examples/agent-starter-flutter)               | Cross-platform voice AI assistant app              |
-| **React Native** | [`livekit-examples/voice-assistant-react-native`](https://github.com/livekit-examples/voice-assistant-react-native) | Native mobile app with React Native & Expo         |
-| **Android**      | [`livekit-examples/agent-starter-android`](https://github.com/livekit-examples/agent-starter-android)               | Native Android app with Kotlin & Jetpack Compose   |
-| **Web Embed**    | [`livekit-examples/agent-starter-embed`](https://github.com/livekit-examples/agent-starter-embed)                   | Voice AI widget for any website                    |
-| **Telephony**    | [Documentation](https://docs.livekit.io/telephony/)                                                                 | Add inbound or outbound calling to your agent      |
-
-For more options, see the [frontend guide](https://docs.livekit.io/frontends/).
-
-## Testing and debugging
-
-Simulations run full multi-turn conversations between a simulated user and your agent on LiveKit Cloud, then judge each transcript. The scenarios live in [`scenarios.yaml`](scenarios.yaml). Run them locally with the CLI:
-
-```console
-lk agent simulate text --scenarios scenarios.yaml
-```
-
-The `Simulations` workflow in [`.github/workflows/simulations.yml`](.github/workflows/simulations.yml) runs the same file on every merge to `main`, and on demand from the Actions tab. It doesn't run on every pull request push because each run uses real inference. See the [simulations guide](https://docs.livekit.io/testing/simulations/) for how to write scenarios and read results.
-
-To check a change turn by turn without a live session, use the [agent debugger](https://docs.livekit.io/testing/debugger/) shown in [Run the agent](#run-the-agent).
-
-To debug a running agent, open it in the [Agent Console](https://docs.livekit.io/testing/agent-console/). It shows events, tool calls, and model timing as you talk to the agent. To stream logs from a deployed agent, run `lk agent logs`.
-
-## Using this template for your own project
-
-After you create your own project from this template:
-
-- **Commit `pnpm-lock.yaml`.** The template doesn't track it, but your project should, for reproducible builds. If you deploy to LiveKit Cloud, commit `livekit.toml` too.
-- **Add repository secrets.** Add `LIVEKIT_URL`, `LIVEKIT_API_KEY`, and `LIVEKIT_API_SECRET` as [repository secrets](https://docs.github.com/en/actions/how-tos/writing-workflows/choosing-what-your-workflow-does/using-secrets-in-github-actions) so the simulations can run in CI.
-
-## Deploying to production
-
-To deploy the agent to LiveKit Cloud or another environment with the included `Dockerfile`, see the [deployment guide](https://docs.livekit.io/deploy/agents/).
-
-## Self-hosted LiveKit
-
-You can self-host LiveKit instead of using LiveKit Cloud. See the [self-hosting guide](https://docs.livekit.io/transport/self-hosting/local/). If you self-host, use [model plugins](https://docs.livekit.io/agents/models/#plugins) instead of LiveKit Inference, and remove the [LiveKit Cloud noise cancellation](https://docs.livekit.io/transport/media/noise-cancellation/) plugin.
-
-## License
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+See [the 60–90-second demo checklist and sharing steps](DEMO.md). This packaging
+phase adds no runtime features, providers, speculative tools, or architecture changes.

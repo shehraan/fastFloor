@@ -1,2 +1,14 @@
 .agents/
 .claude/
+.pnpm-store/
+
+# Preserve independently edited local tutoring instructions.
+AGENTS.md
+# Captured measurement artifacts are evidence, not formatter input.
+spikes/002-history-evaluation/real-audio/
+# Untracked learning exercises are not part of the shipped implementation.
+src/fastfloor/abort-experiment.ts
+src/fastfloor/combined-experiment.ts
+src/fastfloor/coordinator-demo.ts
+src/fastfloor/experiment.ts
+src/fastfloor/state-experiment.ts

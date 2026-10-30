@@ -1,0 +1,249 @@
+{
+  "text": "What destination did I mention originally, before I changed it, and what is my current destination?",
+  "heard": "What destination did I mention originally before I changed it, and what is my current destination",
+  "events": [
+    {
+      "type": "log",
+      "text": "[17:47:14.632] DEBUG (2987): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:15.068] DEBUG (2987): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What does\""
+    },
+    {
+      "type": "log",
+      "text": "[17:47:18.729] DEBUG (2987): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"What destination did I mention originally before I changed it, and what is my current destination\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:47:18.758] DEBUG (2987): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What destination did I mention originally before I changed it, and what is my current destination\""
+    },
+    {
+      "type": "log",
+      "text": "[17:47:18.893] WARN (2987): VAD inference is slower than realtime"
+    },
+    {
+      "type": "log",
+      "text": "    extraInferenceTimeMs: 309.27754500000447"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:19.007] DEBUG (2987): received user transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"What destination did I mention originally before I changed it, and what is my current destination\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:47:19.029] WARN (2987): stt end of speech received while vad is still in a speech segment, flushing vad"
+    },
+    {
+      "type": "log",
+      "text": "    vadSpeechStartTime: 1793209634567.333"
+    },
+    {
+      "type": "log",
+      "text": "    flushed: true"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:19.030] DEBUG (2987): running EOU detection on stt END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:19.030] DEBUG (2987): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"What destination did I mention originally before I changed it, and what is my current destination\""
+    },
+    {
+      "type": "log",
+      "text": "    turnDetectionMode: \"stt\""
+    },
+    {
+      "type": "log",
+      "text": "[17:47:19.598] DEBUG (2987): end of user turn"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"What destination did I mention originally before I changed it, and what is my current destination\""
+    },
+    {
+      "type": "log",
+      "text": "[17:47:19.599] DEBUG (2987): Task.runTask: task AgentActivity.userTurnCompleted started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:19.620] DEBUG (2987): EOU detection task completed"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:19.635] WARN (2987): VAD inference is slower than realtime"
+    },
+    {
+      "type": "log",
+      "text": "    extraInferenceTimeMs: 179.70650500000193"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.299] INFO (2987): Creating speech handle"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_f618df6e-319\""
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:47:20.306Z",
+      "role": "user",
+      "text": "What destination did I mention originally before I changed it, and what is my current destination"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.299] DEBUG (2987): Task.runTask: task AgentActivity.pipelineReply started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.300] DEBUG (2987): Task.runTask: task performLLMInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.305] DEBUG (2987): Task.runTask: task AgentActivity.userTurnCompleted done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.307] DEBUG (2987): Task.runTask: task AgentActivity.pipelineReply.produceSegments started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.310] DEBUG (2987): Task.runTask: task performTTSInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.315] DEBUG (2987): Task.runTask: task performToolExecutions started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.318] DEBUG (2987): Task.runTask: task performTextForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.319] DEBUG (2987): Task.runTask: task performAudioForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.320] DEBUG (2987): Task.runTask: task performToolExecutions done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.320] DEBUG (2987): Task.runTask: task performLLMInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.320] DEBUG (2987): Task.runTask: task AgentActivity.pipelineReply.produceSegments done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.321] DEBUG (2987): Task.runTask: task performTextForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.324] DEBUG (2987): Task.runTask: task inference-tts-input started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.324] DEBUG (2987): Task.runTask: task inference-tts-sentence started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.325] DEBUG (2987): Task.runTask: task inference-tts-ws-listener started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.325] DEBUG (2987): Task.runTask: task inference-tts-recv started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.328] DEBUG (2987): Task.runTask: task inference-tts-input done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.328] DEBUG (2987): Task.runTask: task inference-tts-sentence done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:20.761] DEBUG (2987): agent speech started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:21.398] DEBUG (2987): Task.runTask: task inference-tts-recv done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:21.398] DEBUG (2987): Task.runTask: task inference-tts-ws-listener done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:21.431] DEBUG (2987): Task.runTask: task performAudioForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:21.431] DEBUG (2987): Task.runTask: task performTTSInference done"
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:47:24.984Z",
+      "role": "assistant",
+      "text": "You originally mentioned New York, and your current destination is Boston.",
+      "metrics": {
+        "e2e_latency": 1.75,
+        "llm_ttft": 0.003588331999999639,
+        "tts_ttfb": 0.4292578020000022
+      }
+    },
+    {
+      "type": "log",
+      "text": "[17:47:24.984] INFO (2987): playout completed without interruption"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_f618df6e-319\""
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.message: \"You originally mentioned New York, and your current destination is Boston.\""
+    },
+    {
+      "type": "log",
+      "text": "[17:47:24.985] DEBUG (2987): agent speech ended"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:24.986] DEBUG (2987): Task.runTask: task AgentActivity.pipelineReply done"
+    }
+  ],
+  "reply": "You originally mentioned New York, and your current destination is Boston.",
+  "duration_ms": 14509
+}

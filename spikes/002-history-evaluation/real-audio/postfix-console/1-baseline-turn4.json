@@ -1,0 +1,233 @@
+{
+  "text": "For a separate fictional trip, I am traveling with my sister, we prefer a quiet hotel near the station, we need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, corrected day, number of rooms, and hotel preference without making any booking.",
+  "heard": "For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city. Corrected day, number of rooms, and hotel preference without making any booking.",
+  "events": [
+    {
+      "type": "log",
+      "text": "[17:47:29.536] DEBUG (2987): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:30.204] DEBUG (2987): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"For a sub\""
+    },
+    {
+      "type": "log",
+      "text": "[17:47:37.713] DEBUG (2987): VAD task: END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:37.937] DEBUG (2987): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:42.873] DEBUG (2987): VAD task: END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:44.170] DEBUG (2987): received user preflight transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city. Corrected day, number of rooms, and hotel preference without making any booking.\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:47:44.171] DEBUG (2987): triggering preemptive generation (PREFLIGHT_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the stati...\""
+    },
+    {
+      "type": "log",
+      "text": "[17:47:44.477] DEBUG (2987): received user transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city. Corrected day, number of rooms, and hotel preference without making any booking.\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "[17:47:44.478] DEBUG (2987): running EOU detection on stt END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:44.479] DEBUG (2987): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city. Corrected day, number of rooms, and hotel preference without making any booking.\""
+    },
+    {
+      "type": "log",
+      "text": "    turnDetectionMode: \"stt\""
+    },
+    {
+      "type": "log",
+      "text": "[17:47:44.978] DEBUG (2987): end of user turn"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city. Corrected day, number of rooms, and hotel preference without making any booking.\""
+    },
+    {
+      "type": "log",
+      "text": "[17:47:44.979] DEBUG (2987): Task.runTask: task AgentActivity.userTurnCompleted started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:44.981] DEBUG (2987): EOU detection task completed"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.552] INFO (2987): Creating speech handle"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_3caf004b-bd5\""
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:47:45.558Z",
+      "role": "user",
+      "text": "For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city. Corrected day, number of rooms, and hotel preference without making any booking."
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.552] DEBUG (2987): Task.runTask: task AgentActivity.pipelineReply started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.553] DEBUG (2987): Task.runTask: task performLLMInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.557] DEBUG (2987): Task.runTask: task AgentActivity.userTurnCompleted done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.558] DEBUG (2987): Task.runTask: task AgentActivity.pipelineReply.produceSegments started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.561] DEBUG (2987): Task.runTask: task performTTSInference started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.563] DEBUG (2987): Task.runTask: task performToolExecutions started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.564] DEBUG (2987): Task.runTask: task performTextForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.564] DEBUG (2987): Task.runTask: task performAudioForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.565] DEBUG (2987): Task.runTask: task performToolExecutions done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.565] DEBUG (2987): Task.runTask: task performLLMInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.565] DEBUG (2987): Task.runTask: task AgentActivity.pipelineReply.produceSegments done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.565] DEBUG (2987): Task.runTask: task performTextForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.567] DEBUG (2987): Task.runTask: task inference-tts-input started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.568] DEBUG (2987): Task.runTask: task inference-tts-sentence started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.568] DEBUG (2987): Task.runTask: task inference-tts-ws-listener started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.569] DEBUG (2987): Task.runTask: task inference-tts-recv started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.581] DEBUG (2987): Task.runTask: task inference-tts-input done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:45.584] DEBUG (2987): Task.runTask: task inference-tts-sentence done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:46.058] DEBUG (2987): agent speech started"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:47.271] DEBUG (2987): Task.runTask: task inference-tts-recv done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:47.273] DEBUG (2987): Task.runTask: task inference-tts-ws-listener done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:47.280] DEBUG (2987): Task.runTask: task performTTSInference done"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:47.281] DEBUG (2987): Task.runTask: task performAudioForwarding done"
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:47:52.953Z",
+      "role": "assistant",
+      "text": "The city is Lisbon. You are arriving on Tuesday, you need two rooms, and you prefer a quiet hotel near the station.",
+      "metrics": {
+        "e2e_latency": 1.5759999752044678,
+        "llm_ttft": 0.0022823550000055093,
+        "tts_ttfb": 0.471035631999996
+      }
+    },
+    {
+      "type": "log",
+      "text": "[17:47:52.953] INFO (2987): playout completed without interruption"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_3caf004b-bd5\""
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.message: \"The city is Lisbon. You are arriving on Tuesday, you need two rooms, and you prefer a quiet hotel near the station.\""
+    },
+    {
+      "type": "log",
+      "text": "[17:47:52.955] DEBUG (2987): agent speech ended"
+    },
+    {
+      "type": "log",
+      "text": "[17:47:52.955] DEBUG (2987): Task.runTask: task AgentActivity.pipelineReply done"
+    }
+  ],
+  "reply": "The city is Lisbon. You are arriving on Tuesday, you need two rooms, and you prefer a quiet hotel near the station.",
+  "duration_ms": 26173
+}

@@ -1,0 +1,325 @@
+{
+  "text": "For a fictional trip, remember Lisbon on Tuesday. What city and day did I just mention?",
+  "heard": "For a fictional trip, remember Lisbon on Tuesday. What city and day did I just mention?",
+  "events": [
+    {
+      "type": "log",
+      "text": "[18:02:01.126] DEBUG (4278): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:01.261] DEBUG (4278): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"For\""
+    },
+    {
+      "type": "log",
+      "text": "[18:02:02.364] DEBUG (4278): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"For a fictional trip, remember\""
+    },
+    {
+      "type": "log",
+      "text": "[18:02:03.284] DEBUG (4278): VAD task: END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:03.290] DEBUG (4278): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"\""
+    },
+    {
+      "type": "log",
+      "text": "[18:02:03.291] DEBUG (4278): skipping EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:03.363] DEBUG (4278): VAD task: START_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:03.446] DEBUG (4278): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"For a fictional trip, remember Lisbon on Tuesday.\""
+    },
+    {
+      "type": "log",
+      "text": "[18:02:04.675] DEBUG (4278): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"For a fictional trip, remember Lisbon on Tuesday. What city and day did I just mention?\""
+    },
+    {
+      "type": "log",
+      "text": "[18:02:05.067] DEBUG (4278): VAD task: END_OF_SPEECH"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:05.069] DEBUG (4278): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"\""
+    },
+    {
+      "type": "log",
+      "text": "[18:02:05.070] DEBUG (4278): skipping EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:05.770] DEBUG (4278): interim transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"For a fictional trip, remember Lisbon on Tuesday. What city and day did I just mention?\""
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.478] DEBUG (4278): received user transcript"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.user_transcript: \"For a fictional trip, remember Lisbon on Tuesday. What city and day did I just mention?\""
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T18:02:06.529Z",
+      "role": "user",
+      "text": "For a fictional trip, remember Lisbon on Tuesday. What city and day did I just mention?"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.480] DEBUG (4278): triggering preemptive generation (FINAL_TRANSCRIPT)"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"For a fictional trip, remember Lisbon on Tuesday. What city and day did I just mention?\""
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.481] INFO (4278): starting preemptive generation"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.new_transcript: \"For a fictional trip, remember Lisbon on Tuesday. What city and day did I just mention?\""
+    },
+    {
+      "type": "log",
+      "text": "    transcriptConfidence: 0.9977186874999999"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.482] INFO (4278): Creating speech handle"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_efe89110-000\""
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.483] DEBUG (4278): Task.runTask: task AgentActivity.pipelineReply started"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.485] DEBUG (4278): Task.runTask: task performLLMInference started"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.495] DEBUG (4278): running EOU detection on stt FINAL_TRANSCRIPT"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.495] DEBUG (4278): running EOU detection"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.audio_transcript: \"For a fictional trip, remember Lisbon on Tuesday. What city and day did I just mention?\""
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.499] DEBUG (4278): Running turn detector model"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.501] DEBUG (4278): eot prediction"
+    },
+    {
+      "type": "log",
+      "text": "    endOfTurnProbability: 0.8924248218536377"
+    },
+    {
+      "type": "log",
+      "text": "    unlikelyThreshold: 0.3857"
+    },
+    {
+      "type": "log",
+      "text": "    endpointingDelay: 300"
+    },
+    {
+      "type": "log",
+      "text": "    language: \"en\""
+    },
+    {
+      "type": "log",
+      "text": "    trigger: \"stt\""
+    },
+    {
+      "type": "log",
+      "text": "    fromCache: true"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.508] DEBUG (4278): end of user turn"
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.transcript: \"For a fictional trip, remember Lisbon on Tuesday. What city and day did I just mention?\""
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.511] DEBUG (4278): Task.runTask: task AgentActivity.userTurnCompleted started"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.517] DEBUG (4278): EOU detection task completed"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.520] DEBUG (4278): using preemptive generation"
+    },
+    {
+      "type": "log",
+      "text": "    preemptiveLeadTime: 25"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.523] DEBUG (4278): Task.runTask: task AgentActivity.userTurnCompleted done"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.530] DEBUG (4278): Task.runTask: task AgentActivity.pipelineReply.produceSegments started"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:06.531] DEBUG (4278): Task.runTask: task performToolExecutions started"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:07.541] DEBUG (4278): Task.runTask: task performTTSInference started"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:07.544] DEBUG (4278): Task.runTask: task performTextForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:07.545] DEBUG (4278): Task.runTask: task performAudioForwarding started"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:07.547] DEBUG (4278): Task.runTask: task inference-tts-input started"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:07.547] DEBUG (4278): Task.runTask: task inference-tts-sentence started"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:07.548] DEBUG (4278): Task.runTask: task inference-tts-ws-listener started"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:07.548] DEBUG (4278): Task.runTask: task inference-tts-recv started"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:07.895] DEBUG (4278): Task.runTask: task performTextForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:07.895] DEBUG (4278): Task.runTask: task performToolExecutions done"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:07.895] DEBUG (4278): Task.runTask: task AgentActivity.pipelineReply.produceSegments done"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:07.895] DEBUG (4278): Task.runTask: task performLLMInference done"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:07.897] DEBUG (4278): Task.runTask: task inference-tts-input done"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:07.898] DEBUG (4278): Task.runTask: task inference-tts-sentence done"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:08.670] DEBUG (4278): agent speech started"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:10.079] DEBUG (4278): Task.runTask: task inference-tts-recv done"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:10.080] DEBUG (4278): Task.runTask: task inference-tts-ws-listener done"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:10.089] DEBUG (4278): Task.runTask: task performAudioForwarding done"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:10.090] DEBUG (4278): Task.runTask: task performTTSInference done"
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T18:02:12.606Z",
+      "role": "assistant",
+      "text": "\u003cexpr type=\"expression\" label=\"confident\"/\u003e You mentioned \u003cexpr type=\"break\" label=\"500ms\"/\u003e Lisbon on Tuesday. \u003cexpr type=\"expression\" label=\"curious\"/\u003e Do you want me to save that for you?",
+      "metrics": {
+        "e2e_latency": 3.8576605319976807,
+        "llm_ttft": 1.0462603999999978,
+        "tts_ttfb": 0.8754927050000028
+      }
+    },
+    {
+      "type": "log",
+      "text": "[18:02:12.607] INFO (4278): playout completed without interruption"
+    },
+    {
+      "type": "log",
+      "text": "    speech_id: \"speech_efe89110-000\""
+    },
+    {
+      "type": "log",
+      "text": "    lk.pii.message: \"\u003cexpr type=\\\"expression\\\" label=\\\"confident\\\"/\u003e You mentioned \u003cexpr type=\\\"break\\\" label=\\\"500ms\\\"/\u003e Lisbon on Tuesday. \u003cexpr type=\\\"expression\\\" label=\\\"curious\\\"/\u003e Do you want me to save that for you?\""
+    },
+    {
+      "type": "log",
+      "text": "[18:02:12.610] DEBUG (4278): agent speech ended"
+    },
+    {
+      "type": "log",
+      "text": "[18:02:12.610] DEBUG (4278): Task.runTask: task AgentActivity.pipelineReply done"
+    }
+  ],
+  "reply": "\u003cexpr type=\"expression\" label=\"confident\"/\u003e You mentioned \u003cexpr type=\"break\" label=\"500ms\"/\u003e Lisbon on Tuesday. \u003cexpr type=\"expression\" label=\"curious\"/\u003e Do you want me to save that for you?",
+  "duration_ms": 16089
+}

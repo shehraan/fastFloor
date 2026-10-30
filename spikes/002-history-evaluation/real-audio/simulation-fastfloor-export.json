@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "run": {
+    "id": "SR_JKzbzVikHxJ5",
+    "project_id": "p_4cd3dk9hpwb",
+    "status": "STATUS_CANCELLED",
+    "agent_description": "",
+    "error": "",
+    "created_at": "2026-10-28T17:41:45.509401Z",
+    "jobs": [
+      {
+        "id": "SRJ_x3ufLvzYXzX8",
+        "status": "STATUS_FAILED",
+        "instructions": "PERSONA: An English-speaking caller testing a fictional travel discussion.\nOPENING LINE: \"I want to travel to New York on Monday. Please remember that destination and day.\"\nDO, IN ORDER, waiting for a reply after each line:\n1. Say \"Actually, change the destination to Boston instead. Keep the same day.\"\n2. Ask \"What destination did I mention originally, before I changed it, and what is my current destination?\"\n3. In one continuous turn say \"For a separate fictional trip, I am traveling with my sister, we prefer a quiet hotel near the station, we need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, corrected day, number of rooms, and hotel preference without making any booking.\"\n4. Ask \"What were the corrected day and city for the separate trip, and what was the original destination for my first trip?\"\n5. Say \"Remember the luggage color is green.\"\n6. Ask \"What luggage color did I just say?\"\n7. Say \"Change the luggage color to blue instead.\"\n8. Ask \"What was the original luggage color, and what is the current color?\"\n9. Ask \"Briefly repeat the two destinations for the first trip and the final day and city for the separate trip.\"\nEnd after the reply. Do not make real reservations or invent facts.\n",
+        "error": "agent under test went silent for 30s",
+        "agent_expectations": "Recalls New York as the original first destination and Boston as the revised one. Captures Lisbon, Tuesday rather than Monday, two rooms, and a quiet hotel near the station for the separate trip. Recalls green then blue luggage. Does not claim to have made any booking. Replies to consecutive turns without getting stuck.\n",
+        "label": "Original destination and dense corrected utterance survive consecutive turns",
+        "tags": [],
+        "room_name": "sim-SRJ_x3ufLvzYXzX8-KvZeVw43",
+        "started_at": "2026-10-28T17:41:46.862805Z",
+        "ended_at": "2026-10-28T17:42:35.484646Z",
+        "room_id": "RM_5mtxBSF6dN38",
+        "usage": {
+          "text_turns_count": 0,
+          "audio_turns_count": 0
+        },
+        "metrics": {
+          "task_completion": 0,
+          "overall_score": 0,
+          "turns": [],
+          "judge_model": "google/gemma-4-31b-it",
+          "has_remote_session": true,
+          "end_reason": "END_REASON_INACTIVITY",
+          "caller_language": "en",
+          "caller_listen_language": "en"
+        },
+        "scenario_id": "SCN_ffAudioRecall",
+        "sample": 1,
+        "failure_reason": "FAILURE_REASON_UNSPECIFIED"
+      },
+      {
+        "id": "SRJ_jnbyzQ9WgpGn",
+        "status": "STATUS_FAILED",
+        "instructions": "PERSONA: An English-speaking caller discussing a fictional trip.\nOPENING LINE: \"I want to travel to New York on Monday. Give me a detailed spoken explanation of three neighborhoods I could visit.\"\nDO, IN ORDER:\n1. As soon as possible, interrupt the reply with \"Wait, change the destination to Boston instead, and keep Monday.\"\n2. After the revised reply, ask \"Which destination did I originally mention, and which destination do I want now?\"\n3. Ask for a detailed explanation of Boston neighborhoods. While it is speaking,\n   interrupt with \"Stop. Just tell me the current destination and day in one sentence.\"\n4. After the short reply, ask \"What was my original destination before Boston?\"\nEnd after its reply. Do not send introductions, book, or perform any real action.\n",
+        "error": "agent under test went silent for 30s",
+        "agent_expectations": "Acknowledges Boston as the revised destination with Monday retained, recalls New York as the original destination, and answers the final recall question. Responds to the stop request with a short answer rather than restarting the superseded neighborhood explanation. Never claims to have booked anything.\n",
+        "label": "Destination correction during a lengthy reply and recovery",
+        "tags": [],
+        "room_name": "sim-SRJ_jnbyzQ9WgpGn-EaGpGSh2",
+        "started_at": "2026-10-28T17:42:35.520206Z",
+        "ended_at": "2026-10-28T17:43:37.456556Z",
+        "room_id": "RM_CcUDmxa87tmk",
+        "usage": {
+          "text_turns_count": 0,
+          "audio_turns_count": 0
+        },
+        "metrics": {
+          "task_completion": 0,
+          "overall_score": 0,
+          "turns": [],
+          "judge_model": "google/gemma-4-31b-it",
+          "has_remote_session": true,
+          "end_reason": "END_REASON_INACTIVITY",
+          "caller_language": "en",
+          "caller_listen_language": "en"
+        },
+        "scenario_id": "SCN_ffAudioBarge",
+        "sample": 1,
+        "failure_reason": "FAILURE_REASON_UNSPECIFIED"
+      }
+    ],
+    "agent_name": "simulation-ptkv5nkt",
+    "scenario_group": {
+      "name": "FastFloor real audio verification",
+      "scenarios": [
+        {
+          "label": "Original destination and dense corrected utterance survive consecutive turns",
+          "instructions": "PERSONA: An English-speaking caller testing a fictional travel discussion.\nOPENING LINE: \"I want to travel to New York on Monday. Please remember that destination and day.\"\nDO, IN ORDER, waiting for a reply after each line:\n1. Say \"Actually, change the destination to Boston instead. Keep the same day.\"\n2. Ask \"What destination did I mention originally, before I changed it, and what is my current destination?\"\n3. In one continuous turn say \"For a separate fictional trip, I am traveling with my sister, we prefer a quiet hotel near the station, we need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, corrected day, number of rooms, and hotel preference without making any booking.\"\n4. Ask \"What were the corrected day and city for the separate trip, and what was the original destination for my first trip?\"\n5. Say \"Remember the luggage color is green.\"\n6. Ask \"What luggage color did I just say?\"\n7. Say \"Change the luggage color to blue instead.\"\n8. Ask \"What was the original luggage color, and what is the current color?\"\n9. Ask \"Briefly repeat the two destinations for the first trip and the final day and city for the separate trip.\"\nEnd after the reply. Do not make real reservations or invent facts.\n",
+          "agent_expectations": "Recalls New York as the original first destination and Boston as the revised one. Captures Lisbon, Tuesday rather than Monday, two rooms, and a quiet hotel near the station for the separate trip. Recalls green then blue luggage. Does not claim to have made any booking. Replies to consecutive turns without getting stuck.\n",
+          "tags": {},
+          "userdata": "",
+          "id": "SCN_ffAudioRecall"
+        },
+        {
+          "label": "Destination correction during a lengthy reply and recovery",
+          "instructions": "PERSONA: An English-speaking caller discussing a fictional trip.\nOPENING LINE: \"I want to travel to New York on Monday. Give me a detailed spoken explanation of three neighborhoods I could visit.\"\nDO, IN ORDER:\n1. As soon as possible, interrupt the reply with \"Wait, change the destination to Boston instead, and keep Monday.\"\n2. After the revised reply, ask \"Which destination did I originally mention, and which destination do I want now?\"\n3. Ask for a detailed explanation of Boston neighborhoods. While it is speaking,\n   interrupt with \"Stop. Just tell me the current destination and day in one sentence.\"\n4. After the short reply, ask \"What was my original destination before Boston?\"\nEnd after its reply. Do not send introductions, book, or perform any real action.\n",
+          "agent_expectations": "Acknowledges Boston as the revised destination with Monday retained, recalls New York as the original destination, and answers the final recall question. Responds to the stop request with a short answer rather than restarting the superseded neighborhood explanation. Never claims to have booked anything.\n",
+          "tags": {},
+          "userdata": "",
+          "id": "SCN_ffAudioBarge"
+        }
+      ],
+      "id": ""
+    },
+    "ended_at": "2026-10-28T17:45:40.023621Z",
+    "job_count": 2,
+    "passed_count": 0,
+    "failed_count": 2,
+    "num_simulations": 2,
+    "usage": {
+      "text_turns_count": 0,
+      "audio_turns_count": 0
+    },
+    "concurrency": 1,
+    "mode": "SIMULATION_MODE_AUDIO",
+    "summary_zstd": ""
+  }
+}

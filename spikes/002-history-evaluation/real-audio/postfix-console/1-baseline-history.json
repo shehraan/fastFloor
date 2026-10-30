@@ -1,0 +1,93 @@
+{
+  "events": [
+    {
+      "type": "handoff",
+      "to": "default_agent"
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:46:43.118Z",
+      "role": "user",
+      "text": "I wanna travel to New York on Monday. Please remember that destination and day."
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:46:44.012Z",
+      "role": "assistant",
+      "text": "I have noted that you want to travel to New York this coming Monday. Is there anything else you would like me to remember or help you plan?",
+      "metrics": {
+        "e2e_latency": 1.9690001010894775,
+        "llm_ttft": 0.005257996000000986,
+        "tts_ttfb": 0.4811139339999997
+      }
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:47:02.011Z",
+      "role": "user",
+      "text": "Actually, change the destination to Boston instead. Keep the same day."
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:47:02.394Z",
+      "role": "assistant",
+      "text": "I have updated your destination to Boston for this Monday. Would you like me to help you look for flights or hotels?",
+      "metrics": {
+        "e2e_latency": 1.305999994277954,
+        "llm_ttft": 0.0015088809999994623,
+        "tts_ttfb": 0.41496752800000536
+      }
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:47:19.610Z",
+      "role": "user",
+      "text": "What destination did I mention originally before I changed it, and what is my current destination"
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:47:20.315Z",
+      "role": "assistant",
+      "text": "You originally mentioned New York, and your current destination is Boston.",
+      "metrics": {
+        "e2e_latency": 1.75,
+        "llm_ttft": 0.003588331999999639,
+        "tts_ttfb": 0.4292578020000022
+      }
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:47:44.979Z",
+      "role": "user",
+      "text": "For a separate fictional trip, I am traveling with my sister. We prefer a quiet hotel near the station. We need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city. Corrected day, number of rooms, and hotel preference without making any booking."
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:47:45.563Z",
+      "role": "assistant",
+      "text": "The city is Lisbon. You are arriving on Tuesday, you need two rooms, and you prefer a quiet hotel near the station.",
+      "metrics": {
+        "e2e_latency": 1.5759999752044678,
+        "llm_ttft": 0.0022823550000055093,
+        "tts_ttfb": 0.471035631999996
+      }
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:48:02.239Z",
+      "role": "user",
+      "text": "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?"
+    },
+    {
+      "type": "message",
+      "time": "2026-10-28T17:48:02.809Z",
+      "role": "assistant",
+      "text": "For the separate trip, the corrected day is Tuesday and the city is Lisbon. The original destination for your first trip was New York.",
+      "metrics": {
+        "e2e_latency": 1.4859998226165771,
+        "llm_ttft": 0.002680951999991521,
+        "tts_ttfb": 0.4052452800000026
+      }
+    }
+  ]
+}

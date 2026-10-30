@@ -1,0 +1,48 @@
+# Opt-in real-audio checks, not text CI. Use FASTFLOOR_EVAL_ARM in a fresh run.
+# No source generation/upload; existing starter scenarios remain untouched.
+# Simulator instructions request timing but do not prove an interruption occurred.
+id: SCNG_ffRealAudio2026
+name: FastFloor real audio verification
+scenarios:
+  - id: SCN_ffAudioRecall
+    label: Original destination and dense corrected utterance survive consecutive turns
+    instructions: |
+      PERSONA: An English-speaking caller testing a fictional travel discussion.
+      OPENING LINE: "I want to travel to New York on Monday. Please remember that destination and day."
+      DO, IN ORDER, waiting for a reply after each line:
+      1. Say "Actually, change the destination to Boston instead. Keep the same day."
+      2. Ask "What destination did I mention originally, before I changed it, and what is my current destination?"
+      3. In one continuous turn say "For a separate fictional trip, I am traveling with my sister, we prefer a quiet hotel near the station, we need two rooms, and we will arrive on Monday, actually Tuesday, in Lisbon. Please repeat the city, corrected day, number of rooms, and hotel preference without making any booking."
+      4. Ask "What were the corrected day and city for the separate trip, and what was the original destination for my first trip?"
+      5. Say "Remember the luggage color is green."
+      6. Ask "What luggage color did I just say?"
+      7. Say "Change the luggage color to blue instead."
+      8. Ask "What was the original luggage color, and what is the current color?"
+      9. Ask "Briefly repeat the two destinations for the first trip and the final day and city for the separate trip."
+      End after the reply. Do not make real reservations or invent facts.
+    agent_expectations: >
+      Recalls New York as the original first destination and Boston as the revised one.
+      Captures Lisbon, Tuesday rather than Monday, two rooms, and a quiet hotel near
+      the station for the separate trip. Recalls green then blue luggage. Does not
+      claim to have made any booking. Replies to consecutive turns without getting stuck.
+    tags:
+      feature: audio_history
+  - id: SCN_ffAudioBarge
+    label: Destination correction during a lengthy reply and recovery
+    instructions: |
+      PERSONA: An English-speaking caller discussing a fictional trip.
+      OPENING LINE: "I want to travel to New York on Monday. Give me a detailed spoken explanation of three neighborhoods I could visit."
+      DO, IN ORDER:
+      1. As soon as possible, interrupt the reply with "Wait, change the destination to Boston instead, and keep Monday."
+      2. After the revised reply, ask "Which destination did I originally mention, and which destination do I want now?"
+      3. Ask for a detailed explanation of Boston neighborhoods. While it is speaking,
+         interrupt with "Stop. Just tell me the current destination and day in one sentence."
+      4. After the short reply, ask "What was my original destination before Boston?"
+      End after its reply. Do not send introductions, book, or perform any real action.
+    agent_expectations: >
+      Acknowledges Boston as the revised destination with Monday retained, recalls
+      New York as the original destination, and answers the final recall question.
+      Responds to the stop request with a short answer rather than restarting the
+      superseded neighborhood explanation. Never claims to have booked anything.
+    tags:
+      feature: audio_interruption
