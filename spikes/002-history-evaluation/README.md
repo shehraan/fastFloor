@@ -1,253 +1,178 @@
-# History correctness, matched A/B evaluation, and fictional networking workload
+# Evaluation and evidence
 
-## Published evidence index
+This directory contains reproducible checks for history correctness, matched
+Baseline/FastFloor execution, and a fictional networking workload. Use the root
+[README](../../README.md) for setup and runtime commands, and
+[ARCHITECTURE.md](../../ARCHITECTURE.md) for the current design.
 
-Start with the root [README](../../README.md) for the current product overview and
-[DEMO.md](../../DEMO.md) for the demo/share checklist. Older status statements below
-describe their own experiment phase, not the final shipping state.
+## Evidence index
 
-The [headline benchmark](REAL_AUDIO_VERIFICATION.md#baseline-vs-fastfloor-benchmark)
-compares non-speculative Baseline with speculative FastFloor in the same
-implementation, using only the final real-provider audio measurement set. Historical
-diagnostic and fixture-harness measurements remain archived, not headline results.
+- [`REAL_AUDIO_VERIFICATION.md`](REAL_AUDIO_VERIFICATION.md) defines the final
+  hosted-audio benchmark, its limits, unsuccessful room attempts, and acoustic
+  measurement procedures.
+- [`real-audio/postfix-console/`](real-audio/postfix-console/),
+  [`postfix-console-report.json`](real-audio/postfix-console-report.json), and
+  [`measured-comparison.json`](real-audio/measured-comparison.json) contain the
+  final four-session console-audio experiment: ten SDK playback samples per arm.
+- [`real-audio/console/`](real-audio/console/) and
+  [`console-report.json`](real-audio/console-report.json) preserve historical
+  diagnostics, including the accepted-input history-loss failure. They are
+  excluded from the headline benchmark.
+- [`scripted-sdk-results.json`](scripted-sdk-results.json) exercises actual SDK
+  wiring with scripted model/STT transports and silent synthetic audio.
+- [`hosted-llm-results.json`](hosted-llm-results.json) uses the real hosted Gemma
+  model with fixture STT/TTS. Its four output samples per arm are plumbing evidence,
+  not hosted-audio latency measurements.
+- [`boardy-hosted-results.json`](boardy-hosted-results.json) records hosted-model
+  calls to the local read-only search tool, including a New York-to-Boston
+  correction and retained tool history. STT/TTS remain fixtures.
+- [`history-debugger-results.json`](history-debugger-results.json) contains one
+  hosted text-only recall sample. It does not test audio commitment or cancellation.
 
-| Evidence                                                                                                              | What it establishes                                                                               | What it does not establish                                |
-| --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| `real-audio/postfix-console/*.jsonl`, `real-audio/postfix-console-report.json`, `real-audio/measured-comparison.json` | Final real Flux/Gemma/Fish console-audio benchmark; ten SDK playback samples per arm              | Remote acoustic onset or production distributions         |
-| `real-audio/console/`, `real-audio/console-report.json`                                                               | Archived diagnostic run, including the history-loss failure; excluded from headline results       | Additional headline performance samples                   |
-| `REAL_AUDIO_VERIFICATION.md`, `real-audio/simulation-*-export.json`                                                   | Full method, limitations, and failed room attempts                                                | Successful room-audio latency or interruption measurement |
-| `scripted-sdk-results.json`, `hosted-llm-results.json`                                                                | SDK mechanics; separately, actual hosted Gemma with fixture STT/TTS                               | Hosted audio or microphone latency                        |
-| `boardy-hosted-results.json`                                                                                          | Hosted model used local `find_people`, preserved constraints/history, and retrieved Leo then Maya | Speculative tools, real contacts, or sent introductions   |
-| `history-debugger-results.json`                                                                                       | One hosted text-only semantic recall sample                                                       | Audio commitment/cancellation behavior                    |
+Developer-reported microphone checks covered multi-turn context, corrections,
+interruptions, and retrieval of fictional Maya Chen in Boston. These are
+qualitative observations, not additional benchmark samples. One missed-speech
+observation remains unconfirmed. Failed room simulations produced no conversational
+turns and supply no caller-latency or acoustic-safety evidence.
 
-Final microphone success and Maya Chen's live retrieval/intro-draft offer are
-developer-reported observations. One isolated missed-speech instance is unconfirmed.
-No additional timing samples were created during packaging. Raw fictional benchmark
-traces are intentional evidence, not production logs; do not add private calls.
-Machine-specific diagnostic logs/test-runner dumps are local-only. Ignore rules
-prevent accidental new captures; they do not retroactively remove Git history.
+## Matched comparison
 
-## Real-audio verification follow-up — October 28, 2026
+`FASTFLOOR_EVAL_ARM=baseline` starts preparation at commitment.
+`FASTFLOOR_EVAL_ARM=fastfloor` can start at an eligible preflight. Both run the same
+implementation, model, voice, prompt, endpointing defaults, full-response buffer,
+release gate, and output path. SDK preemptive generation is disabled in both.
 
-Read [`REAL_AUDIO_VERIFICATION.md`](REAL_AUDIO_VERIFICATION.md) for this phase's
-results, raw evidence, repaired finalized-input history loss, buffer measurements,
-and exact manual tests. The scripted-STT harness files below remain historical.
-Actual Flux/Gemma/Fish audio now ran over the CLI console transport in both arms,
-with ten playback samples each. Room simulations failed before conversation;
-client audible onset and real interruption/leakage are still unverified. No
-synthetic-STT latency is promoted to real-audio performance.
+This comparison isolates custom preflight preparation. The original default
+AssemblyAI/SDK-turn-detector/streaming agent is a separate mode, not this control.
+The [final benchmark](REAL_AUDIO_VERIFICATION.md#baseline-vs-fastfloor-benchmark)
+uses real Flux/Gemma/Fish console audio. Historical diagnostics and fixture timings
+are not pooled into it.
 
-## History finding
+For manual comparison, use fresh sessions and run one arm at a time:
 
-A deterministic real-SDK reproduction exposed an integration bug, not an STT
-loss: a final transcript reached the SDK commitment hook and the first model
-request, but disappeared from subsequent model context when new speech cancelled
-the pending committed response. Agents 1.9.4 returns before persisting the user
-message when the hook raises `StopResponse` (`agent_activity.ts`, around 3430–3450).
-The adapter awaited generation in that hook, so reply cancellation also erased
-accepted input. The regression failed for both New York → Boston and Lisbon → Oslo.
+```sh
+FASTFLOOR_EVAL_ARM=baseline FASTFLOOR_TRACE_PATH=/tmp/ff-baseline.jsonl pnpm dev --log-level DEBUG --no-reload
+FASTFLOOR_EVAL_ARM=fastfloor FASTFLOOR_TRACE_PATH=/tmp/ff-fastfloor.jsonl pnpm dev --log-level DEBUG --no-reload
+```
 
-The adapter now retains the exact validated SDK message, using public
-`agent.updateChatCtx()` and `session.history.insert()`, before stopping that reply.
-IDs deduplicate the recovery. It copies current history, never a stale preflight
-snapshot. It does not retain uncommitted hypotheses, cancelled assistant text, or
-contradictory/ambiguous hook input. Ordinary successful persistence stays SDK-owned.
-TurnCoordinator, its cancellation/generation semantics, and its seven tests are
-unchanged. No destination-specific behavior was added to production code.
+Alternate arm order and prefer replayed audio for waveform control. Keep
+configuration and workload fixed. Save incomplete and silent turns as well as
+successful responses.
 
-The recovery does not emit the SDK's `conversation_item_added` event: there is no
-public persist-without-reply API emitting that event in the installed SDK.
-`COMMITTED_INPUT_RETAINED` records this path; both public histories and the next
-actual `LLM.chat()` context are checked by the regression.
+## Metrics and tracing
 
-A separate hosted-model text-debugger conversation correctly recalled New York
-before a Boston correction with full context. This is one semantic sample, not a
-proof that the model cannot make recall errors. The original microphone trace was
-not available, so the reproduced cancellation bug cannot be definitively assigned
-to that particular live call.
+`FASTFLOOR_TRACE_PATH` enables transcript/request-context capture and wall-clock
+and monotonic timestamps. Use fictional input only and keep new captures outside
+Git. Parent directories must exist. New files request mode 0600; the tracer does
+not change permissions on existing files. Synchronous writes add overhead, and
+there is no production redaction, retention, or write-failure isolation policy.
 
-### Distinguishing the remaining causes
+The report distinguishes these stages:
 
-1. Check `FINAL_TRANSCRIPT` and `USER_TURN_COMMITTED`: if the original words never
-   reach commitment, investigate provider transcription/turn boundaries. A preflight
-   alone is not committed conversation history.
-2. Check `COORDINATOR_COMMITTED`: this logs the exact accepted input/generation.
-3. Check `LLM_STARTED.context`: this is the context actually handed to public
-   `LLM.chat()`, not merely the agent's presumed history. Provider-specific wire
-   serialization is not captured.
-4. Check `COMMITTED_INPUT_RETAINED` and `SDK_HISTORY_ITEM_ADDED` against the next
-   request. If full original/corrected input reaches the model but recall is wrong,
-   that is a model/prompt-quality issue, not missing history in this adapter.
+- First nonempty model text delta, not a provider-internal token timestamp.
+- TTS node invocation and first synthesized frame, neither of which is playback.
+- SDK playback associated with a committed user message.
+- Caller-audible onset, which remains unmeasured and is represented as null.
 
-## Matched A/B arms
+Response latency is SDK commitment to the first associated SDK playback event.
+The SDK playback event lacks a public speech ID; the tracer associates it only
+when one scheduled, unfinished SpeechHandle can own it. Ambiguous events remain
+unattributed.
 
-`FASTFLOOR_EVAL_ARM=baseline` means this adapter's non-speculative control: start
-preparation only at commitment. `FASTFLOOR_EVAL_ARM=fastfloor` starts at preflight
-when eligible. Both use Gemma `google/gemma-4-31b-it`, Flux with
-`eager_eot_threshold: 0.5`, the identical prompt, Fish `fishaudio/s2.1-pro` and voice,
-STT turn detection, unchanged SDK endpointing defaults, disabled SDK preemption,
-and the same full-response buffer, release gate, and output path.
+Reuse counts a speculative candidate claimed by the output node. Rollback counts
+invalidation before claim, not wasted tokens or cost. Failed commitments remain in
+denominators; missing latency samples remain null. Percentiles use nearest rank.
+Before-commit SDK playback is a mechanical observation, not proof of semantic
+endpointing or absence of sound at a caller's speaker.
 
-This isolates the value of preflight preparation. It is NOT a comparison against
-the original default AssemblyAI/turn-detector/streaming agent, which remains
-unchanged and selectable with no opt-in flags. It also does not claim full-buffer
-FastFloor beats a streaming non-speculative SDK baseline.
+Export captures directly with Node to keep package-manager banners out of JSON:
 
-For fictional, nonsensitive microphone tests, run each arm in a fresh session:
+```sh
+node scripts/summarize-traces.ts /tmp/ff-baseline.jsonl /tmp/ff-fastfloor.jsonl > /tmp/ff-report.json
+node scripts/summarize-traces.ts spikes/002-history-evaluation/hosted-llm-results.json
+```
 
-    FASTFLOOR_EVAL_ARM=baseline FASTFLOOR_TRACE_PATH=/tmp/ff-baseline.jsonl pnpm dev --log-level DEBUG --no-reload
-    FASTFLOOR_EVAL_ARM=fastfloor FASTFLOOR_TRACE_PATH=/tmp/ff-fastfloor.jsonl pnpm dev --log-level DEBUG --no-reload
+The report keeps session clocks separate, includes incomplete turns, and checks
+captured configuration parity. It does not infer a production speedup.
 
-Stop one run before starting the other. Alternate baseline/FastFloor order; repeat
-identical utterances (prefer replayed audio), corrections, long turns, and history
-questions. Keep models, prompt, workload and endpointing identical. Save all runs,
-including failures/silence, not just fast successful ones. The original fake mode
-remains `FASTFLOOR_FLUX_SPIKE=1` without real/evaluation/workload flags.
+## History and cancellation checks
 
-### Traces and metric definitions
+The SDK-session regressions reproduce accepted input disappearing when a pending
+reply is cancelled. Agents 1.9.4 can return from a `StopResponse` commitment hook
+without persisting the user message. The adapter retains exact validated SDK input
+by ID in both current agent context and session history before suppressing that
+reply. It never persists preflight hypotheses or cancelled assistant output.
 
-`FASTFLOOR_TRACE_PATH` enables JSONL with wall-clock ISO timestamps, per-session
-UUIDs, and monotonic elapsed milliseconds. It contains transcript text, prompts,
-request contexts, and directory results: use synthetic data only; do not commit
-sensitive live traces. New files request mode 0600; existing file permissions are
-not changed. Parent directories must exist. Synchronous trace I/O adds overhead;
-instrument both arms consistently. There is no redaction or production retention
-policy. Trace writing errors are not currently isolated from the opt-in experiment.
+A separate regression covers an earlier final's commitment arriving after a newer
+interim. History retention requires an exact observed-final aggregate; the
+superseded reply remains suppressed. Tests inspect both public histories and the
+next actual LLM request.
 
-Events include STT start/end/interim/preflight/final, SDK commitment, coordinator
-commitment/generation, LLM start/first nonempty text delta/completion, invalidation,
-release/transport claim, TTS start/first frame, SDK playback start/finish, and SDK
-history additions. First text delta is not a provider's internal token timestamp.
-Negative commit-to-LLM times are legitimate speculative lead.
+`COMMITTED_INPUT_RETAINED` identifies the explicit recovery path. To investigate a
+missing detail, compare `FINAL_TRANSCRIPT`, `USER_TURN_COMMITTED`,
+`COORDINATOR_COMMITTED`, and the actual `LLM_STARTED.context`. If the model receives
+the full input but answers incorrectly, that is distinct from adapter history loss.
 
-Response latency here means commitment → first SDK playback event. TTS start is
-node invocation, not audio. TTS first frame is synthesis output, not playback.
-SDK playback is a server/output-device event, NOT audible onset at the remote
-listener's speaker. `audibleOnsetMs` and `prematureAudibleResponses` remain null.
-A client-side synchronized recording/loopback measurement is required for those.
-Before-commit SDK playback is a mechanical safety metric, not a semantic judgment
-that endpointing waited until the person was actually finished.
+Additional real-hook regressions check that stalled STT, committed-LLM, and TTS
+observers forward cancellation immediately. Controlled streams verify SDK wiring;
+they do not establish hosted-provider cancellation timing or acoustic interruption
+safety.
 
-Reuse counts preflight candidates actually claimed by the output node, not merely
-selected in the commitment hook. Rollbacks count preflight candidates invalidated
-before transport claim. These are candidate counts, not wasted tokens or dollars.
-Silent/failed commitments remain in denominators; missing latency samples stay null.
-Percentiles use nearest rank. The small sample sets are descriptive only.
+## Reproduce the harnesses
 
-The installed SDK does not attach a public speech ID to its playback event.
-Correlation uses the sole scheduled, unfinished public SpeechHandle and its user
-message; multiple possible handles leave the event unattributed. There is no
-latest-turn guess, and the report exposes unattributed-event counts. Do not use
-ambiguous interruption samples to claim acoustic safety.
+Run offline SDK mechanics from the project root:
 
-Export saved traces or the SDK result files:
+```sh
+FASTFLOOR_EVAL_OUTPUT=/tmp/ff-scripted.json pnpm eval:sdk
+node scripts/summarize-traces.ts /tmp/ff-scripted.json > /tmp/ff-scripted-report.json
+```
 
-    pnpm eval:report /tmp/ff-baseline.jsonl /tmp/ff-fastfloor.jsonl > /tmp/ff-report.json
-    pnpm eval:report spikes/002-history-evaluation/hosted-llm-results.json
+The scripted model delay and preflight lead are fixture inputs, not production
+endpointing changes or voice-latency measurements.
 
-The report validates records, separates session clocks, preserves incomplete turns,
-and reports whether captured configurations match (ignoring arm/preflight enablement).
-It does not infer an improvement or pool unrelated sessions into a speedup claim.
+Hosted-model checks require existing local credentials and incur inference costs:
 
-## Executed evidence and reproduction
+```sh
+FASTFLOOR_EVAL_HOSTED=1 FASTFLOOR_EVAL_OUTPUT=/tmp/ff-hosted.json pnpm eval:sdk
+FASTFLOOR_EVAL_HOSTED=1 FASTFLOOR_BOARDY_OUTPUT=/tmp/ff-boardy.json pnpm test src/fastfloor/livekit-flux-session.test.ts -t 'read-only SDK'
+```
 
-`scripted-sdk-results.json`: real SDK STT/session/coordinator/reply/history plumbing;
-scripted model transport (30 ms) and transcript events; silent PCM TTS and in-memory
-sink. The 60 ms preflight lead is a fixture input schedule, not a runtime endpointing
-delay. This proves mechanics, not voice latency.
+These commands use real model requests with fixture STT/TTS. For hosted audio,
+use the [audio runner and procedure](REAL_AUDIO_VERIFICATION.md#artifacts-and-reproduction).
+The agent's dotenv loading and CLI project configuration are separate; the audio
+runner loads `.env.local` into the CLI subprocess without printing credentials.
 
-`hosted-llm-results.json`: the same harness with the actual configured hosted Gemma
-LLM and original assistant prompt. STT events and TTS/sink are still scripted.
-Order is baseline/FastFloor then FastFloor/baseline, with stable/corrected turns in
-each session. Only four output samples per arm; cold start, network/model variation,
-and different completion lengths are confounders. No live improvement is claimed.
+## Fictional networking workload
 
-`boardy-hosted-results.json`: actual hosted model chose the real local read-only
-tool for New York then Boston, retaining founder/robotics constraints. Model
-requests, tool results, history, and timestamps are exported. STT and TTS are still
-fixtures; this is not a microphone test or a simulation-judge result.
+```sh
+FASTFLOOR_BOARDY=1 FASTFLOOR_TRACE_PATH=/tmp/ff-boardy.jsonl pnpm dev --log-level DEBUG --no-reload
+```
 
-`history-debugger-results.json`: hosted text-debugger recall sample; no audio/STT.
+The directory contains 18 fictional profiles. `find_people` validates structured
+city, role, topic, and limit filters; it intersects filters, returns copied results,
+and reports no matches explicitly. The model interprets preferences and corrections
+from SDK conversation/tool history.
 
-Historical fixture timings remain in
-[`scripted-sdk-results.json`](scripted-sdk-results.json) and
-[`hosted-llm-results.json`](hosted-llm-results.json), unchanged. Both harnesses use
-scripted STT and silent synthetic TTS/in-memory playback. They validate mechanics,
-not hosted-audio latency, and are excluded from the headline comparison. The report
-CLI verified matching captured configurations for the hosted arms.
+All preparation is disabled in this workload, in both evaluation arms. After
+validated audio commitment, the SDK runs the ordinary tool loop. The workload has
+no send-introduction, scheduling, payment, or mutation tool. A draft-introduction
+offer is not an introduction sent to a real person.
 
-Run offline mechanics, optionally exporting JSON:
+Text scenarios exercise recall, corrected search, no-match behavior, and the
+no-introduction boundary through the ordinary SDK semantic path. The simulation
+workflow runs on merges to `main` or manual dispatch with repository secrets.
+Text simulations do not validate audio commitment, speculative cancellation, or
+caller-audible behavior.
 
-    FASTFLOOR_EVAL_OUTPUT=/tmp/ff-scripted.json pnpm eval:sdk
+## Remaining measurements
 
-Run the same harness with the real model (billable, existing agent credentials):
+- Caller-side onset and residual audio after interruption, with synchronized
+  recordings and a stated detection threshold.
+- Rollback-specific latency for corrections and interruptions.
+- A matched comparison against an optimized streaming non-speculative pipeline.
+- Working room-audio simulation coverage and a diagnosis of the existing
+  zero-conversation attempts.
 
-    FASTFLOOR_EVAL_HOSTED=1 FASTFLOOR_EVAL_OUTPUT=/tmp/ff-hosted.json pnpm eval:sdk
-    FASTFLOOR_EVAL_HOSTED=1 FASTFLOOR_BOARDY_OUTPUT=/tmp/ff-boardy.json pnpm test src/fastfloor/livekit-flux-session.test.ts -t 'read-only SDK'
-
-The harness reads credentials through the existing dotenv setup without exporting
-or printing them. Full hosted audio debugger and cloud simulations were attempted
-but stopped before execution because the CLI project reports `api-key is required`.
-The hosted model tests above use the agent's existing configuration independently.
-
-## Minimal networking workload and safety boundary
-
-    FASTFLOOR_BOARDY=1 FASTFLOOR_TRACE_PATH=/tmp/ff-boardy.jsonl pnpm dev --log-level DEBUG --no-reload
-
-There are 18 frozen fictional profiles. `find_people` validates structured
-city/role/topic/limit filters, intersects them with case-insensitive substring
-matching, returns copies and explicit no-match results, and never writes anything.
-Semantic interpretation and remembering/revising preferences belong to the model,
-which receives ordinary SDK conversation history and prior tool results.
-
-All preparation is disabled for this tool-enabled workload, in BOTH A/B arms.
-After a provenance-validated audio commitment, the SDK owns the ordinary tool loop,
-including subsequent LLM calls and history. This is a committed-only reference
-workload, not speculative retrieval; no workload speedup is asserted. Only the
-read-only search is registered. There are no send-introduction, booking, payment,
-or mutation tools, and no speculative-tool-policy engine was added.
-
-The scenario file adds original-preference recall, corrected networking search /
-no-introduction, and no-match checks. Scenario userdata selects this workload;
-text simulations deliberately use the ordinary SDK path to evaluate semantics,
-never fabricated audio commitment. Existing CI runs the full scenario file on
-merges to main. The audio adapter remains fail-closed for text-debugger input;
-text simulations do not verify its cancellation or commit gate.
-
-## Manual checks still required
-
-Automated verification passed: all 60 tests (zero failed/skipped), project typecheck,
-lint, scoped formatting, SDK declaration checks with `skipLibCheck: false`, and
-explicit strict typechecking of the affected tests/report script (test files are
-excluded from the project's ordinary typecheck). The debugger status was read back
-as stopped after the text checks. Existing TurnCoordinator source/tests are unchanged.
-
-Independent review identified a stalled-provider cancellation regression in the new
-async-generator observers. SDK `toStream()` queues `iterator.return()` behind a pending
-generator read; interruption therefore failed to reach the underlying provider until
-another chunk arrived. The shared stream observer now implements `return()` directly,
-calls the upstream reader's `cancel(reason)` immediately, and releases its lock on
-cancellation, completion and errors. The same fix covers the existing STT observer.
-Three real `Agent.create()`/hook-adapter regressions were observed red then green with
-stalled default TTS, committed LLM and STT nodes. Focused TTS tests cover unchanged
-frame forwarding, one first-frame timestamp, and error cleanup. The original STT
-error-propagation contract is preserved. Evaluation artifacts above were regenerated
-after this repair; the fixture's synthetic TTS still does not exercise hosted TTS or
-establish acoustic interruption safety.
-
-Follow-up independent review passed with no remaining established security or logic
-defects. It reran 47 focused offline tests, typecheck and scoped diff checks. Direct
-provider-close assertions using real default nodes with scripted provider transports
-remain an optional coverage improvement; the stalled-node regressions exercise the
-actual SDK hook adapter but replace the default nodes with controlled streams.
-
-- Repeat the original-destination microphone test, including a correction after
-  commitment but before the first reply, and confirm retained input in the next request.
-- Check stable preflight reuse, same-turn corrections, long multi-final utterances,
-  interruptions during generation and delayed/playing TTS, and fake-mode regression.
-- Run both matched arms over repeated identical audio; capture client acoustic onset
-  and premature/interrupted speech separately from SDK events.
-- Run cloud scenarios once the CLI project is configured; verify no-match and
-  no-introduction language with the hosted model, not only deterministic mechanics.
-- Tool-enabled FastFloor intentionally does not speculate in this phase. Design
-  any future speculative read-only lookup policy collaboratively before enabling it.
+Keep raw failures and historical observations separate from final benchmark
+samples. New private transcripts, recordings, credentials, and machine-specific
+logs do not belong in the published evidence set.

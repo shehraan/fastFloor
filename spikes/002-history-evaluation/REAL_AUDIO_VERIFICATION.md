@@ -77,9 +77,9 @@ first-audible response. Do not add marginal p50 values as if from one median tur
 
 Full buffering hides partial/erroring model output and keeps private speculative
 text behind the existing release gate. Preparation often completes before commit,
-hiding its wait in FastFloor; baseline cannot hide it this way. Fish synthesis is
-still substantial. No clear low-risk streaming change was established, so buffering
-was measured and retained rather than changing the architecture in this phase.
+hiding its wait in FastFloor; baseline cannot hide it this way. Fish synthesis remains
+substantial. These intervals describe the buffered implementation; they do not
+establish the benefit of a streaming alternative.
 SDK `llmNodeTtft` for the released one-string transport is not the underlying
 model's TTFT; use `LLM_STARTED` / `LLM_FIRST_TEXT_DELTA` instead.
 
@@ -104,15 +104,15 @@ replay the final/new-interim/commit ordering in both arms and verify both histor
 no stale output, duplicate-ID handling, and the next actual model request. Three
 negative cases reject unproven input. Exact recurrence of this ordering was not
 observed in the final audio capture; the controlled regression validates the repair.
-These fixture-backed tests are not performance samples; all tests remain unchanged.
+These fixture-backed tests are correctness checks, not performance samples.
 
 Historical measurements and the incomplete/incorrect trial remain available in
 [`console-report.json`](real-audio/console-report.json) and `results.beforeFix` in
 [`measured-comparison.json`](real-audio/measured-comparison.json). They are archived
 debugging evidence, excluded from all headline metrics and never pooled with the
-final experiment. No historical trace, regression test, or benchmark data was changed.
+final experiment.
 
-## Manual verification / publication note
+## Manual observations
 
 The developer reported successful live microphone tests of multi-turn conversation,
 corrections and interruptions. Boardy mode called `find_people`, retrieved fictional
@@ -123,8 +123,8 @@ missed-speech observation after an agent response remains unconfirmed and undiag
 
 Caller-side onset/yield measurements remain outstanding. The original default
 AssemblyAI/streaming agent passed a separate audio smoke turn, outside this
-benchmark. Machine-specific worker logs/test-runner dumps referenced below remain
-local-only; published fictional traces, CLI observations and exports are unchanged.
+benchmark. Machine-specific diagnostic logs remain local; the evidence index below
+links to the published captures and exports.
 
 ## Room simulation attempts and unresolved setup
 
@@ -133,9 +133,11 @@ scenario style; existing text CI scenarios were not changed. It requests ten-tur
 history/correction coverage and a separate destination/stop barge-in conversation.
 A simulator instruction to interrupt is not itself proof an interruption happened.
 
-- Baseline run `SR_j5fV2qGsWGpu`: completed, two failed jobs, each reporting
+- [Baseline export](real-audio/simulation-baseline-export.json), run
+  `SR_j5fV2qGsWGpu`: completed, two failed jobs, each reporting
   “agent under test went silent for 30s”; zero audio turns, empty metrics turns.
-- FastFloor run `SR_JKzbzVikHxJ5`: both jobs report the same inactivity failure.
+- [FastFloor export](real-audio/simulation-fastfloor-export.json), run
+  `SR_JKzbzVikHxJ5`: both jobs report the same inactivity failure.
   The local command exceeded its four-minute timebox while finishing/summarizing;
   exported run status is cancelled. Zero audio turns and no caller-latency samples.
   This attempt also set `OMP_NUM_THREADS=1` / `OPENBLAS_NUM_THREADS=1`; it is not
@@ -145,11 +147,9 @@ Workers registered, received jobs, connected rooms and subscribed to the caller
 track. Logs also show an early `room session transport is closed` warning,
 VAD slower-than-realtime warnings, event-loop/host stalls and runner timeouts.
 No normalized STT/commitment events were recorded in either arm. The exact cause
-of missing conversational audio is unresolved: do not assign it to the history
-bug, claim a credential failure, or label it a confirmed SDK defect. Exports and
-worker logs are retained. Diagnostic documentation feedback was submitted to
-LiveKit. Workers/debuggers were stopped; no simulation work is intentionally left
-running. Recheck exports rather than assuming a CLI timeout proves cloud shutdown.
+of missing conversational audio is unresolved. These attempts do not establish a
+history bug, a credential failure, or an SDK defect. The exports preserve the
+failed and cancelled outcomes; neither run supplies performance samples.
 
 ## Artifacts and reproduction
 
@@ -164,20 +164,15 @@ All paths below are relative to `spikes/002-history-evaluation/`:
 - `real-audio/measured-comparison.json`: per-turn timings, arm-local nearest-rank
   percentiles, buffering intervals, incompleteness, and user-request history checks.
   `results.afterFix` is the final benchmark; `results.beforeFix` is historical only.
-- `real-audio/simulation-*-export.json`, `*.stdout`, `*.stderr`, `*-worker.log`:
-  failed room attempts, not performance evidence.
+- `real-audio/simulation-*-export.json`: failed room attempts, not performance
+  evidence. Machine-specific worker logs and command output are not published.
 - `real-audio/default-*.json`: separate original-baseline real audio smoke; correct
   Lisbon/Tuesday reply and verified shutdown. Not part of the matched A/B sample.
-- `real-audio/regression-red.json`, `regression-green.json`, `tests-final.json`:
-  regression evidence and canonical test results. Filtered runs include skipped
-  unrelated tests; only the full-suite result is a suite-completion claim.
 
-Captures contain fictional prompts/transcripts and contexts. Exact configured
-API key/secret values were scanned for without printing them; none were found in
-these artifacts. Do not reuse this logging scheme for sensitive callers.
-An earlier long capture command was killed with exit 137 and its temporary-directory
-artifacts were lost when the sandbox reset. Its console observations are excluded
-from every reported total. Captures were rerun in durable repository batches.
+Captures contain fictional prompts, transcripts, and request context. Do not use
+this logging scheme for sensitive callers. An earlier capture lost its temporary
+artifacts after an exit-137 sandbox termination; none of its unsaved observations
+contributes to the reported totals.
 
 From the project root, with existing `.env.local` configured, run each session in
 a separate invocation. This loads credentials into the CLI process without copying
@@ -199,12 +194,12 @@ Export with the existing CLI (direct `node` avoids package-manager banners):
 To retry cloud audio without shell-exporting credential values, use a fresh trace
 path and one arm at a time (repeat with `FASTFLOOR_EVAL_ARM=fastfloor`):
 
-    FASTFLOOR_EVAL_ARM=baseline FASTFLOOR_TRACE_PATH="$PWD/ff-room-baseline.jsonl" node --env-file=.env.local --input-type=module -e 'import { spawnSync } from "node:child_process"; const r = spawnSync("lk", process.argv.slice(1), { stdio: "inherit" }); process.exit(r.status ?? 1);' -- agent simulate audio src/main.ts --scenarios spikes/002-history-evaluation/audio-scenarios.yaml --concurrency 1 --yes
+    FASTFLOOR_EVAL_ARM=baseline FASTFLOOR_TRACE_PATH=/tmp/ff-room-baseline.jsonl node --env-file=.env.local --input-type=module -e 'import { spawnSync } from "node:child_process"; const r = spawnSync("lk", process.argv.slice(1), { stdio: "inherit" }); process.exit(r.status ?? 1);' -- agent simulate audio src/main.ts --scenarios spikes/002-history-evaluation/audio-scenarios.yaml --concurrency 1 --yes
 
-Do not retry indefinitely on this one-CPU sandbox. This command uploads the explicit
+Use a bounded run on resource-constrained hosts. This command uploads the explicit
 scenario descriptions for simulation, not source for scenario generation.
 
-## Exact manual checks still required
+## Caller-side validation
 
 Use Agent Console, a microphone/replayed recording, and headphones. Use synthetic
 phrases only. Run one arm at a time in fresh sessions, alternating order:
