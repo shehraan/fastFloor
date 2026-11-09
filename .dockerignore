@@ -64,3 +64,10 @@ GEMINI.md
 .github/copilot-instructions.md
 .github/personal-instructions.md
 .github/instructions/
+
+# Private local notes and agent-tool configuration
+DEMO.md
+HANDOFF.md
+.agents/
+.mcp.json
+skills-lock.json

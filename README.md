@@ -55,7 +55,7 @@ flowchart TD
 
 Core code: [coordinator](src/fastfloor/turn-coordinator.ts),
 [adapter](src/fastfloor/livekit-flux-spike.ts), [mode selection](src/main.ts).
-[ARCHITECTURE.md](ARCHITECTURE.md) records decisions and the historical experiments.
+[ARCHITECTURE.md](ARCHITECTURE.md) describes the current design and tradeoffs.
 
 ## Measured results—not caller-audible latency
 
@@ -223,6 +223,3 @@ includes acoustic measurement procedures and failed room-simulation evidence.
 - Opt-in logs/traces contain transcripts and full model context, use synchronous I/O,
   and have no production redaction/retention policy. Use fictional inputs only; keep
   new captures outside Git. Trace-write failures are not isolated from the experiment.
-
-See [the 60–90-second demo checklist and sharing steps](DEMO.md). This packaging
-phase adds no runtime features, providers, speculative tools, or architecture changes.

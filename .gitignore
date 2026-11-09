@@ -249,3 +249,14 @@ src/fastfloor/combined-experiment.ts
 src/fastfloor/coordinator-demo.ts
 src/fastfloor/experiment.ts
 src/fastfloor/state-experiment.ts
+
+# Internal planning and AI-agent tooling (keep local, never publish)
+DEMO.md
+HANDOFF.md
+AGENTS.md
+CLAUDE.md
+.agents/
+.claude/
+.codex/
+.mcp.json
+skills-lock.json
